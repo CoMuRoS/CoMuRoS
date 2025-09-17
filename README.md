@@ -159,7 +159,7 @@ ros2 run chatty chat_gui
 
 ---
 
-## 🤖 Creating Your Own Robot Configuration
+## 🤖 Creating Your Own Scenario Configuration File for your environment and roboots
 
 ### Step 1: Copy Example Template
 Copy the file robot_config_example.json and paste it in the same directory and thrn rename it
@@ -343,17 +343,17 @@ ros2 launch chatty chat_system.launch.py model:=10
 
 ## 📊 Available Models
 
-| Model ID | Provider | Model Name          | Description                    |
-|----------|----------|---------------------|--------------------------------|
-| 1        | OpenAI   | gpt-4               | Most capable OpenAI model     |
-| 2        | OpenAI   | gpt-4.1-nano        | Fast and efficient             |
-| 3        | OpenAI   | gpt-3.5-turbo       | Good balance of speed/quality  |
-| 4        | OpenAI   | gpt-4o              | Optimized GPT-4 variant        |
-| 5        | OpenAI   | gpt-4.1-mini        | Lightweight version            |
-| 6        | Gemini   | gemini-pro          | Google's flagship model        |
-| 7        | XAI      | grok-1              | Elon Musk's AI model           |
-| 100      | Ollama   | llama2              | Local open-source model        |
-| 101      | Ollama   | mistral             | Local Mistral model            |
+| Model ID | Provider | Model Name          | 
+|----------|----------|---------------------|
+| 1        | OpenAI   | gpt-4               | 
+| 2        | OpenAI   | gpt-4.1-nano        | 
+| 3        | OpenAI   | gpt-3.5-turbo       | 
+| 4        | OpenAI   | gpt-4o              | 
+| 5        | OpenAI   | gpt-4.1-mini        | 
+| 6        | Gemini   | gemini-pro          | 
+| 7        | XAI      | grok-1              | 
+| 100      | Ollama   | llama2              | 
+| 101      | Ollama   | mistral             | 
 
 *Add your custom models*
 
@@ -482,11 +482,30 @@ After getting the system running:
 
 ## 📄 License
 
-[Add your license information here]
+MIT License
+
+Copyright (c) 2025 CoMuRoS
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 ## 📞 Support
 
 - **Issues**: Report bugs or request features on GitHub
-- **Discussions**: Join community discussions for help and ideas
-- **Documentation**: Check the wiki for detailed guides
+
 
