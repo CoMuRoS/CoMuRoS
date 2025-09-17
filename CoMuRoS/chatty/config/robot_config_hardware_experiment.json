@@ -1,0 +1,53 @@
+{
+  "robot_names": [
+    "robot_dog",
+    "waffle",
+    "burger"
+  ],
+
+  "robot_capabilities": {
+    "robot_dog": "Can walk and run over sand, uneven terrain, small rocks and slopes. Equipped with standard camera, lidar and a carrier on its back.",
+    "waffle": "Equipped with standard camera, a robotic arm, and differential drive robot.",
+    "burger": "Equipped with standard camera and differential drive robot."
+  },
+
+  "robot_morphology": {
+    "robot_dog": "Payload: ~6 kg (max ~10 kg), Speed: 0–3 m/s (max ~4 m/s), Weight: 40 kg, Size: 750 × 350 × 500 mm (L × W × H), Terrain: sand, slope, rock edges, Carrier: back-mounted debris bin",
+    "waffle": "Payload: ~500 g (max ~1 kg), Speed: 0–2 m/s (max ~2.5 m/s), Weight: 3 kg, Size: 300 × 300 × 120 mm (L × W × H),Arm Reach: ~400 mm, Wheels: 2WD",
+    "burger": "Speed: 0–1.8 m/s, Weight: 1.5 kg, Size: 150 × 150 × 200 mm (L × W × H), Wheels: 2WD"
+  },
+
+  "robot_states": {
+    "robot_dog": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "pose_state": "standing",
+      "carry_state": "empty",
+      "battery_state": "full",
+      "mode": "idle"
+    },
+    "waffle": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "stowed",
+      "carry_state": "empty",
+      "battery_state": "full",
+      "mode": "idle"
+    },
+    "burger": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "battery_state": "full",
+      "mode": "idle"
+    }
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

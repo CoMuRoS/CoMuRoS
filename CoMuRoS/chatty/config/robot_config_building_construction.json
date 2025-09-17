@@ -1,0 +1,57 @@
+{
+    "robot_names": ["drone", "robot_dog_with_arm", "differential_drive_robot_with_arm"],
+  
+    "robot_capabilities": {
+      "drone": "It can carry items faster. Can fly over the construction site to survey progress, inspect structures, deliver small tools or parts, and monitor worker safety. Equipped with a camera, depth sensor, lidar, and GPS. Cannot perform manipulation but useful for overview and transport. The drone should be used to inspect high places, monitor worker safety, and deliver light tools to elevated platforms. Drone can alert others if a crack or gap is found in walls or columns. Can manipulate or hold construction tools.",
+      "robot_dog_with_arm": "t can can carry Heavy weight itms.Capable of moving across uneven terrain, climbing stairs, and accessing partially built structures. Equipped with arm, lidar, thermal sensor, depth camera, and GPS. Robot dog with arm should navigate rough or narrow terrain to support structure alignment or place small materials. Can manipulate or hold construction tools. ",
+      "differential_drive_robot_with_arm": "God for deligate tasks. It has a good handling with tools. Moves on flat ground, can transport medium-weight construction items. Equipped with arm, camera, GPS, and lidar. Can tighten small bolts, and help with structural placement. Can pass materials to workers or robot dog, hold support beams, or assist in brick placement or alignment in lower areas. Differential drive robot with arm should carry bricks, planks, or support tools and assist workers or dog robot in material handover."
+    },
+  
+    "robot_morphology": {
+      "drone": "Payload: ~4 kg, Speed: 0–6 m/s, Weight: 10 kg, Size: 650 x 350 x 200 mm, Endurance: ~25 min, Max Altitude: 30 m, Propulsion: Quadrotor",
+      "robot_dog_with_arm": "Payload: ~20 kg, Speed: 0–2.5 m/s, Weight: 42 kg, Size: 1000 x 500 x 500 mm, Arm Reach: ~0.6 m, Terrain: debris, steps, platform edges",
+      "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.5 m/s, Weight: 48 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m, Terrain: flat construction areas"
+    },
+  
+    "robot_states": {
+      "drone": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "vertical_state": "Landed",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "robot_dog_with_arm": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "pose_state": "Standing",
+        "carry_state": "Empty",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "differential_drive_robot_with_arm": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "mobility_state": "Stationary",
+        "carry_state": "Empty",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+      "If a robot is carrying a fragile object, it should not be reassigned until delivery is complete."
+    ],
+  
+    "task_replanning_rules": [
+      "If the path is blocked for differential robot, reassign the material to the robot dog if within its capacity.",
+      "If drone flight is restricted due to low battery or wind, delay aerial monitoring or alert for manual override.",
+      "If the robotic arm fails mid-task, assign a nearby robot with similar arm capabilities if available."
+    ]
+  }
+  

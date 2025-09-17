@@ -1,0 +1,46 @@
+{
+    "robot_names": ["quadruped", "ur5_chef", "ur5_helper"],
+
+    "robot_capabilities": {
+      "quadruped": "A 4 Legged Unitree Go2 Quadruped Robot Dog, can walk/move specific distance (on rough terrains and/or on 2D plane), jump , can sit and stand , no manipulator (**cannot pick and place objects**), can carry objects kept on its back. If an object needs to be carried, Quadruped can do it. But object needs to be place on it before carrying.",
+      "ur5_chef": "A 6 DOF manipulator with a **gripper**, can pick and place objects. It is placed in one place. Location: Kitchen table. can pick and place objects.",
+      "ur5_helper": "A 6 DOF manipulator with a **gripper**, can pick and place objects. It is placed in one place. Location: Mounted on Dining Table. can pick and place objects."
+    },
+
+    "robot_states": {
+      "quadruped": {
+          "relative_position": "None",
+          "relative_orientation": "None",
+          "vertical_state": "Sit",
+          "carry_state": "Empty"
+      },
+      "ur5_chef": {
+          "manipulator_state": "Home",
+          "gripper_state": "Empty"
+      },
+      "ur5_helper": {
+          "manipulator_state": "Home",
+          "gripper_state": "Empty"
+      }
+    },
+    
+    "robot_morphology": {
+        "quadruped": " Payload: ~8 kg (max ~12 kg), Speed: 0 ~ 3.7 m/s (max ~5 m/s), Weight: 15kg, Size: 700 x 310 x 400 mm (L x W x H) (standing), 760 x 310 x 200 mm (L x W x H) (crouching or sitting)" 
+    },
+
+    "task_specific_rules": [
+        "UR5 Chef and UR5 Helper are kept far away such that they are not within reach of each other.",
+        "In case when Quadruped is interrupted while goto :- If Quadruped is carrying any object has been told/ any event occured such that action of carrying object is not needed anymore, then Quadruped must Return/goto the carried object to its original location or near the object from where it was obtained. No need to involve UR5 arms in this.",
+        "If Task cannot be completed by a Robot due to its Morphology, check Handling Impossible Tasks section for Output",
+        "Before assigning or resuming tasks, explicitly compare the required payload, reach, or operational constraint against the robot’s specification. If any constraint is exceeded, do not assign the task. Instead, state why the task is not feasible and follow the Handling Impossible Tasks section.",
+        "When the human issues a new command to a subset of robots, only mention those robots that need new tasks.",
+        "Any robot that is mentioned by human, replace old task with new task.",
+        "DO NOT issue 'stand up' before placing object."
+    ] ,
+
+    "task_replanning_rules" : [
+      "Do NOT assume that a robot task before any event is completed"
+    ]
+    
+  }
+

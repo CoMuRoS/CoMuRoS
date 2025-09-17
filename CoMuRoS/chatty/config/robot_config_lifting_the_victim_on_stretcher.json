@@ -1,0 +1,48 @@
+{
+  "robot_names": [
+    "humanoidAlpha",
+    "humanoidBeta"
+  ],
+
+  "robot_capabilities": {
+    "humanoidAlpha": "Humanoid robot with articulated arms and posture control. Can lift one side of the stretcher and maintain synchronized gait with a partner robot. It can carry the human safely and put them on stretcher.",
+    "humanoidBeta": "Humanoid robot with balanced bipedal locomotion and strength-matched arms. Can mirror partner movements and ensure even lifting and walking while carrying loads. It can carry the human safely and put them on stretcher."
+  },
+
+  "robot_morphology": {
+    "humanoidAlpha": "Height: 1.6 m, Arm Payload: 35 kg, Weight: 80 kg, Arm Reach: 700 mm, Gait: Adaptive, Gripper: Human-handle compatible",
+    "humanoidBeta": "Height: 1.6 m, Arm Payload: 35 kg, Weight: 80 kg, Arm Reach: 700 mm, Gait: Adaptive, Gripper: Human-handle compatible"
+  },
+
+  "robot_states": {
+    "humanoidAlpha": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "ready",
+      "gripper_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "humanoidBeta": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "ready",
+      "gripper_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "An average stretcher weighs around 5 kg and is 2000 mm long.",
+    "An average victim weighs around 70 kg and is 1800 mm long.",
+    "A stretcher can be lifted by two humanoid robots, each lifting one end.",
+    "Humanoid robots must maintain synchronized movement to avoid dropping the stretcher."
+  ],
+
+  "task_replanning_rules": [
+    ""
+]
+}

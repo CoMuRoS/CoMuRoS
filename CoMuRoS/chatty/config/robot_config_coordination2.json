@@ -1,0 +1,69 @@
+{
+  "robot_names": ["burger1", "burger2", "burger3", "waffle4", "waffle5", "waffle6"],
+
+  "robot_capabilities": {
+    "burger1": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation.",
+    "burger2": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation.",
+    "burger3": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation.",
+    "waffle4": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation.",
+    "waffle5": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation.",
+    "waffle6": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It can attach a connection with other robots. It can move with other robots in formation."
+    
+  },
+
+  "robot_morphology": {
+    "burger1": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s  Size: 150 x 180 x 210 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object ",
+    "burger2": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s, Size: 150 x 180 x 210 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object ",
+    "burger3": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s, Size: 150 x 180 x 210 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object ",
+    "waffle4": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s, Size: 220 x 320 x 150 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object ",
+    "waffle5": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s, Size: 220 x 320 x 150 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object ",
+    "waffle6": "Payload: ~0.5 kg, Reach: 2.0 m, Speed: ~0.4 m/s, Size: 220 x 320 x 150 mm (L x W x H), Tray Capacity: 1 Ball or 1 Box or 1 Small Object "
+    
+  },
+
+  "robot_states": {
+    "burger1": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "burger2": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "burger3": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "waffle4": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "waffle5": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+    "waffle6": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    }
+
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

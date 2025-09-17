@@ -1,0 +1,51 @@
+{
+  "robot_names": ["robotic_arm", "differential_drive_robot", "cleaning_bot"],
+
+  "robot_capabilities": {
+    "robotic_arm": " A robotic arm fixed on the table of the classroom it has the access to the classroom camera.",
+    "differential_drive_robot": "A robot which has a carrier to carry books, other items and it can navigate the classroom. If any health issue happens to any students it can call the health and safety officer.",
+    "cleaning_bot": "A cleaner robot which has an arm and dustbin to clean the classroom. It can navigate the classroom. It cna collect the waste from the dustbin also."
+  },
+
+  "robot_morphology": {
+    "robotic_arm": "Payload: ~3 kg, Reach: ~0.8 m, DOF: 6, Fixed base mount on desk platform in classroom, Tool: Gripper and stylus",
+    "differential_drive_robot": "Payload: ~8 kg, Speed: 0–1.2 m/s, Weight: 35 kg, Size: 700 x 450 x 500 mm (L x W x H), Tray Capacity: ~10 books",
+    "cleaning_bot": "Payload: ~5 kg waste, Speed: 0–1 m/s, Weight: 30 kg, Size: 600 x 400 x 350 mm (L x W x H), Arm Reach: ~0.5 m, Battery Endurance: ~4 hours"
+  },
+
+  "robot_states": {
+    "robotic_arm": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing whiteboard",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+    "differential_drive_robot": {     
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "cleaning_bot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "cleaning_state": "Inactive",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "If broken items are found, inform the maintenance staff",
+    "If a student needs help regarding health or safety, notify the health and safety officer",
+    ""
+  ],
+
+  "task_replanning_rules": [
+    "if a student is found copying in exam robot dog should notify the teacher"
+  ]
+}

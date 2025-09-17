@@ -1,0 +1,82 @@
+{
+    "robot_names": [
+      "luggage_bot",
+      "cleaning_bot",
+      "security_drone",
+      "fixing_bot",
+      "assistDog"
+    ],
+  
+    "robot_capabilities": {
+      "luggage_bot": "It is a 4 wheel differential drive robot. It has a robotic gripper to pick and place luggage. It has a camera and depth sensor to detect obstacles and people. It has GPS and station map preloaded. It can follow passengers, escort passengers, and wait in queue areas. While escorting, it takes care of the luggage.",
+      "cleaning_bot": "It can navigate autonomously on tiled and concrete floors. It is equipped with rotating brushes, vacuum intake, and a cleaning fluid dispenser. It has obstacle avoidance using Lidar ,depth camera and RGB amera. It can detect dirty zones. It can create and follow a cleaning schedule. It can coordinate with other bots. It has a waste bin and a robotic arm.",
+      "security_drone": "It can fly inside the railway station. It has a camera, thermal sensor, and a microphone. It can patrol predefined zones or follow dynamic targets. It can recognize suspicious behavior using AI. It has a loudspeaker for announcements. It can stream live video to the control room. It can auto-dock for charging. It can detect suspicious objects or people or activities. It s meant for security of overall station.",
+      "fixing_bot": "It moves on wheels and can operate on flat indoor surfaces. It has a robotic arm with interchangeable tools (screwdriver, welding tip, gripper, etc.). It has a depth camera, thermal camera, and diagnostics module. It can detect mechanical failures in doors, escalators, or information kiosks. It can perform basic on-site maintenance or mark it for human intervention. It can team up with other bots for complex tasks.",
+      "assistDog": "It walks on four legs and can navigate stairs, slopes, and uneven surfaces. It has a RGBD camera, lidar and GPS. It has arn arm. It can carry small bags (up to 5 kg) Using its arm. Its meant for inspection. "
+    },
+  
+    "robot_morphology": {
+      "luggage_bot": "Payload: ~100 kg (max 110 kg), Speed: 0 ~ 1.5 m/s (max 2 m/s), Weight: 45 kg, Size: 700 x 450 x 500 mm (L x W x H), Arm Reach: ~0.5 m",
+      "cleaning_bot": "Payload: ~5 kg debris, Speed: 0 ~ 1 m/s, Weight: 30 kg, Size: 600 x 400 x 350 mm (L x W x H), Cleaning Width: ~0.45 m, Battery Endurance: ~4 hours",
+      "security_drone": "Payload: ~2 kg (camera and sensors), Speed: 0 ~ 4 m/s, Weight: 8 kg, Size: 500 x 500 x 200 mm (L x W x H), Flight Endurance: ~20 minutes, Propulsion: Quadrotor",
+      "fixing_bot": "Payload: ~10 kg tools, Speed: 0 ~ 1 m/s, Weight: 40 kg, Size: 800 x 500 x 550 mm (L x W x H), Arm Reach: ~0.7 m, Tool Slots: 3",
+      "assistDog": "Payload: ~5 kg, Speed: 0 ~ 2 m/s, Weight: 35 kg, Size: 950 x 450 x 500 mm (L x W x H), Degrees of Freedom: 12, Max Step Height: ~0.2 m"
+    },
+  
+    "robot_states": {
+      "luggage_bot": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Empty",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "cleaning_bot": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "cleaning_state": "Inactive",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "security_drone": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "vertical_state": "Docked",
+        "camera_state": "Inactive",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "fixing_bot": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Tool_Kit",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "assistDog": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "pose_state": "Standing",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+        "If anyone found near restricted area, nearest assistDog must escort them to safety.",
+        "If any problem found in track notify the station master and staff."
+    ],
+  
+    "task_replanning_rules": [
+      ""
+    ]
+  }
+  

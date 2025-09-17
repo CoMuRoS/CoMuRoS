@@ -1,0 +1,56 @@
+{
+    "robot_names": ["robot_dog_with_arm", "rover_with_arm", "buggy_robot_with_carrier"],
+  
+    "robot_capabilities": {
+        "robot_dog_with_arm": "Can move on sand and uneven terrain by walking and running. Capable of climbing over small rocks and slopes. Equipped with depth camera, standard camera, lidar, thermal sensor, GPS, and a robotic arm. Can pick up small waste objects and place them into collection bins. Suited for tight spots and edge areas. Robot dog with arm should focus on collecting small debris from difficult-to-reach areas like near rocks or slopes. Can sort the waste into 3 types of bins, recyclable , non-recyclable and organic waste. Can hendle small sized waste",
+        "rover_with_arm": "Can traverse over moderately uneven or sandy terrain. Equipped with wheels and robotic arm. Has a depth camera, standard camera, lidar, thermal sensor, and GPS. Can pick and place medium-sized debris. Operates best on compact sand or mildly rugged beach areas. Rover with arm should collect visible plastic or waste from open beach areas and transfer to buggy. Can sort the waste into 3 types of bins, recyclable , non-recyclable and organic waste. Can handle medium sized waste. Can place sign boards on the beach.",
+        "buggy_robot_with_carrier": "Wheeled robot designed to move over flat sandy surfaces. Equipped with standard camera, GPS, and a waste-carrying compartment. Can receive waste from other robots and transport it to a disposal zone. Cannot pick objects on its own but supports load transport. Buggy robot with carrier should remain near drop zones to collect waste from other robots and transport it to disposal points. Buggy has a locking sysytem to lock dustbin so that without the help of other robot it can move the dustbin. To empty the dustbin buggy need to carry it to the disposal point. After clearing the dustbin return the dustbin to its original position."
+    },
+  
+    "robot_morphology": {
+        "robot_dog_with_arm": "Payload: ~6 kg (max ~10 kg), Speed: 0–3 m/s (max ~4 m/s), Weight: 40 kg, Size: 1000 x 500 x 500 mm (L x W x H), Terrain: Sand, slope, rock edges, Arm Reach: ~0.6 m",
+        "rover_with_arm": "Payload: ~8 kg (max ~12 kg), Speed: 0–2 m/s (max ~2.5 m/s), Weight: 50 kg, Size: 900 x 500 x 550 mm (L x W x H), Wheels: 4WD, Arm Reach: ~0.8 m",
+        "buggy_robot_with_carrier": "Payload: ~20 kg, Speed: 0–1.8 m/s, Weight: 55 kg, Size: 1000 x 600 x 500 mm (L x W x H), Carrier Capacity: ~30 L, No Manipulator Arm"
+    },
+  
+    "robot_states": {
+        "robot_dog_with_arm": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "pose_state": "Standing",
+            "carry_state": "Empty",
+            "arm_state": "Stowed",
+            "battery_state": "Full",
+            "mode": "Idle"
+        },
+  
+        "rover_with_arm": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "mobility_state": "Stationary",
+            "carry_state": "Empty",
+            "arm_state": "Stowed",
+            "battery_state": "Full",
+            "mode": "Idle"
+        },
+  
+        "buggy_robot_with_carrier": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "mobility_state": "Stationary",
+            "carry_state": "Empty",
+            "battery_state": "Full",
+            "mode": "Idle"
+        }
+    },
+  
+    "task_specific_rules": [
+        "If a robot finds a large object it cannot carry, it should notify another robot with higher payload capacity or request team coordination."
+    ],
+  
+    "task_replanning_rules": [
+        "If a robot is full, it should offload waste into the buggy or move to a nearby deposit point before continuing.",
+        "If the terrain becomes too difficult for wheeled robots, delegate that area to the robot dog."
+    ]
+  }
+  

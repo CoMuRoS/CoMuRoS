@@ -1,0 +1,57 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "shoreHauler",
+    "aquaRover"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "Strong frontal pusher robot with grip pads. It can push obejcts. It can team up with other robots.",
+    "shoreHauler": "Strong frontal pusher robot with grip pads. It can push obejcts. It can team up with other robots.",
+    "aquaRover": "Compact robot with a robotic arm. It can pick and place obehjcts. It can team up with other robots."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Payload: ~60 kg, Speed: 0–3.5 m/s, Weight: 45 kg, Size: 800 × 400 × 550 mm, Pusher Height: Adjustable, Stabilizers: Yes",
+    "shoreHauler": "Payload: ~50 kg, Speed: 0–2 m/s, Weight: 30 kg, Size: 1000 × 600 × 500 mm, Pusher Height: Adjustable, Stabilizers: Yes",
+    "aquaRover": "Payload: ~50 kg, Speed: 0–2.5 m/s, Weight: 12 kg, Size: 400 × 350 × 200 mm, Arm Reach: 400 mm, Gripper Strength: Precise"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "pusher_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "pusher_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "carry_state": "tool-free",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "A drum is 1500 mm in diameter and weighs around 100 kg. It can be rolled on flat surfaces.",
+    "Drums are stored in storage room",
+    "Drums can be easily transported by rolling them on flat surfaces."
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

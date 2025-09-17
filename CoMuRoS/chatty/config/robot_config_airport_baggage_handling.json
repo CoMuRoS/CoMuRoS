@@ -1,0 +1,52 @@
+{
+  "robot_names": ["robotic_arm_airside", "robotic_arm_terminal", "differential_drive_robot"],
+
+  "robot_capabilities": {
+    "robotic_arm_airside": "Stationary robotic arm installed near the aircraft loading bay. It is responsible for loading luggage into the plane. Capable of lifting, positioning, and loading luggage into the aircraft hold. Equipped with a gripper, weight sensor, and position control. Cannot move but has a wide operating envelope. It can manipulate luggage.",
+    "robotic_arm_terminal": "Stationary robotic arm located inside the terminal. It handles scanning and placing luggage onto mobile carriers. Can scan, sort, and place luggage onto carts or conveyor belts. Equipped with barcode/RFID reader, gripper, and visual camera. It can manipulate luggage.",
+    "differential_drive_robot": "Moves on flat indoor surfaces using wheels. Equipped with GPS, standard camera, lidar, and onboard tray system. Can carry multiple bags between terminal and airside zone. Supports dynamic route following and obstacle avoidance. It moves luggage from the terminal to the airside area. It can transport luggage."
+  },
+
+  "robot_morphology": {
+    "robotic_arm_airside": "Payload: ~20 kg, Reach: 1.2 m, Speed: ~0.5 m/s (end-effector), Degrees of Freedom: 6, Fixed base mount at aircraft bay",
+    "robotic_arm_terminal": "Payload: ~15 kg, Reach: 1.0 m, Speed: ~0.4 m/s, Degrees of Freedom: 6, Fixed base mount at sorting station",
+    "differential_drive_robot": "Payload: ~100 kg, Speed: 0–2 m/s, Weight: 50 kg, Size: 900 x 550 x 550 mm (L x W x H), Tray Capacity: 10-15 bags"
+  },
+
+  "robot_states": {
+    "robotic_arm_airside": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing aircraft",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+
+    "robotic_arm_terminal": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing luggage belt",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+
+    "differential_drive_robot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    "If one robotic arm becomes unavailable, reassign tasks to the other if within its scope.",
+    "If the differential drive robot is delayed, robotic arms should queue tasks and wait.",
+    "Do not assume task completion unless confirmed by the robot’s current state."
+  ]
+}

@@ -1,0 +1,68 @@
+{
+    "robot_names": [
+      "humanoid_robot",
+      "dual_robotic_arm_system",
+      "autonomous_rover",
+      "mini_crawler_robot",
+      "medical_assistant_bot"
+    ],
+  
+    "robot_capabilities": {
+      "humanoid_robot": "It is a humanoid robot. A bipedal robot designed to operate in microgravity. It can assist astronauts in maintenance, hold tools, operate control panels, and conduct simple repairs. It has stereo vision, voice recognition, and dexterous hands. Operates semi-autonomously or under teleoperation. Itcan communicate with ground statiosn for complex tasks.",
+      "dual_robotic_arm_system": "It has 2 arms.A fixed or rail-mounted arm with high precision. It can manipulate scientific instruments, hold panels or tools for astronauts, and perform external or internal equipment adjustments. Operates with remote control or scripted sequences. Equipped with torque feedback and force sensors. It has a camera for visual feedback. It can contact groudn station for any issues.",
+      "autonomous_rover": "A small, wheeled ground unit for indoor station use. It carries tools, food packets, or samples. It uses a docking system to recharge. Equipped with voice feedback and QR code scanner for navigation, it can follow paths or be directed via tablet UI.",
+      "mini_crawler_robot": "A compact crawler for ducts and tight pathways. Equipped with cameras and environment sensors. It can check air vents, cabling trays, and radiation zones. Built for inspecting areas that are inaccessible to humans or larger robots.",
+      "medical_assistant_bot": "A robot with a diagnostic toolkit including thermal scanners, stethoscope sensors, and medication compartments. It can perform basic health monitoring, communicate with medical staff remotely, and assist in emergency first aid procedures in coordination with humans. If any serous injury found , the robot has to inform ito the earth."
+    },
+  
+    "robot_morphology": {
+      "humanoid_robot": "Height: ~1.5 m, Weight: 60 kg, DOF: 24, Arm Reach: ~0.7 m, Payload: ~10 kg, Battery Endurance: ~3 hours",
+      "inspection_drone": "Size: 300 x 300 x 150 mm, Weight: 4 kg, Flight Type: Ducted Fan/Microthruster, Endurance: ~30 mins, Sensors: Camera, Thermal, Lidar",
+      "autonomous_rover": "Payload: ~5 kg, Speed: 0 ~ 0.8 m/s, Size: 600 x 400 x 400 mm, Weight: 30 kg, Docking Supported: Yes",
+      "mini_crawler_robot": "Size: 300 x 200 x 150 mm, Weight: 8 kg, Sensors: Camera, Temp, Airflow, Radiation, Mobility: Tracks, Payload: ~1 kg",
+      "medical_assistant_bot": "Payload: ~3 kg (medical), Height: 1.2 m, Weight: 25 kg, Interface: Voice + Touchscreen, Battery: ~4 hours"
+    },
+  
+    "robot_states": {
+      "humanoid_robot": {
+        "relative_position": "None",
+        "arm_state": "Stowed",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "inspection_drone": {
+        "relative_position": "Dock",
+        "camera_state": "Inactive",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "autonomous_rover": {
+        "relative_position": "None",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "mini_crawler_robot": {
+        "relative_position": "None",
+        "camera_state": "Inactive",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "medical_assistant_bot": {
+        "relative_position": "Medbay",
+        "carry_state": "Basic_Kit",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+      "If any serius threat detected, contact the ground station immediately."
+    ],
+  
+    "task_replanning_rules": [
+      ""
+    ]
+  }
+  

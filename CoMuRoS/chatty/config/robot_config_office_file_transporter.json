@@ -1,0 +1,59 @@
+{
+  "robot_names": ["differential_drive_robot_1", "differential_drive_robot_2", "differential_drive_robot_3"],
+
+  "robot_capabilities": {
+    "differential_drive_robot_1": "Moves on flat indoor office surfaces. Robopt has a speaker. Equipped with lidar, camera, and GPS for indoor navigation. Can carry files, folders, or envelopes. Avoids obstacles and stops at doors. Can visit specific departments or desks.",
+    "differential_drive_robot_2": "Identical to robot_1.Robot has a Speaker. Capable of document pickup and delivery tasks across office zones. Can respond to delivery requests and report task status.",
+    "differential_drive_robot_3": "Same capability as robot_1 and robot_2.Robot has a Speaker. Optimized for routing efficiency and load balancing when multiple delivery tasks are active."
+  },
+
+  "robot_morphology": {
+    "differential_drive_robot_1": "Payload: ~5 kg, Speed: 0–1.5 m/s, Size: 700 x 400 x 500 mm, Tray Capacity: A4 folders x 10, File Capacity: 10 Normal Sized files",
+    "differential_drive_robot_2": "Payload: ~5 kg, Speed: 0–1.5 m/s, Size: 700 x 400 x 500 mm, Tray Capacity: A4 folders x 10, File Capacity: 10 Normal Sized files",
+    "differential_drive_robot_3": "Payload: ~5 kg, Speed: 0–1.5 m/s, Size: 700 x 400 x 500 mm, Tray Capacity: A4 folders x 10, File Capacity: 10 Normal Sized files"
+  },
+
+  "robot_states": {
+    "differential_drive_robot_1": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_2": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_3": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "Each robot can carry files between rooms, departments, and desks.",
+    "If multiple delivery requests exist, tasks should be distributed among available robots.",
+    "Robots must avoid entering restricted areas and should wait outside closed doors.",
+    "If a robot is already carrying files, assign new pickup to an idle robot.",
+    "One robot can take multiple files to the same destination if space allows.",
+    "One robot can deliver multiple file from one person to multiple people if space allows.",
+    "If two robots reach the same delivery zone, stagger their wait times to avoid congestion.",
+    "Each robot should acknowledge delivery completion and return to standby or accept next task."
+  ],
+
+  "task_replanning_rules": [
+    "If a robot cannot access a room, reroute or delegate to another robot.",
+    "If a robot's battery is low, pause delivery and send another robot to resume the task.",
+    "Tasks should not be duplicated across robots unless explicitly allowed for redundancy."
+  ]
+}

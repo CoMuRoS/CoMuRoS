@@ -1,0 +1,50 @@
+{
+  "robot_names": [
+    "robot_dog_with_arm",
+    "differential_drive_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "robot_dog_with_arm": "Capable of navigating uneven park terrain, climbing small slopes, and reaching under benches or around bushes. Equipped with robotic arm, standard camera, lidar, thermal sensor, and GPS. Can pick up trash, move small objects, and inspect hard-to-reach spots.",
+    "differential_drive_robot_with_arm": "Suited for flat paths and grassy areas. Equipped with robotic arm, depth camera, lidar, and GPS. Can pick up trash, wipe benches, repair equipment, and place signboards or bins."
+  },
+
+  "robot_morphology": {
+    "robot_dog_with_arm": "Payload: ~8 kg, Speed: 0–3 m/s, Weight: 42 kg, Size: 1000 x 500 x 500 mm, Arm Reach: ~0.6 m, Terrain: park trails, soft grass, curb edges",
+    "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.8 m/s, Weight: 48 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m"
+  },
+
+  "robot_states": {
+    "robot_dog_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "pose_state": "Standing",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "If a person is missing all the robots must start searching for the missing person Independently, after finding the missing person the robot must guid the person to the nearest office.",
+    "If a person is injured, the robot must bring the medikit to the injured person.",
+    "If the the injured person is not able to move, the robot must bring the stretcher from the office to the injured person and then carry the injured person to the doctor's office.",
+    "To sanitize a place, a robot must bring the sanitizer spray to the mentioned location , the the robot should start sanitizing."
+  ],
+
+  "task_replanning_rules": [
+    "If robot encounters a blocked route, attempt alternate path or request reassignment.",
+    "If one robot is busy or under maintenance, shift park zone coverage to available unit.",
+    "If trash bin onboard is full, return to empty station and resume task after unloading."
+  ]
+}

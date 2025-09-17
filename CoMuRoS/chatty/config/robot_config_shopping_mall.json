@@ -1,0 +1,62 @@
+{
+    "robot_names": [
+      "cleaning_robot",
+      "delivery_robot",
+      "emergency_response_robot",
+      "service_robot"
+    ],
+    
+    "robot_capabilities": {
+      "cleaning_robot": "A wheeled robot with a cleaning brush, vacuum, and mop mechanism. Equipped with an arm to move small obstacles and open trash bins.It also has camera. It can detect spills, dirt zones, and navigate autonomously through tiled areas using SLAM and depth sensors.",
+      "delivery_robot": "A quadruped robot with an arm mounted on top. It can carry and deliver packages to shops or food courts, navigate stairs or escalators, and avoid crowded paths. It can pick up lightweight parcels (up to 5 kg) and recognize shop names or signs using OCR.",
+      "emergency_response_robot": "A mobile robot with an extendable arm. It is equipped with a first-aid kit, fire extinguisher, and camera. It can detect smoke, fire, or collapsed persons. It can lift light debris and administer emergency items. It can directly communicate with security personnel if in case of emergency it can direct send emergency message to Police or fire department or ambulance.",
+      "service_robot": "A mobile robot with a robotic arm. It helps in fixing small issues. If it cant fix it inform the staffs."
+    },
+    
+    "robot_morphology": {
+      "cleaning_robot": "Payload: ~4 kg waste, Speed: 0 ~ 1 m/s, Weight: 35 kg, Size: 700 x 450 x 400 mm, Arm Reach: 0.5 m, Battery Endurance: ~5 hours",
+      "delivery_robot": "Payload: ~5 kg, Speed: 0 ~ 2 m/s, Weight: 38 kg, Size: 950 x 400 x 500 mm, Arm Reach: 0.6 m, Max Step Height: ~0.2 m, DOF: 14",
+      "emergency_response_robot": "Payload: ~6 kg, Speed: 0 ~ 1.2 m/s, Weight: 45 kg, Size: 850 x 500 x 550 mm, Arm Reach: 0.8 m, Tools: 2 slots",
+      "service_robot": "Payload: ~2 kg (documents/tablets), Speed: 0 ~ 1.5 m/s, Weight: 30 kg, Size: 600 x 400 x 450 mm, Display Size: 10-inch touchscreen"
+    },
+  
+    "robot_states": {
+      "cleaning_robot": {
+        "relative_position": "None",
+        "arm_state": "Stowed",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "delivery_robot": {
+        "relative_position": "None",
+        "pose_state": "Standing",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "emergency_response_robot": {
+        "relative_position": "None",
+        "arm_state": "Stowed",
+        "carry_state": "FirstAidKit",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "service_robot": {
+        "relative_position": "None",
+        "screen_state": "Off",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+      ""
+    ],
+  
+    "task_replanning_rules": [
+      ""
+    ]
+  }
+  

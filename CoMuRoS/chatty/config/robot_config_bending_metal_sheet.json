@@ -1,0 +1,59 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "shoreHauler",
+    "aquaRover"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "Strong robot with front push arms. Provides steady pressure to bend the metal sheet at a controlled angle.",
+    "shoreHauler": "Holds and anchors one end of the sheet firmly in place using a gripping frame to resist force during bending.",
+    "aquaRover": "Fine-control robot with a manipulator arm. Aligns the sheet correctly before and after bending, and verifies the bend angle."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Payload: ~12 kg, Speed: 0–3.5 m/s, Weight: 45 kg, Size: 800 × 400 × 550 mm, Push Arms: Heavy-duty, Force Output: High",
+    "shoreHauler": "Payload: ~25 kg, Speed: 0–2 m/s, Weight: 30 kg, Size: 1000 × 600 × 500 mm, Clamp Rig: Front mount, Stabilization: Active",
+    "aquaRover": "Payload: ~5 kg, Speed: 0–2.5 m/s, Weight: 12 kg, Size: 400 × 350 × 200 mm, Arm Reach: 400 mm, Angle Sensor: Included"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "push_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "grip_state": "released",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "carry_state": "tool-free",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "aquaRover positions the metal sheet for bending.",
+    "shoreHauler anchors the back end firmly in place.",
+    "duneRunner pushes to apply force and bend the sheet to desired angle."
+  ],
+
+  "task_replanning_rules": [
+    "If the sheet slips during push, reset alignment using aquaRover.",
+    "If force exceeds duneRunner’s limit, pause and retry in smaller increments.",
+    "If shoreHauler loses grip, all robots must stop and reposition the sheet."
+  ]
+}

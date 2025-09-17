@@ -1,0 +1,36 @@
+{
+    "robot_names": ["quadruped", "drone"],
+
+    "robot_capabilities": {
+      "quadruped": "A 4 Legged Unitree Go2 Quadruped Robot Dog, can walk/move specific distance (on rough terrains and/or on 2D plane), jump , can sit and stand , no manipulator (**cannot pick/place**), can carry/provide objects kept on its back. Can carry objects.",
+      "drone" : "A Quadcopter drone , can move in 3D, can start a search surveillance, can detect/find objects using downward facing camera. Can find anything by flying high. The Quadruped robot is already carrying a first aid kit mounted on top. Therefore, it can directly deliver or provide first aid to any injured survivor by using the going to the location of survivor ; when its location is clearly provided. "
+    },
+    
+    "robot_morphology": {
+        "quadruped": " Payload: ~8 kg (max ~12 kg), Speed: 0 ~ 3.7 m/s (max ~5 m/s), Weight: 15kg, Size: 700 x 310 x 400 mm (L x W x H) (standing), 760 x 310 x 200 mm (L x W x H) (crouching or sitting)" , 
+        "drone" : "N/A"
+    },
+
+    "robot_states": {
+        "quadruped": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "vertical_state": "Sit",
+            "carry_state": "Empty"
+              },
+        "drone": {
+            "relative_position": "None",
+            "relative_orientation": "None"
+        }
+    },
+
+    "task_specific_rules": [
+        "Before assigning or resuming tasks, explicitly compare the required payload, reach, or operational constraint against the robot’s specification. If any constraint is exceeded, do not assign the task. Instead, state why the task is not feasible and follow the Handling Impossible Tasks section."
+         
+        ] ,
+
+    "task_replanning_rules" : [
+        "Do NOT assume that a robot task before any event is completed"
+    ]
+}
+

@@ -1,0 +1,67 @@
+{
+    "robot_names": [
+      "cinema_bot",
+      "service_bot",
+      "maintaina_bot",
+      "safety_bot",
+      "cleaner_bot"
+    ],
+  
+    "robot_capabilities": {
+      "cinema_bot": "It has equipped camera sensors to check. It can start the movie, pause it, and can also control the volume. It can also provide information about movie schedules and seat availability. It has a speaker and a display to interact with customers.",
+      "service_bot": "It has a tray to carry snacks and drinks. It can navigate the cinema hall and corridors, and can interact with customers via voice and touch screen. It can also provide information about movie schedules and seat availability.",
+      "maintaina_bot": "It is a drone type robot.It has a supply scanner, thermal camera, and air quality sensors to monitor the cinema hall. It can detect maintenance issues and report them to staff.",
+      "safety_bot": "It has, lkidar, depth camera, and ultrasonic sensors to detect obstacles. It patrols the cinema hall and corridors, ensuring safety. It can alert staff in case of emergencies and has emergency lights.",
+      "cleaner_bot": "It has all equipment to clean the cinema hall. It has a vacuum, UV-C light, and liquid sensor to detect spills. It can navigate autonomously and clean the hall after each show."
+    },
+  
+    "robot_morphology": {
+      "cinema_bot": "Height: 1.4 m, Weight: 50 kg, Mobility: Wheeled, Sensors: RFID scanner, Depth camera, Speaker + Display, Battery: 5 hours",
+      "service_bot": "Height: 1.2 m, Payload: 10 kg, Tray-mounted arm, Navigation: Lidar + SLAM, Battery: 6 hours",
+      "maintaina_bot": "Size: 1.0 m x 0.6 m, Weight: 40 kg, Sensors: Air quality, Thermal, Supply scanner, Battery: 8 hours",
+      "safety_bot": "Height: 1.5 m, Sensors: Vision, Infrared, Obstacle Detection, Emergency Lights, Battery: 7 hours",
+      "cleaner_bot": "Size: 0.8 m x 0.5 m, Weight: 35 kg, Tools: Vacuum, UV-C light, Liquid sensor, Battery: 4 hours"
+    },
+  
+    "robot_states": {
+      "cinema_bot": {
+        "relative_position": "Lobby",
+        "carry_state": "None",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "service_bot": {
+        "relative_position": "Snack Bay",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "maintaina_bot": {
+        "relative_position": "Backroom",
+        "system_check_state": "Ready",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "safety_bot": {
+        "relative_position": "Corridor 1",
+        "alert_state": "None",
+        "battery_state": "Full",
+        "mode": "Patrol"
+      },
+      "cleaner_bot": {
+        "relative_position": "Docking Station",
+        "cleaning_state": "Idle",
+        "battery_state": "Full",
+        "mode": "Standby"
+      }
+    },
+  
+    "task_specific_rules": [
+      "If anything found broken in the cinema hall, maintaina_bot should report it to the staff."
+    ],
+  
+    "task_replanning_rules": [
+      ""
+    ]
+  }
+  

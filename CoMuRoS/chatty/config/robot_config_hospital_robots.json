@@ -1,0 +1,46 @@
+{
+    "robot_names": ["robot_dog_with_arm", "differential_drive_robot_with_arm"],
+  
+    "robot_capabilities": {
+      "robot_dog_with_arm": "Can walk and run indoors, climb stairs, and step over small obstacles. Equipped with depth camera, standard camera, lidar, thermal sensor, GPS, and a robotic arm. Capable of carrying medicine, assisting in emergency tasks, opening doors, and interacting with patients and equipment. Robot dog with arm can be used to navigate stairs, interact with patients, and assist during emergencies. can carry medicine. can pick the medicine from the shelf and deliver it to the patient.",
+      "differential_drive_robot_with_arm": "Moves on flat indoor surfaces using wheels. Equipped with depth camera, standard camera, lidar, thermal sensor, GPS, and robotic arm. Can carry medical trays, deliver documents or samples, push carts, and open drawers or cabinets. Can be used to deliver medical supplies, carry samples, and access drawers or doors. Use differential drive robot for fast and safe delivery in flat corridor zones. can carry medicine. can pick the medicine from the shelf and deliver it to the patient. In operation theatre differential drive robot can be used to deliver tools , medicines etc."
+    },
+  
+    "robot_morphology": {
+      "robot_dog_with_arm": "Payload: ~6 kg (max ~10 kg), Speed: 0–3 m/s, Weight: 40 kg, Size: 1000 x 500 x 500 mm (L x W x H), Arm Reach: ~0.6 m",
+      "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.5 m/s, Weight: 45 kg, Size: 850 x 500 x 550 mm (L x W x H), Arm Reach: ~0.8 m"
+    },
+  
+    "robot_states": {
+      "robot_dog_with_arm": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "pose_state": "Standing",
+        "carry_state": "Empty",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "differential_drive_robot_with_arm": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "mobility_state": "Stationary",
+        "carry_state": "Empty",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+      "when an emergency vehcile is detected, the robot dog should be used to assist in the emergency task., It can help by taking the taking the stretcher to the emergency vehicle and take the patient to the emergency room"
+
+    ],
+  
+    "task_replanning_rules": [
+      "If a robot is blocked or the task location becomes inaccessible, reassign to the other robot if it has capability.",
+      "Do not assume task completion when an event occurs. Re-evaluate the robot’s state before replanning."
+    ]
+  }
+  

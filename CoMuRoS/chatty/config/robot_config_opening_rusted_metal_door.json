@@ -1,0 +1,57 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "aquaRover",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "High-force robot designed for pushing or bracing against heavy rusted structures. Equipped with an arm and thermal pads to heat and expand tight seams.",
+    "aquaRover": "Dexterous manipulator robot with a precision arm. Equipped with a gripper, oil sprayer for rust loosening, and latch-checking sensors. Initiates unlocking.",
+    "shoreHauler": "Pulling and support robot equipped with a hook system and backup traction. It is equipped with arm arm."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Force Output: ~150 N, Speed: 0–3.5 m/s, Weight: 45 kg, Size: 800 × 400 × 550 mm, Push Arm: Front-mounted, Torque Mode: Enabled, Thermal Pads: Yes",
+    "aquaRover": "Grip Force: ~150 N, Speed: 0–2.5 m/s, Weight: 30 kg, Size: 400 × 350 × 200 mm, Arm Reach: 400 mm, Gripper: Precision, Tools: Handle gripper, Oil sprayer, Rust sensor",
+    "shoreHauler": "Pull Force: ~150 N, Speed: 0–2 m/s, Weight: 30 kg, Size: 1000 × 600 × 500 mm, Pull Hook: Mounted, Support Mode: Active, Traction Assist: Enabled"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "ready",
+      "thermal_state": "preheating",
+      "battery_state": "full",
+      "mode": "engaged"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "deployed",
+      "sprayer_state": "on",
+      "carry_state": "holding_tool",
+      "battery_state": "full",
+      "mode": "engaged"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "ready_to_pull",
+      "pull_state": "armed",
+      "battery_state": "full",
+      "mode": "engaged"
+    }
+  },
+
+  "task_specific_rules": [
+    "A rusted metal door is force of 300 N to open."
+  ],
+
+  "task_replanning_rules": [
+    "If door remains stuck, repeat spraying and heating before applying more force"
+  ]
+}

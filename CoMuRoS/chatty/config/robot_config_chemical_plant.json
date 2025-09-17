@@ -1,0 +1,70 @@
+{
+    "robot_names": [
+      "manipulator_robot",
+      "aerial_drone",
+      "mobile_robot_with_arm",
+      "robot_dog_with_arm"
+    ],
+  
+    "robot_capabilities": {
+      "manipulator_robot": "It is a fixed-base robotic arm with multiple degrees of freedom. It can perform high-precision operations such as turning valves, handling chemical containers, and manipulating tools. It can be remotely operated and is suited for working in hazardous environments. Equipped with thermal and gas sensors to detect abnormal conditions.",
+      "aerial_drone": "It can fly autonomously or under remote control. Equipped with thermal cameras, gas sensors, and HD video streaming. It can survey outdoor tanks, pipelines, and rooftops for leaks, heat signatures, or structural damage. It can broadcast alerts and guide emergency responders.",
+      "mobile_robot_with_arm": "It is a wheeled robot capable of navigating corridors and open floor spaces. Equipped with a multi-functional arm and sensors for chemical, gas, and fire detection. It can perform tasks like picking tools, turning knobs, and inspecting pipelines. It maps and navigates autonomously using SLAM and obstacle avoidance.",
+      "robot_dog_with_arm": "It is a quadruped robot that can walk over grates, stairs, and rugged terrain. It has an arm mounted on top for interacting with levers, collecting samples, or opening small doors. It carries gas detectors, RGBD camera, and a microphone. Used for scouting confined or risky areas and relaying data to control centers."
+    },
+  
+    "robot_morphology": {
+      "manipulator_robot": "Payload: ~15 kg, Arm Reach: ~1.2 m, DOF: 6, Mount Type: Fixed, Weight: 60 kg, Tool Slots: 2",
+      "aerial_drone": "Payload: ~3 kg (camera and sensors), Speed: 0 ~ 5 m/s, Weight: 6 kg, Size: 600 x 600 x 250 mm, Flight Endurance: ~25 minutes, Propulsion: Quadrotor",
+      "mobile_robot_with_arm": "Payload: ~12 kg, Speed: 0 ~ 1.2 m/s, Arm Reach: ~0.8 m, Weight: 50 kg, Size: 900 x 500 x 600 mm, Tool Slots: 3",
+      "robot_dog_with_arm": "Payload: ~8 kg, Speed: 0 ~ 2 m/s, Weight: 40 kg, Size: 1000 x 450 x 550 mm, Arm Reach: 0.6 m, DOF: 16, Max Step Height: ~0.25 m"
+    },
+  
+    "robot_states": {
+      "manipulator_robot": {
+        "position": "Fixed near control valves",
+        "arm_state": "Stowed",
+        "tool_attached": "None",
+        "battery_state": "N/A",
+        "mode": "Idle"
+      },
+  
+      "aerial_drone": {
+        "relative_position": "None",
+        "flight_status": "Docked",
+        "camera_state": "Inactive",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "mobile_robot_with_arm": {
+        "relative_position": "None",
+        "arm_state": "Stowed",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "robot_dog_with_arm": {
+        "relative_position": "None",
+        "pose_state": "Standing",
+        "carry_state": "Empty",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+      "If gas levels exceed safe thresholds, aerial_drone must survey the area and broadcast alert.",
+      "If a valve needs turning in a hazardous zone, manipulator_robot must perform the task remotely.",
+      "If a corridor is blocked or stairs are required, robot_dog_with_arm must investigate and report.",
+      "If mobile_robot_with_arm detects fire or leak, it must log location and alert other bots."
+    ],
+  
+    "task_replanning_rules": [
+      "If aerial_drone battery drops below 20%, mobile_robot_with_arm should continue inspection task.",
+      "If manipulator_robot is busy or fails to operate a valve, robot_dog_with_arm should attempt with its arm.",
+      "If robot_dog_with_arm cannot access a location, reroute task to aerial_drone or mobile_robot_with_arm depending on terrain."
+    ]
+  }
+  

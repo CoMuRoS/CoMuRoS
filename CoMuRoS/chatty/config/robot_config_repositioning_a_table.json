@@ -1,0 +1,54 @@
+{
+  "robot_names": [
+    "FlexCart",
+    "Roadie",
+    "DustyBot"
+  ],
+
+  "robot_capabilities": {
+    "FlexCart": "Mobile robot with munted lift arms. Can lift objects. It can teamup with other robots.",
+    "Roadie": "Mobile robot with munted lift arms. Can lift objects. It can teamup with other robots.",
+    "DustyBot": "Compact robot designed to clean floors before and after movement tasks. Equipped with vacuum and sweeper modules."
+  },
+
+  "robot_morphology": {
+    "FlexCart": "Payload: ~20 kg, Speed: 0–2 m/s, Weight: 25 kg, Size: 600 × 500 × 400 mm, Lift Height: up to 250 mm, Side Arms: Motorized, Sensors: Proximity + Load",
+    "Roadie": "Payload: ~20 kg, Speed: 0–2 m/s, Weight: 25 kg, Size: 600 × 500 × 400 mm, Lift Height: up to 250 mm, Side Arms: Motorized, Sensors: Proximity + Load",
+    "DustyBot": "Payload: ~2 kg (dust), Speed: 0–1.5 m/s, Weight: 8 kg, Size: 400 × 350 × 150 mm, Cleaning Tools: Vacuum, Sweeper, Debris Sensor: Enabled"
+  },
+
+  "robot_states": {
+    "FlexCart": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "lift_state": "lowered",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "Roadie": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "lift_state": "lowered",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "DustyBot": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "cleaning_state": "ready",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "Table weight: 35 kg, legs 600 mm apart"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

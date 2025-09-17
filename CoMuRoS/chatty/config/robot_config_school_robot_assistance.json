@@ -1,0 +1,42 @@
+{
+  "robot_names": ["robotic_arm", "differential_drive_robot"],
+
+  "robot_capabilities": {
+    "robotic_arm": "Stationary arm located in the classroom. Can hand over books, point at objects, write on a whiteboard, show experiments, or operate classroom tools. Equipped with a gripper, laser pointer, and visual camera. Can interact with students and assist the teacher. Can assist the teacher with in-class tasks. can hand over books, write on the board, show simple experiments, and point to visuals. Cabe used to assist in writng in boards, showing experiments, and pointing to visuals, etc.",
+    "differential_drive_robot": "Moves on flat indoor surfaces across classrooms and hallways. Equipped with standard camera, lidar, GPS (indoor map-based), and a small storage tray. Can carry books, lab items, or papers between rooms. Capable of navigating around obstacles and reaching classrooms autonomously. Can be used to transport books or materials between classrooms and the staff room. Can deliver things."
+  },
+
+  "robot_morphology": {
+    "robotic_arm": "Payload: ~3 kg, Reach: ~0.8 m, DOF: 6, Fixed base mount on desk platform in classroom, Tool: Gripper and stylus",
+    "differential_drive_robot": "Payload: ~8 kg, Speed: 0–1.2 m/s, Weight: 35 kg, Size: 700 x 450 x 500 mm (L x W x H), Tray Capacity: ~10 books"
+  },
+
+  "robot_states": {
+    "robotic_arm": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing whiteboard",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+
+    "differential_drive_robot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+
+  ],
+
+  "task_replanning_rules": [
+    "If the mobile robot is delayed, the teacher should be notified and tasks involving delivery should be postponed.",
+    "If the robotic arm is occupied, queue the next classroom action until it is free.",
+    "If the classroom is empty, the robotic arm should go into standby mode."
+  ]
+}

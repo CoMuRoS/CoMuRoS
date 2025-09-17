@@ -1,0 +1,55 @@
+{
+  "robot_names": [
+    "robot_dog_with_dustbin",
+    "differential_drive_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "robot_dog_with_dustbin": "Can navigate stairs, ramps, and uneven stadium seating areas.It can carry items. Equipped with depth camera, GPS, and onboard dustbin. Suitable for collecting scattered trash and navigating tight spaces. Cannot manipulate objects but can collect and carry lightweight waste.",
+    "differential_drive_robot_with_arm": "Can navigate flat paths like stadium corridors and maintenance rooms. It can collect items. It can wipe. Equipped with robotic arm, depth camera, lidar, and GPS. Capable of wiping seats, adjusting signage, repairing equipment, and picking up medium objects. It can inspect items, place etc. "
+  },
+
+  "robot_morphology": {
+    "robot_dog_with_dustbin": "Payload: ~5 kg, Speed: 0–2.5 m/s, Weight: 40 kg, Size: 950 x 500 x 500 mm, Dustbin Capacity: ~10 L",
+    "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.8 m/s, Weight: 50 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m"
+  },
+
+  "robot_states": {
+    "robot_dog_with_dustbin": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "pose_state": "Standing",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "For trash collection from stands, the robot dog with dustbin should patrol seat rows and gather waste.",
+    "For cleaning signage or small equipment repair, the differential drive robot with arm should be used.",
+    "If the trash bin of the robot dog is full, it should go to the disposal station and return after emptying.",
+    "If stairs or elevation change is required, assign navigation task to robot dog, not the wheeled robot.",
+    "To clean bench surfaces or locker rooms, the arm robot should carry cloth and wipe down areas.",
+    "to take any equipmenmt to any place first the robot needs to go the location where the equaipment is stored and then pick it up and then carry it to the location where it is needed.",
+    "if the robot has the carrier it can load all the items at once in the carrier and take it to the location where it is needed.",
+    "For any restocking task, treat each item as a separate subtask: pick -> carry -> place.",
+    "to work in some place or onm the object the robot has ot go there first. go to (place/object) and then work on it.",
+    "to collect trash the dustbin robot must go eith arm robot, so that arm robot pick up the trash and put it in the dustbin."
+  ],
+
+  "task_replanning_rules": [
+    "If robot dog is blocked due to obstacle, reroute via nearest accessible ramp.",
+    "If cleaning cloth or tools are missing, fetch them from the equipment room before task resumes.",
+    "If large debris is found, coordinate both robots for pickup and disposal handling."
+  ]
+}

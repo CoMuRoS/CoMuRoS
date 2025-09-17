@@ -1,0 +1,4 @@
+customtkinter==5.2.2
+google-generativeai==0.8.5
+ollama==0.4.8
+openai==1.66.3

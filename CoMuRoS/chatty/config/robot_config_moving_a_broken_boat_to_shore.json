@@ -1,0 +1,55 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "aquaRover",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "A small rover robot. Equipped with camera and lidar. Can move in both sand and water. Has a winch for pulling. It can pull any objets.",
+    "aquaRover": "A small rover robot. Equipped with camera and lidar. Can move in both sand and water. Has a winch for pulling. It can pull any objets.",
+    "shoreHauler": "A small rover robot. Equipped with camera and lidar. Can move in both sand and water. Has a winch for pulling. It can pull any objets."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Payload: ~75 kg, Speed: 0–2 m/s, Weight: 20 kg, Size: 1000 × 600 × 600 mm",
+    "aquaRover": "Payload: ~75 kg, Speed: 0–2.5 m/s, Weight: 20 kg, Size: 1000 × 600 × 600 mm",
+    "shoreHauler": "Payload: ~75 kg, Speed: 0–2 m/s, Weight: 20 kg, Size: 1000 × 600 × 600 mm"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "winch_state": "ready",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "winch_state": "ready",
+      "carry_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "winch_state": "ready",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "A Boat weighs around 200 kg."
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "Front-positioned wheeled robot with a strong grip. Can lift and stabilize the front side of long, heavy items. It can carry objects by working together with other robots.",
+    "shoreHauler": "Rear-positioned carrier robot with synchronized movement. Supports and balances the trailing end of large beams during transport. It can carry obejcts."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Payload: ~60 kg, Speed: 0–3.5 m/s, Weight: 40 kg, Size: 800 × 400 × 550 mm, Clamp Reach: 0.4 m, Stabilizers: Yes",
+    "shoreHauler": "Payload: ~60 kg, Speed: 0–2 m/s, Weight: 40 kg, Size: 1000 × 600 × 500 mm, Rear Clamp Arm: 0.3 m, Balance Mode: Active"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "clamp_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "clamp_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "a beam is 6000 mm long and weighs around 100 kg"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

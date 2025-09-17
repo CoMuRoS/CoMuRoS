@@ -1,0 +1,82 @@
+{
+    "robot_names": [
+      "medical_bot1",
+      "medical_bot2",
+      "armed_dog",
+      "surveillance_drone",
+      "security_patrol_bot"
+    ],
+  
+    "robot_capabilities": {
+      "medical_bot1": "Provides first aid and medicine distribution. It has a robotic arm with injection and dispensing tools. Equipped with camera (thermal, RGB and depth), pulse sensor, oxygen level detector. Can move between tents on paved and uneven ground. Can speak multiple languages. Connects to remote doctors for video consultation. It can also carry medical supplies. It can team up with other robtos to carry the injured person.",
+      "medical_bot2": "Provides first aid and medicine distribution. It has a robotic arm with injection and dispensing tools. Equipped with camera (thermal, RGB and depth), pulse sensor, oxygen level detector. Can move between tents on paved and uneven ground. Can speak multiple languages. Connects to remote doctors for video consultation. It can also carry medical supplies. It can team up with other robtos to carry the injured person.",
+      "armed_dog": "A quadruped robot with camera, thermal sensor, and non-lethal weapons. It can patrol rough terrain, detect intruders, and engage in perimeter defense. It can chase, warn, or mark suspicious individuals.",
+      "surveillance_drone": "Aerial robot for high-altitude scanning and wide-area monitoring. Equipped with zoom camera, IR sensor, and real-time video feed. Can detect unusual crowd behavior, fire outbreaks, and environmental hazards. Can follow targets. Can coordinate with ground bots.",
+      "security_patrol_bot": "Moves on wheels across designated security lanes. Equipped with camera, motion sensors, speaker and weapons. Can issue warnings, record evidence, and direct people. Recognizes faces and tracks known threats. Can navigate tents and medical zones safely."
+    },
+  
+    "robot_morphology": {
+      "medical_bot1": "Payload: ~50 kg medical supplies, Speed: 0 ~ 1.2 m/s, Weight: 50 kg, Size: 800 x 500 x 500 mm (L x W x H), Arm Reach: ~0.6 m",
+      "medical_bot2": "Payload: ~50 kg medical supplies, Speed: 0 ~ 1.2 m/s, Weight: 50 kg, Size: 800 x 500 x 500 mm (L x W x H), Arm Reach: ~0.6 m",
+      "armed_dog": "Payload: ~5 kg, Speed: 0 ~ 2.5 m/s, Weight: 40 kg, Size: 900 x 400 x 500 mm, DOF: 12, Obstacle Clearance: 0.25 m",
+      "surveillance_drone": "Payload: ~3 kg sensors, Speed: 0 ~ 6 m/s, Weight: 10 kg, Size: 600 x 600 x 250 mm, Flight Endurance: ~30 min, Propulsion: Quadrotor",
+      "security_patrol_bot": "Payload: ~5 kg, Speed: 0 ~ 1.5 m/s, Weight: 45 kg, Size: 750 x 450 x 500 mm, Battery Endurance: ~5 hrs, Navigation: Lidar + GPS"
+    },
+  
+    "robot_states": {
+      "medical_bot1": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Med_Kit",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "medical_bot2": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Med_Kit",
+        "arm_state": "Stowed",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+      "armed_dog": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Armed",
+        "pose_state": "Standing",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "surveillance_drone": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "flight_state": "Docked",
+        "camera_state": "Inactive",
+        "battery_state": "Full",
+        "mode": "Idle"
+      },
+  
+      "security_patrol_bot": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Empty",
+        "camera_state": "Off",
+        "battery_state": "Full",
+        "mode": "Idle"
+      }
+    },
+  
+    "task_specific_rules": [
+        "An average human weighs around 70 kg",
+        "No blood bank available in the camp",
+        "Only humans can give the blood",
+        "no robots no sign languages for communication with deaf people"
+    ],
+  
+    "task_replanning_rules": [
+        ""
+    ]
+  }
+  

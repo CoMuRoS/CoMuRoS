@@ -1,0 +1,47 @@
+{
+  "robot_names": [
+    "mobile_robot_with_spray",
+    "mobile_manipulator_with_scrub"
+  ],
+
+  "robot_capabilities": {
+    "mobile_robot_with_spray": "Equipped with a high-pressure water spray system, camera, and GPS. Capable of moving around the vehicle and spraying water or soap uniformly. Suitable for initial washing and rinsing phases.",
+    "mobile_manipulator_with_scrub": "Equipped with robotic arm and rotating scrubber brush, along with depth camera and GPS. Can precisely scrub car surfaces, windows, and wheels. Handles hard-to-remove dirt and performs final polishing."
+  },
+
+  "robot_morphology": {
+    "mobile_robot_with_spray": "Payload: ~10 L water tank, Speed: 0–2 m/s, Weight: 40 kg, Size: 800 x 500 x 500 mm, Spray Range: ~1.2 m",
+    "mobile_manipulator_with_scrub": "Payload: ~8 kg, Speed: 0–1.5 m/s, Weight: 50 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m, Brush RPM: ~120"
+  },
+
+  "robot_states": {
+    "mobile_robot_with_spray": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Full Tank",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "mobile_manipulator_with_scrub": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "a full car wash should be a plan of spraying the soap water first then scrubbing the car and finally rinsing it with clean water",
+    "if the task seems like, not cleaned properly, have to clean again, or anything related to customer unhappiness, if that was related to a particular part of the car, both the robot must wash it again, if that related to whole car , the robots must clean the whole car again"
+  ],
+
+  "task_replanning_rules": [
+    "If one robot is stuck or battery is low, pause full car wash and resume after resolving the issue.",
+    "If dirt is detected post-rinse, repeat scrubbing and re-rinse.",
+    "If sensors are blocked by foam or water, pause and clear sensor surface before continuing."
+  ]
+}

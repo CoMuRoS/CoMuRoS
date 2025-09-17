@@ -1,0 +1,57 @@
+{
+  "robot_names": ["drone", "robot_dog_with_arm", "wheeled_robot_with_arm"],
+
+  "robot_capabilities": {
+    "drone": "Can fly from location A to B. It can go on a patrol. It can fly faster compared to any other robot. It is suitable for Quick task. Equipped with depth camera, lidar, thermal sensor, GPS, and standard camera. Can monitor large areas from above, detect intrusions, and follow targets in air. Can hover or follow a patrol route autonomously. The drone is responsible for aerial monitoring, especially large areas and hard-to-reach zones.",
+    "robot_dog_with_arm": "Can walk and run over uneven terrain. It can go in hilly area. It can communicate withe Human using Speaker. It can go on a patrol. Can climb small slopes and crawl under obstacles. Equipped with depth camera, thermal sensor, lidar, GPS, and a robotic arm. Can inspect or interact with found objects or people. Ideal for rocky or rough areas. The robot dog should patrol rocky, grassy, or sloped terrain and assist if any object or person is found.",
+    "wheeled_robot_with_arm": "Moves on flat land using wheels. It can go on a patrol. Equipped with standard camera, lidar, GPS, and robotic arm. Can patrol roads, paths, and checkpoints. Can inspect suspicious objects or scan ID tags. Best for structured areas like roads or buildings. The wheeled robot should handle flat terrain, roads, and border gates or checkpoints."
+  },
+
+  "robot_morphology": {
+    "drone": "Payload: ~4 kg, Speed: 0–6 m/s, Weight: 10 kg, Size: 600 x 300 x 200 mm (L x W x H), Endurance: ~30 minutes, Propulsion: Quadrotor",
+    "robot_dog_with_arm": "Payload: ~25 kg, Speed: 0–3 m/s, Weight: 40 kg, Size: 1000 x 450 x 500 mm, DOF: 12 + 6 for arm, Terrain Adaptability: High",
+    "wheeled_robot_with_arm": "Payload: ~8 kg, Speed: 0–2 m/s, Weight: 45 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m, Suitable Terrain: Flat surfaces"
+  },
+
+  "robot_states": {
+    "drone": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "vertical_state": "Hovering",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+
+    "robot_dog_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "pose_state": "Standing",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+
+    "wheeled_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "If a suspicious object is found, the robot nearest to it and with an arm should inspect it.",
+    "Robots should share positional awareness to cover different regions efficiently."
+  ],
+
+  "task_replanning_rules": [
+    "If the terrain is too rough for the wheeled robot, reroute or delegate the task to the robot dog.",
+    "If an object is found by the drone, alert ground robots to investigate.",
+    "Do not assign the same patrol route to multiple robots unless explicitly needed."
+  ]
+}

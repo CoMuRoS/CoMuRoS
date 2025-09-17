@@ -1,0 +1,56 @@
+{
+  "robot_names": [
+    "skyRunner",
+    "skyScout",
+    "airWalker"
+  ],
+
+
+  "robot_capabilities": {
+    "skyRunner": "Lightweight drone with moderate speed. Can carry the objects and deliverit. It has a camera, GPS for navigation. It has a Coordntaed lifting system, also in this system it can lift any object alone withinn its payload limit.",
+    "skyScout": "Lightweight drone with moderate speed. Can carry the objects and deliverit. It has a camera, GPS for navigation. It has a Coordntaed lifting system, also in this system it can lift any object alone withinn its payload limit.",
+    "airWalker": "Lightweight drone with moderate speed. Can carry the objects and deliverit. It has a camera, GPS for navigation. It has a Coordntaed lifting system, also in this system it can lift any object alone withinn its payload limit."
+  },
+
+  "robot_morphology": {
+    "skyRunner": "Payload: ~40 kg, Speed: 0-2.5 m/s, Weight: 2 kg, Size: 400 × 400 × 200 mm, Flight Time: 25 min, Altitude Max: 30 m",
+    "skyScout": "Payload: ~40 kg, Speed: 0-8 m/s, Weight: 2 kg, Size: 400 × 400 × 200 mm, Flight Time: 25 min, Altitude Max: 30 m",
+    "airWalker": "Payload: ~40 kg, Speed: 0-10 m/s, Weight: 2 kg, Size: 400 × 400 × 200 mm, Flight Time: 25 min, Altitude Max: 30 m"
+  },
+
+  "robot_states": {
+    "skyRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "flight_state": "hovering",
+      "camera_state": "on",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "skyScout": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "flight_state": "hovering",
+      "camera_state": "on",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "airWalker": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "flight_state": "hovering",
+      "camera_state": "on",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "Each rock weighs approximately 100 kg.",
+    "Stones are stored in sector A"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

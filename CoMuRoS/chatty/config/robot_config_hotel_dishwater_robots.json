@@ -1,0 +1,60 @@
+{
+  "robot_names": [
+    "dishwasher_robot_arm_1",
+    "dishwasher_robot_arm_2",
+    "dishwasher_robot_arm_3",
+    "dishwasher_robot_arm_4"
+  ],
+
+  "robot_capabilities": {
+    "dishwasher_robot_arm_1": "Stationed at the dish intake zone. Equipped with a gripper, camera, and conveyor interface. Responsible for picking up dirty dishes and placing them on the washing rack.",
+    "dishwasher_robot_arm_2": "Positioned at the detergent and wash zone. It can can refill soap or any claening item. Equipped with sprayers and scrub tools. Handles initial cleaning, rinsing, and soap application.",
+    "dishwasher_robot_arm_3": "Handles post-wash inspection. Equipped with vision system and drying nozzle. Inspects dishes for residue and performs spot drying.",
+    "dishwasher_robot_arm_4": "Located at the sorting and stacking area. Picks cleaned dishes and stacks them in proper storage bins or trolleys or can put them to dry. Equipped with a sorting algorithm and placement gripper."
+  },
+
+  "robot_morphology": {
+    "dishwasher_robot_arm_1": "Payload: ~4 kg, Reach: ~0.9 m, Rotation: 300° base, Mounted on conveyor station",
+    "dishwasher_robot_arm_2": "Payload: ~5 kg, Reach: ~0.8 m, Rotation: 270° base, Mounted above wash tray",
+    "dishwasher_robot_arm_3": "Payload: ~3 kg, Reach: ~0.7 m, Rotation: 300° base, Inspection-rail mount",
+    "dishwasher_robot_arm_4": "Payload: ~6 kg, Reach: ~1.0 m, Rotation: 360° base, Floor-mounted sorter"
+  },
+
+  "robot_states": {
+    "dishwasher_robot_arm_1": {
+      "station": "intake",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    },
+    "dishwasher_robot_arm_2": {
+      "station": "wash_zone",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    },
+    "dishwasher_robot_arm_3": {
+      "station": "inspection",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    },
+    "dishwasher_robot_arm_4": {
+      "station": "storage",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    }
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    "If one robot arm is non-responsive or under maintenance, reassign its tasks to an adjacent available robot if possible.",
+    "If item slippage or detection error occurs, restart from intake and notify log system.",
+    "Pause all downstream actions if inspection fails until issue is resolved.",
+    "while cleaning the cleanig place all robots must help each other, and all robots should change the cleaning brushes and the cleaning items."
+  ]
+}

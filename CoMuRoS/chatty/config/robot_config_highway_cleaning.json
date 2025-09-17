@@ -1,0 +1,43 @@
+{
+  "robot_names": ["differential_robot_with_carrier", "differential_drive_robot_with_arm"],
+
+  "robot_capabilities": {
+    "differential_robot_with_carrier": "Can carry large amounts of debris. Moves smoothly on long road stretches. Equipped with GPS, camera, and waste bin. Can act as a collection hub for cleaning robots but cannot pick up debris itself. If the carrier robot's bin is full, it should go to the disposal zone and return to resume collection. ",
+    "differential_drive_robot_with_arm": "Performs fine-level cleaning. Can pick up debris, clear small obstacles, and sweep narrow areas. Equipped with a robotic arm, depth camera, lidar, and GPS. Can work alongside the carrier robot to offload debris. The arm robot should pick up waste and place it into the carrier robot. Arm robot should sweep small objects or plastic debris from the roadside into collection points." 
+  },
+
+  "robot_morphology": {
+    "differential_robot_with_carrier": "Payload: ~25 kg, Speed: 0–2 m/s, Weight: 60 kg, Size: 1000 x 600 x 550 mm, Bin Capacity: ~40 L, No Arm",
+    "differential_drive_robot_with_arm": "Payload: ~8 kg, Speed: 0–1.8 m/s, Weight: 45 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m"
+  },
+
+  "robot_states": {
+    "differential_robot_with_carrier": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+
+  ],
+
+  "task_replanning_rules": [
+    "If the arm robot is overloaded, request bin offload by the carrier.",
+    "If the carrier robot is far, temporarily store waste locally and wait.",
+    "If a zone is inaccessible, reroute to the next sector and log the missed area for future revisit."
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "robot_names": [
+    "robot_dog_with_scissors",
+    "differential_drive_robot_with_arm",
+    "dustbin_mobile_robot"
+  ],
+
+  "robot_capabilities": {
+    "robot_dog_with_scissors": "Can walk on uneven terrain, jump small steps, and reach tight spots in the garden. Equipped with scissors tool for trimming grass, small bushes, and overgrown edges. Has depth camera, standard camera, and GPS. Cannot carry large waste. Robot dog with scissors should handle trimming around rocks, plant bases, and narrow areas. robot dog can perform trimming actions.",
+    "differential_drive_robot_with_arm": "Moves on flat and semi-flat garden paths. Equipped with a robotic arm, camera, GPS, and a gripper. Can collect trimmed branches or tools, place them in bins, or assist with pruning. Avoids wet/muddy areas. Differential drive robot with arm should collect trimmed leaves and branches, and pass them to the dustbin robot. differential drive robot can pick and place trimmed material.",
+    "dustbin_mobile_robot": "Wheeled robot with onboard waste bin. Can autonomously follow other robots and collect garden waste. Equipped with bin-lift support, lidar, and obstacle avoidance. Cannot manipulate tools but can receive waste from other robots. Dustbin mobile robot should follow the working robots and collect garden waste when called."
+  },
+
+  "robot_morphology": {
+    "robot_dog_with_scissors": "Payload: ~4 kg, Speed: 0–2.5 m/s, Weight: 35 kg, Size: 950 x 450 x 500 mm, Tool: Mounted trimming scissors",
+    "differential_drive_robot_with_arm": "Payload: ~6 kg, Speed: 0–1.5 m/s, Weight: 40 kg, Size: 800 x 500 x 550 mm, Arm Reach: ~0.8 m, Gripper Type: 2-finger",
+    "dustbin_mobile_robot": "Payload: ~10 kg, Speed: 0–1.2 m/s, Weight: 50 kg, Size: 850 x 500 x 600 mm, Bin Capacity: ~30 L"
+  },
+
+  "robot_states": {
+    "robot_dog_with_scissors": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty",
+      "tool_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+
+    "dustbin_mobile_robot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "carry_state": "Empty",
+      "bin_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+
+  ],
+
+  "task_replanning_rules": [
+    "If any robot is blocked by an obstacle, reroute or wait and retry in 1 minute.",
+    "If robot dog cannot access an area due to obstacles, the differential robot should notify the human.",
+    "If the dustbin robot is not near, trimming and waste collection should pause until it arrives."
+  ]
+}

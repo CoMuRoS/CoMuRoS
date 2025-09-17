@@ -1,0 +1,44 @@
+{
+  "robot_names": ["rover_robot_with_carrier", "hexapod_robot_with_arm"],
+
+  "robot_capabilities": {
+    "rover_robot_with_carrier": "Can traverse moderately uneven and rocky surfaces. Equipped with GPS, camera, and a cargo container. Can carry extracted asteroid material but cannot manipulate or mine on its own. Rover robot should stay near extraction zones to collect and transport materials to base. It should return to storage bay once its bin is full and come back for more. To bring the material back to the base, the rover should stay near the extraction zones and transport the materials to the base.",
+    "hexapod_robot_with_arm": "Highly stable on rugged, sloped, or irregular asteroid surfaces. Equipped with a robotic arm, depth camera, lidar, GPS, and drilling tools. Can extract material, collect samples, and pass them to the carrier rover. The hexapod robot should identify and drill into asteroid surfaces to extract samples. The hexapod should pass extracted material to the carrier robot for transport. It can perform manipulation or drilling. To get extract the mineral or something from the asteroid, it should drill into the surface and collect samples."
+  },
+
+  "robot_morphology": {
+    "rover_robot_with_carrier": "Payload: ~30 kg, Speed: 0–1.2 m/s, Weight: 65 kg, Size: 1100 x 650 x 600 mm, Wheels: 6WD, Bin Capacity: ~40 L, Arm: None",
+    "hexapod_robot_with_arm": "Payload: ~10 kg, Speed: 0–0.8 m/s, Weight: 55 kg, Size: 1000 x 550 x 500 mm, Legs: 6 DOF, Arm Reach: ~0.9 m, Tool: Drill & Sample Gripper"
+  },
+
+  "robot_states": {
+    "rover_robot_with_carrier": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "hexapod_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "pose_state": "Standing",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "If the terrain is too steep or unstable, the rover should wait for assistance or reroute.",
+    "to transport the material to anywhere, the hexapod should firstly extract it from the place whwere it is located, if the hexapdod does not have the location of the material , both the robot should start finding the location of the material."
+  ],
+
+  "task_replanning_rules": [
+    "If hexapod is blocked, attempt reroute or wait for terrain to be cleared.",
+    "If rover is overloaded, offload materials at the processing zone before continuing.",
+    "If drilling fails or arm malfunctions, pause and notify human operator for override or backup."
+  ]
+}

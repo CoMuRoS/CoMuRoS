@@ -1,0 +1,57 @@
+{
+  "robot_names": [
+    "aquaRover",
+    "duneRunner",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "aquaRover": "A mobile robot equipped with a robotic arm capable of drilling, screwing and carrying all with its arm. It performs precision tasks like mounting and more using interchangeable tools. It ca also carry objects by workig together with other robots.",
+    "duneRunner": "A stable ground robot with a robotic arm that can position and carry with its arm. It assists in aligning and holding the objects. t ca also carry objects by workig together with other robots.",
+    "shoreHauler": "A carrier robot with a rear tray and robotic arm. It can transports also it supports with lifting or holding during placement. t ca also carry objects by workig together with other robots."
+ },
+
+  "robot_morphology": {
+    "aquaRover": "Arm Payload: ~15 kg, Speed: 0–2.5 m/s, Weight: 40 kg, Size: 400 × 350 × 200 mm, Arm Reach: 500 mm, Tool Adapter: Drill/Screwdriver compatible",
+    "duneRunner": "Arm Payload: ~15 kg, Speed: 0–3.5 m/s, Weight: 40 kg, Size: 800 × 400 × 550 mm, Lift Height: up to 1.2 m, Stabilizers: Yes, Arm Reach: 500 mm, Tool Adapter: Screwdriver compatible",
+    "shoreHauler": "Arm Payload: ~15 kg, Speed: 0–2 m/s, Weight: 40 kg, Size: 1000 × 600 × 500 mm, Tray Capacity: 10 kg, Tray Size: 800 × 400 mm, Arm Reach: 500 mm, Tool Adapter: Screwdriver compatible"
+  },
+
+  "robot_states": {
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "tray_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "Solar panels are stored in truck",
+    "Solar Panel weighs around 40 kg",
+    "Solar Panel is 2000 mm x 1000 mm in size"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

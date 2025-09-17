@@ -1,0 +1,47 @@
+{
+  "robot_names": [
+    "snow_plow_robot",
+    "differential_drive_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "snow_plow_robot": "Capable of clearing wide areas of snow from roads and sidewalks. Equipped with front-mounted plow, GPS, standard camera, and snow-dump container. Cannot manipulate objects but excels at bulk clearing and route following.",
+    "differential_drive_robot_with_arm": "Can perform targeted snow clearing, spread salt, open blocked paths, and handle Big debris. Equipped with robotic arm, depth camera, lidar, GPS, and de-icing sprayer. Suitable for narrow paths, bus stops, stairs, and entry points."
+  },
+
+  "robot_morphology": {
+    "snow_plow_robot": "Payload: ~40 kg, Speed: 0–2.5 m/s, Weight: 70 kg, Size: 1200 x 650 x 600 mm, Plow Width: ~700 mm, Snow Container: ~50 L",
+    "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.8 m/s, Weight: 50 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m"
+  },
+
+  "robot_states": {
+    "snow_plow_robot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "to remove snow form any road or place robot must goto that road or place first",
+    "to remove any big debrids from the road or place, the robot must go to that road or place first"
+  ],
+
+  "task_replanning_rules": [
+    "If snow plow path is blocked, reroute or wait for clearance.",
+    "If arm robot is unable to finish a tight corner, escalate to manual alert or retry with different approach.",
+    "If snowfall resumes heavily, prioritize clearing school entrances and transport routes first."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+    "robot_names": ["drone", "buggy_with_arm"],
+  
+    "robot_capabilities": {
+        "drone": "Can move from location A to B by flying. Equipped with depth camera, standard camera, lidar, thermal camera, and GPS. Can identify and locate objects by flying overhead. Must first detect an object before moving to it. Drone can identify areas with insufficient water. The daily routine of the drone is to perform surveillance. Drone can detect diseased plants in the field. Drone can identify animals in the field.",
+        "buggy_with_arm": "Can move from location A to B on land. Can navigate off-road. Equipped with depth camera, standard camera, lidar, thermal camera, and GPS. Can detect and approach objects, but only after locating them first. Buggy can spray pesticides in the field. The daily routine of the buggy is to perform surveillance. Buggy can spray water across the field for irrigation. Buggy can disperse animals present in the field."
+    },
+  
+    "robot_morphology": {
+        "drone": "Payload: ~6 kg (max ~10 kg), Speed: 0–5 m/s (max ~7 m/s), Weight: 12 kg, Size: 650 x 300 x 400 mm (L x W x H, hovering), 700 x 300 x 200 mm (landed), Flight Endurance: ~25 min, Propulsion: Quadrotor",
+        "buggy_with_arm": "Payload: ~18 kg (max ~25 kg), Speed: 0–2 m/s (max ~2.5 m/s), Weight: 58 kg, Size: 900 x 550 x 600 mm (L x W x H), Track Width: ~130 mm, Arm Reach: ~0.8 m, Stabilizers: Yes"
+    },
+  
+    "robot_states": {
+        "drone": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "vertical_state": "Landed",
+            "carry_state": "Empty",
+            "battery_state": "Full",
+            "mode": "Idle"
+        },
+
+        "buggy_with_arm": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "mobility_state": "Stationary",
+            "carry_state": "Empty",
+            "arm_state": "Stowed",
+            "battery_state": "Full",
+            "mode": "Idle"
+        }
+    },
+  
+    "task_specific_rules": [
+
+    ],
+  
+    "task_replanning_rules": [
+        "Do NOT assume that a robot has completed its previous task when an event occurs."
+    ]
+  }
+  

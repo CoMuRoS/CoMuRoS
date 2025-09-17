@@ -1,0 +1,55 @@
+{
+    "robot_names": ["drone", "robot_dog_with_spade", "differential_drive_robot_with_sprinkler"],
+  
+    "robot_capabilities": {
+        "drone": "Can move from location A to B by flying. Equipped with depth camera, standard camera, lidar, thermal camera, and GPS. Can detect objects or areas from the air. Can map terrain and locate planting zones. Cannot manipulate objects directly. Suitable to to find any thing or any place. an seed the area with a seed dispenser.",
+        "robot_dog_with_spade": "Can walk and run on land, climb, crawl, and jump. Equipped with depth camera, standard camera, lidar, thermal sensor, GPS, and a spade tool. Capable of digging holes for planting. Can find and reach locations by walking across rough terrain. Robot dog with spade can dig holes in rocky, grassy, or uneven forest terrain for seed placement.", 
+        "differential_drive_robot_with_sprinkler": "Moves on land using wheels. Can operate in open flat or semi-flat terrain. Equipped with depth camera, standard camera, GPS, and water-spraying system. Capable of watering plants in assigned regions. Can locate and navigate to target areas after identifying them. Differential drive robot with sprinkler is responsible for watering the newly planted areas in accessible terrain."
+    },
+  
+    "robot_morphology": {
+        "drone": "Payload: ~4 kg (max ~6 kg), Speed: 0–5 m/s (max ~7 m/s), Weight: 10 kg, Size: 600 x 300 x 400 mm (L x W x H, hovering), 650 x 300 x 200 mm (landed), Flight Endurance: ~30 min, Propulsion: Quadrotor",
+        "robot_dog_with_spade": "Payload: ~6 kg (max ~10 kg), Speed: 0–3 m/s (max ~4 m/s), Weight: 40 kg, Size: 1000 x 500 x 500 mm (L x W x H), Tool: Spade (Front-Mounted), Terrain: Adaptable to rocks, grass, or forest floor",
+        "differential_drive_robot_with_sprinkler": "Payload: ~10 kg (max ~15 kg), Speed: 0–2 m/s (max ~2.5 m/s), Weight: 45 kg, Size: 850 x 500 x 550 mm (L x W x H), Feature: Onboard Sprinkler System, Tank Capacity: 10 L"
+    },
+  
+    "robot_states": {
+        "drone": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "vertical_state": "Landed",
+            "carry_state": "Empty",
+            "battery_state": "Full",
+            "mode": "Idle"
+        },
+  
+        "robot_dog_with_spade": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "pose_state": "Standing",
+            "carry_state": "Empty",
+            "battery_state": "Full",
+            "mode": "Idle"
+        },
+  
+        "differential_drive_robot_with_sprinkler": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "mobility_state": "Stationary",
+            "carry_state": "Empty",
+            "battery_state": "Full",
+            "mode": "Idle"
+        }
+    },
+  
+    "task_specific_rules": [
+
+        "All robots shoudd PAUSE the work when animals found.",
+        "pouring water must be after the planting."
+    ],
+  
+    "task_replanning_rules": [
+        "Do NOT assume that a robot has completed a task when an event is triggered. Reassess based on current state."
+    ]
+  }
+  

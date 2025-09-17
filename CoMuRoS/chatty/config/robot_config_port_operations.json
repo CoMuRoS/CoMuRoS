@@ -1,0 +1,54 @@
+{
+  "robot_names": [
+    "robotic_arm_near_ship",
+    "robotic_arm_terminal",
+    "differential_drive_robot"
+  ],
+
+  "robot_capabilities": {
+    "robotic_arm_near_ship": "Stationary arm installed near the ship docking area. Equipped with heavy-duty gripper, depth sensor, camera, and conveyor interface. Suitable for loading/unloading containers and managing direct ship to diff driver robot transfer. can load or unload anything from the ship to the diff drive robot and from the diff drive robot to the ship. ",
+    "robotic_arm_terminal": "Stationary arm located in terminal warehouse. Equipped with gripper, barcode scanner, camera, and placement platform. Used for sorting containers, organizing inventory, and placing items onto outgoing vehicles. It can load or unload items to the truck. can load or unload anything from the diff drive robot to the terminal and from the terminal to the diff drive robot. ",
+    "differential_drive_robot": "Capable of transporting cargo between docking and warehouse zones. Moves on flat port surfaces. Equipped with GPS, camera, obstacle sensors, and a secure cargo platform. Can autonomously carry items to/from robotic arms."
+  },
+
+  "robot_morphology": {
+    "robotic_arm_near_ship": "Payload: ~50 kg, Reach: ~1.2 m, Rotation: 360° base, Mounted Platform, Weight: ~90 kg",
+    "robotic_arm_terminal": "Payload: ~30 kg, Reach: ~1.0 m, Rotation: 300° base, Mounted Platform, Weight: ~70 kg",
+    "differential_drive_robot": "Payload: ~20 kg, Speed: 0–2 m/s, Weight: 55 kg, Size: 900 x 600 x 550 mm, Platform: Flat with Lockable Rails"
+  },
+
+  "robot_states": {
+    "robotic_arm_near_ship": {
+      "location": "Docking Area",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    },
+    "robotic_arm_terminal": {
+      "location": "Terminal Warehouse",
+      "task_state": "Idle",
+      "carry_state": "Empty",
+      "power_state": "Connected"
+    },
+    "differential_drive_robot": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "trucks can come to the terminal and load or unload anything from the diff drive robot to the truck and from the truck to the diff drive robot",
+    "to get loaded or unloaded, the diff drive robot must be near the arm which is loading or unloading, if the diff drive robot is not near the arm,the diff drive robot must go to the arm and wait for the arm to load or unload. "
+    
+  ],
+
+  "task_replanning_rules": [
+    "If differential drive robot is unavailable, delay all inter-zone transport.",
+    "If either robotic arm is stuck or under maintenance, notify human supervisor and reroute tasks.",
+    "If cargo item location is not detected, request rescan using camera or lidar and retry."
+  ]
+}

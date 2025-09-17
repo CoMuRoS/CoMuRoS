@@ -1,0 +1,90 @@
+{
+  "robot_names": [
+    "RoboTug",
+    "TrayWagon",
+    "ScanBot",
+    "ShelfMate",
+    "Sweepy",
+    "VacLine"
+  ],
+
+  "robot_capabilities": {
+    "RoboTug": "Powerful robot that can pull or push heavy shelving units. Can work in coordination with other movers. It can team up with other robots.",
+    "TrayWagon": "Mobile platform robot with lift and tray to carry large boxes and trays. Can transport materials between aisles. It can team up with other robots.",
+    "ScanBot": "Equipped with barcode and RFID scanner. Updates inventory logs in real-time and identifies misplaced items. It can team up with other robots.",
+    "ShelfMate": "Arm-equipped robot for organizing shelves, placing or removing small packages. Communicates with ScanBot for sorting. It can team up with other robots.",
+    "Sweepy": "Compact cleaning robot with rotating brushes and dust collection system. Operates in cleared floor areas. It can team up with other robots.",
+    "VacLine": "Heavy-duty vacuum robot for industrial floor cleaning. Covers wide area quickly. It can team up with other robots."
+  },
+
+  "robot_morphology": {
+    "RoboTug": "Payload: ~50 kg, Speed: 0–1.5 m/s, Weight: 90 kg, Size: 1000 × 800 × 600 mm, Traction: Omni wheels",
+    "TrayWagon": "Payload: ~50 kg, Speed: 0–2 m/s, Weight: 60 kg, Size: 900 × 600 × 400 mm, Lift Height: 200 mm",
+    "ScanBot": "Speed: 0–2 m/s, Weight: 20 kg, Size: 500 × 400 × 300 mm, Scanner Range: 1.5 m, Connectivity: Wi-Fi + BLE",
+    "ShelfMate": "Payload: ~10 kg, Speed: 0–1.8 m/s, Weight: 25 kg, Size: 600 × 500 × 400 mm, Arm Reach: 500 mm",
+    "Sweepy": "Speed: 0–1.5 m/s, Weight: 15 kg, Size: 400 × 300 × 200 mm, Cleaning Width: 300 mm",
+    "VacLine": "Speed: 0–1.2 m/s, Weight: 35 kg, Size: 800 × 600 × 300 mm, Suction Width: 600 mm"
+  },
+
+  "robot_states": {
+    "RoboTug": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "carry_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "TrayWagon": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "tray_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "ScanBot": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "scanner_state": "off",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "ShelfMate": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "carry_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "Sweepy": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "cleaner_state": "off",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "VacLine": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "suction_state": "off",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "Each box weighs around 200 kg.",
+    "Shelving units are 2000 mm tall and weigh around 200 kg.",
+    "Cleaning must occur only after relocation is complete."
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

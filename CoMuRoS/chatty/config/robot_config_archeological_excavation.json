@@ -1,0 +1,58 @@
+{
+  "robot_names": [
+    "drone",
+    "differential_drive_robot_with_arm",
+    "quadruped_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "drone": "Performs aerial site scanning, mapping, and terrain monitoring. Equipped with camera, lidar, GPS, and thermal imaging. Cannot manipulate objects but excels in overview, thermal anomalies, and search.",
+    "differential_drive_robot_with_arm": "Capable of carefully brushing, collecting, and storing artifacts on flat terrain. Equipped with robotic arm, depth camera, lidar, and precision tools. Can document and label artifacts at excavation sites.",
+    "quadruped_robot_with_arm": "Can traverse uneven, rocky, or fragile terrain. Equipped with robotic arm, camera, lidar, and terrain-adaptive mobility. Suitable for accessing delicate dig areas, removing light debris, and assisting human archaeologists. Suitable for tasks in slope also."
+  },
+
+  "robot_morphology": {
+    "drone": "Payload: ~2 kg, Speed: 0–6 m/s, Weight: 9 kg, Size: 600 x 300 x 200 mm, Endurance: ~25 min, Sensor Coverage Radius: ~40 m",
+    "differential_drive_robot_with_arm": "Payload: ~6 kg, Speed: 0–1.5 m/s, Weight: 45 kg, Size: 850 x 500 x 500 mm, Arm Reach: ~0.7 m",
+    "quadruped_robot_with_arm": "Payload: ~8 kg, Speed: 0–2 m/s, Weight: 48 kg, Size: 1000 x 550 x 500 mm, Arm Reach: ~0.6 m, Terrain: rocky ground, ruins, collapsed zones"
+  },
+
+  "robot_states": {
+    "drone": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "vertical_state": "Landed",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "quadruped_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "pose_state": "Standing",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "To map the area, the robot needs to go there first"
+  ],
+
+  "task_replanning_rules": [
+    "If dust obscures the camera view, halt the task and attempt lens cleaning or reposition.",
+    "If any robot gets stuck in unstable terrain, alert the team and reroute if possible.",
+    "If unexpected heat signatures are detected, reroute robots and notify for safety inspection."
+  ]
+}

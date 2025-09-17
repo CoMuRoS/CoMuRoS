@@ -1,0 +1,58 @@
+{
+    "robot_names": ["drone_with_arm", "robot_dog_with_arm", "tracked_mobile_robot_with_arm"],
+
+    "robot_capabilities": {
+      "drone_with_arm": "It can go from location A to B by flying. It has a depth camera to watch environment. It has a Camera. It has a Lidar sensor. It has a Thermal Camera Sensor. It uses all sensors to Detect Land mines. It  has a Robotic Arm equipped with Tools to neutralize Land Mine. It has a GPS to know the location. It can Pick and Place objects. It can find object. It can goto the object but only after finding the object. To go the object it nedds to be found initially. It can find the object by flying in the air. Drone can be used to search anything. Drones can netralize the land mine in the Hilly terrain, Dense Forest, and in the water.",
+      "robot_dog_with_arm" : "It can go from location A to B by walking and running in land. It can Climb. It can Crawl below Obstacle. It can Jump. It has a Depth Camera to look the enviroment. It has a Camera. It has 4 legs. It has a GPS to know the location. It has a Lidar sensor. It has a Thermal Camera Sensor. It uses all sensors to Detect Land mines. It  has a Robotic Arm equipped with Tools to neutralize Land Mine. It can Pick and Place objects. It can find object. It can goto the object but only after finding the object. To go the object it nedds to be found initially. It can find the object by walking on the land. Robot dog can neutralize the land mine in the Rockyterrain",
+      "tracked_mobile_robot_with_arm" : "It can go from location A to B by moving on land. It can go Offroad. It has a Depth Camera to look the enviroment. It has a Camera. It has a GPS to know the location. It has a Lidar sensor. It has a Thermal Camera Sensor. It uses all sensors to Detect Land mines. It  has a Robotic Arm equipped with Tools to neutralize Land Mine. It can Pick and Place objects. It can find object. It can goto the object but only after finding the object. To go the object it nedds to be found initially. It can find the object by moving in the land. Tracked mobile robot can neutralize the land mine in the Muddy Terrain, Wet terrain."
+
+    },
+    
+    "robot_morphology": {
+        "drone_with_arm": "Payload: ~6 kg (max ~10 kg), Speed: 0 ~ 5 m/s (max ~7 m/s), Weight: 12 kg, Size: 650 x 300 x 400 mm (L x W x H, hovering), 700 x 300 x 200 mm (landed), Flight Endurance: ~25 min, Propulsion: Quadrotor",
+        "robot_dog_with_arm": "Payload: ~8 kg (max ~12 kg), Speed: 0 ~ 3 m/s (max ~4 m/s), Weight: 42 kg, Size: 1050 x 500 x 550 mm (L x W x H, standing), 1050 x 500 x 400 mm (crouching), Degrees of Freedom: 12 + 6 DOF arm",
+        "tracked_mobile_robot_with_arm": "Payload: ~18 kg (max ~25 kg), Speed: 0 ~ 2 m/s (max ~2.5 m/s), Weight: 58 kg, Size: 900 x 550 x 600 mm (L x W x H), Track Width: ~130 mm each side, Arm Reach: ~0.8 m, Stabilizers: Yes"
+    },
+
+    "robot_states": {
+        "drone_with_arm": {
+            "relative_position": "None",              
+            "relative_orientation": "None",          
+            "vertical_state": "Landed",             
+            "carry_state": "Empty",                   
+            "arm_state": "Stowed",                    
+            "battery_state": "Full",                   
+            "mode": "Idle"                            
+        },
+
+        "robot_dog_with_arm": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "pose_state": "Standing",                
+            "carry_state": "Empty",                   
+            "arm_state": "Stowed",                   
+            "battery_state": "Full",             
+            "mode": "Idle"                          
+        },
+
+        "tracked_mobile_robot_with_arm": {
+            "relative_position": "None",
+            "relative_orientation": "None",
+            "mobility_state": "Stationary",          
+            "carry_state": "Empty",                   
+            "arm_state": "Stowed",                 
+            "battery_state": "Full",                  
+            "mode": "Idle"                 
+        }
+    },
+
+
+    "task_specific_rules": [
+
+        ] ,
+
+    "task_replanning_rules" : [
+        "Do NOT assume that a robot task before any event is completed"
+    ]
+}
+

@@ -1,0 +1,54 @@
+{
+  "robot_names": [
+    "deepDiver",
+    "aquaRover",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "deepDiver": "An underwater robot capable of locating and lifting sunken objects using a strong bottom-mounted hook system and sonar navigation. It can form a team with other robots.",
+    "aquaRover": "An underwater robot capable of locating and lifting sunken objects using a strong bottom-mounted hook system and sonar navigation.  It can form a team with other robots.",
+    "shoreHauler": "An underwater robot capable of locating and lifting sunken objects using a strong bottom-mounted hook system and sonar navigation.  It can form a team with other robots."
+  },
+
+  "robot_morphology": {
+    "deepDiver": "Payload: ~100 kg, Speed: 0–1.5 m/s (underwater), Weight: 38 kg, Size: 1200 × 600 × 400 mm, Equipped: Sonar, Tow Hook System",
+    "aquaRover": "Payload: ~100 kg, Speed: 0–1.5 m/s (underwater), Weight: 38 kg, Size: 1200 × 600 × 400 mm, Equipped: Sonar, Tow Hook System",
+    "shoreHauler": "Payload: ~100 kg, Speed: 0–1.5 m/s (underwater), Weight: 38 kg, Size: 1200 × 600 × 400 mm, Equipped: Sonar, Tow Hook System"
+  },
+
+  "robot_states": {
+    "deepDiver": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "submerged",
+      "hook_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "submerged",
+      "hook_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "submerged",
+      "hook_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "A Boat is 5000 mm long and weighs around 200 kg"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

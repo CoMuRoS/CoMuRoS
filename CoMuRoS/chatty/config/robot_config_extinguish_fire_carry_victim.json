@@ -1,0 +1,67 @@
+{
+  "robot_names": [
+    "BlazeBot",
+    "FlameCutter",
+    "RescueMate",
+    "LiftBuddy"
+  ],
+
+  "robot_capabilities": {
+    "BlazeBot": "Firefighting robot equipped with a directional nozzle and thermal sensors. Sprays fire retardant and can approach high-temperature zones safely. It can team up with other robots.",
+    "FlameCutter": "Assists in fire suppression and clears burning debris with an arm-mounted blade. Works alongside BlazeBot in hazard zones. It can team up with other robots.",
+    "RescueMate": "Humanoid robot with strong arms and vitals scanner. Safely lifts and stabilizes the victim with a harness system. It can team up with other robots.",
+    "LiftBuddy": "Compact bipedal robot that supports RescueMate by adjusting posture, holding the stretcher, and maintaining balance during rescue operations. It woks in tandem with RescueMate to ensure the victim is safely transported. It can team up with other robots."
+  },
+
+  "robot_morphology": {
+    "BlazeBot": "Payload: 10 L fire retardant, Speed: 0–1.5 m/s, Weight: 35 kg, Size: 700 × 400 × 500 mm, Spray Distance: 2.5 m, Sensors: Thermal, Gas, Proximity",
+    "FlameCutter": "Payload: 8 kg tools, Speed: 0–1.8 m/s, Weight: 32 kg, Size: 650 × 450 × 450 mm, Arm Tool: Rotating blade, Shielding: Heat-resistant shell",
+    "RescueMate": "Payload: 80 kg (human), Speed: 0–2 m/s, Weight: 60 kg, Size: 800 × 500 × 1000 mm, Arm Strength: ~100 N, Harness: Auto-lock, Vitals Monitor: Enabled",
+    "LiftBuddy": "Payload: 50 kg support, Speed: 0–1.5 m/s, Weight: 40 kg, Size: 600 × 450 × 900 mm, Assist Arms: Stabilizers, Gait Support: Dynamic balance"
+  },
+
+  "robot_states": {
+    "BlazeBot": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "spray_state": "off",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "FlameCutter": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "tool_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "RescueMate": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "ready",
+      "harness_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "LiftBuddy": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "arm_state": "ready",
+      "harness_state": "open",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

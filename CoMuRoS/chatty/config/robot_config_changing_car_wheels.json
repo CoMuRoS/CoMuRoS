@@ -1,0 +1,60 @@
+{
+  "robot_names": [
+    "duneRunner",
+    "aquaRover",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "duneRunner": "A robot that can lift the car and stabilize it while the wheels are being changed. It can work together with other robots.",
+    "aquaRover": "A robot that can lift the car and stabilize it while the wheels are being changed. It can work together with other robots.",
+    "shoreHauler": "A robot that as an robotic arm in whch ut can carry the whhels, also it can remove the old wheels and place the new ones."
+  },
+
+  "robot_morphology": {
+    "duneRunner": "Speed: 0–3.5 m/s, Weight: 45 kg, Size: 800 × 400 × 550 mm, Wheelbase: Stabilized, Lifting Mechanism: Hydraulic jack (~800 kg), Arm Reach: 500 mm",
+    "aquaRover": "Speed: 0–2.5 m/s, Weight: 30 kg, Size: 400 × 350 × 200 mm, Lifting Pad: Pneumatic assist (~800 kg), Arm Reach: 400 mm, Tool Compatibility: Socket wrench, Stabilizer: Yes",
+    "shoreHauler": "Speed: 0–2 m/s, Weight: 30 kg, Size: 1000 × 600 × 500 mm, Tire Rack Capacity: 2 wheels, Arm Reach: 400 mm, Tool: Automated wheel gripper"
+  },
+
+  "robot_states": {
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "jack_state": "retracted",
+      "stabilizer_state": "deployed",
+      "battery_state": "full",
+      "mode": "active"
+    },
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "lift_pad_state": "retracted",
+      "arm_state": "ready",
+      "battery_state": "full",
+      "mode": "active"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "stationary",
+      "tray_state": "loaded",
+      "arm_state": "engaged",
+      "battery_state": "full",
+      "mode": "active"
+    }
+  },
+
+  "task_specific_rules": [
+    "An average car wheel weighs around 20 kg and has a diameter of 600 mm.",
+    "An average car wighs around 1500 kg and has a wheelbase of 2500 mm.",
+    "It is better to lift the whole car up when it is to change ALL the wheels",
+    "remeber to put the car down at the end of the task only if needed"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

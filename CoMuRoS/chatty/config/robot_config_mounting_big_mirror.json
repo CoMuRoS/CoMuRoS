@@ -1,0 +1,57 @@
+{
+  "robot_names": [
+    "aquaRover",
+    "duneRunner",
+    "shoreHauler"
+  ],
+
+  "robot_capabilities": {
+    "aquaRover": "A precision robot with a soft-grip robotic arm. Works with another robot to lift and carry sensitive objects without damage.",
+    "duneRunner": "A stable robot with lifting arms. Teams up to carry and balance fragile or heavy items during transport.",
+    "shoreHauler": "A mounting robot equipped with a multi-tool robotic arm. Can drill, clamp, and fix objects securely on walls, stands, or platforms."
+  },
+
+  "robot_morphology": {
+    "aquaRover": "Payload: ~30 kg, Speed: 0–2.5 m/s, Weight: 20 kg, Size: 1000 × 600 × 500 mm, Arm Reach: 400 mm, Grip Type: Soft-touch, Coordination Mount: Enabled",
+    "duneRunner": "Payload: ~30 kg, Speed: 0–3.5 m/s, Weight: 20 kg, Size: 1000 × 600 × 500 mm, Lifting Arms: Dual-side clamps, Balance Assist: Enabled",
+    "shoreHauler": "Payload: ~20 kg, Speed: 0–2 m/s, Weight: 15 kg, Size: 500 × 400 × 300 mm, Arm Reach: 450 mm, Arm Tools: Drill, Clamp, Magnetic Gripper, Tool Swapping Enabled"
+  },
+
+  "robot_states": {
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "carry_state": "tool-free",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "lift_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "tool_state": "ready",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "An average size mirror is 2000 mm x 1000 mm and weighs around 50 kg.",
+    "Mirror is a fragile object and must be handled with care."
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

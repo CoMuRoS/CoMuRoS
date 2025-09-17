@@ -1,0 +1,60 @@
+{
+  "robot_names": [
+    "differential_drive_robot_with_carrier",
+    "differential_drive_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "differential_drive_robot_with_carrier": "Can carry collected waste or items. Follows planned routes on indoor flat surfaces. Equipped with GPS, standard camera, and a storage bin. Cannot manipulate objects but supports cleaning operations. Carrier robot should follow cleaning zones and receive collected items from the arm robot. Carrier robot can transport trash to the disposal bin once its container is full.",
+    "differential_drive_robot_with_arm": "Can pick, clean, and interact with the environment. Equipped with robotic arm, depth camera, lidar, and cleaning tools. Suitable for table-top cleaning, object sorting, and moving light items. Arm robot should collect trash, wipe surfaces, and place waste into the carrier. Arm robot can clean tables, counters, and reachable shelf surfaces. The carrier robot can remain near zones being cleaned to minimize travel distance. Can soak spilled water using cloth or pad. To clean a washroom, the arm robot must use separate tools and avoid cross-contamination. If the trash bin in carrier is full, carrier should empty it at the nearest disposal station."
+  },
+
+  "robot_morphology": {
+    "differential_drive_robot_with_carrier": "Payload: ~10 kg, Speed: 0–1.5 m/s, Weight: 48 kg, Size: 900 x 550 x 500 mm, Storage Bin: ~20 L",
+    "differential_drive_robot_with_arm": "Payload: ~8 kg, Speed: 0–1.2 m/s, Weight: 42 kg, Size: 850 x 500 x 500 mm, Arm Reach: ~0.7 m"
+  },
+
+  "robot_states": {
+    "differential_drive_robot_with_carrier": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "Once a room is cleaned, robots should proceed to the next scheduled room or return to base.",
+    "after picking any trash, it is mandoory to put them in the dustbin of the carrier robot.",
+    "to move any item from one place to another diffierentail drive robot with arm must put that item in to the carrier robot first, then the carrier roobot will move to the desired location and the arm robot will pick the item from the carrier robot and place it in the desired location.",
+    "To wipe any surface, the arm robot must get the cleaning cloth from the store room.",
+    "To wipe any surface, the carrier robot must bring water to the cleaning location.",
+    "To wipe any surface, The arm robot should wet the cloth using water carried by the carrier robot before wiping.",
+    "After wiping is complete, the arm robot should clean the cloth using fresh water, and then it must be returned to store room.",
+    "Treat cleaning as a cooperative task between arm and carrier robots. Assign them separate but dependent subtasks.",
+    "to do any actiivity on any item first the robot should go there",
+    "Treat cleaning tasks as cooperative when arm and carrier robots are both required. Assign separate but dependent subtasks.",
+    "If an item handover occurs between robots during a task, treat it as a cooperative plan and include both robots in the multirobot_list.",
+    "For any item relocation task involving pickup, transport, and placement — always use both arm and carrier robots, with each receiving independent subtasks as part of a shared plan."
+
+
+  ],
+
+  "task_replanning_rules": [
+    "If arm robot is stuck due to object blockage, pause and request human or carrier support.",
+    "If carrier is full mid-task, interrupt route, unload trash, and return to continue cleaning.",
+    "If surface is dirty again after previous cleaning, reassign arm robot only if time allows.",
+    "If robot is unable to reach scheduled room due to closed door, log failure and continue."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "robot_names": [
+    "TrayBot"
+  ],
+
+  "robot_capabilities": {
+    "TrayBot": "Mobile indoor robot with multi-bin sorting tray. Can detect, pick, carry, and deliver small household items. Equipped with vision and object recognition. Capable of quantity tracking and organizing items in separate compartments."
+  },
+
+  "robot_morphology": {
+    "TrayBot": "Payload: ~5 kg, Speed: 0–1.5 m/s, Weight: 12 kg, Size: 400 × 300 × 350 mm, Tray: 4-bin sorting, Arm Reach: 250 mm, Sensors: RGB camera, Depth, Weight sensor"
+  },
+
+  "robot_states": {
+    "TrayBot": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "tray_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    ""
+
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "robot_names": ["robot1", "robot2", "robot3"],
+
+  "robot_capabilities": {
+    "robot1": "Description of robot1 capabilities.",
+    "robot2": "Description of robot2 capabilities.",
+    "robot3": "Description of robot3 capabilities."
+  },
+
+  "robot_morphology": {
+    "robot1": "Payload: 10 kg, Reach: 1.0 m, Speed: 0.5 m/s, Degrees of Freedom: 6",
+    "robot2": "Payload: 15 kg, Reach: 1.2 m, Speed: 0.4 m/s, Degrees of Freedom: 6",
+    "robot3": "Payload: 20 kg, Speed: 0–2 m/s, Size: 800 x 600 x 600 mm (L x W x H)"
+  },
+
+  "robot_states": {
+    "robot1": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing forward",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+
+    "robot2": {
+      "relative_position": "Fixed",
+      "relative_orientation": "Facing right",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "mode": "Idle"
+    },
+
+    "robot3": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+
+  },
+
+  "task_specific_rules": [
+    ""
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

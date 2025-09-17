@@ -1,0 +1,71 @@
+{
+  "robot_names": ["burger1", "burger2", "waffle3", "x_arm"],
+
+  "robot_capabilities": {
+    "burger1": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It is part of a 3 robot team [burger1,burger2,and waffle3] which carries a box together which is attached to their frame. The box is in the centre of 3 robots. They move in a formation together. **No Pick and Place capability.",
+    "burger2": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It is part of a 3 robot team [burger1,burger2,and waffle3] which carries a box together which is attached to their frame. The box is in the centre of 3 robots. They move in a formation together. **No Pick and Place capability.",
+    "waffle3": "It has 2 wheels, It is a differential drive robot. It can move in the flat surface. It can move with other robots. It is part of a 3 robot team [burger1,burger2,and waffle3] which carries a box together which is attached to their frame. The box is in the centre of 3 robots. They move in a formation together. **No Pick and Place capability.",
+    "x_arm"  : "It is a 4-DOF robotic arm mounted on a table. Mounted Camera for the robot. 1.push thing off the table for objects larger than gripper only if someone is there to collect it for safety 2.perform pick and place for small objects. The arm can pick and drop small objects. For larger or ungraspable objects, the arm should evaluate pushing as a valid strategy when direct grasping is not possible."
+  },
+
+  "robot_morphology": {
+    "burger1": "Payload: ~0.5 kg, Speed: ~0.4 m/s  Size: 0.150 x 0.180 x 0.210 m (L x W x H). Travel on ground surface.",
+    "burger2": "Payload: ~0.5 kg, Speed: ~0.4 m/s, Size: 0.150 x 0.180 x 0.210 m (L x W x H). Travel on ground surface.",
+    "waffle3": "Payload: ~0.5 kg, Speed: ~0.4 m/s, Size: 0.150 x 0.180 x 0.210 mm (L x W x H). Travel on ground surface.",
+    "x_arm": "4 rotational joints, Payload: Approximately 1 kg, Reach: approximately 0.4 m radius in all directions, The Table in which X Arm is placed on is 1.5 meter height. Hence the Robot is at a height of 1.5 meter from the ground level. The endeeffector is a gripper with a maximum opening of 0.3 m."
+  },
+
+  "robot_states": {
+    "burger1": {
+      "relative_position": "x=-0.367, y=0.57, z=0.0",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "burger2": {
+      "relative_position": "x=-0.367, y=-0.57, z=0.0",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "waffle3": {
+      "relative_position": "x=0.734, y=0.0, z=0.0",
+      "relative_orientation": "None",
+      "carry_state": "Empty"
+    },
+
+    "x_arm": {
+      "relative_position": "Fixed on top of te table",
+      "gripper_state": "Empty",
+      "arm_state": "Stowed"
+
+    }
+
+  },
+
+  "task_specific_rules": [
+    "X Arm is placed on a table. The arm must reason about the safety and feasibility of interacting with objects placed on elevated surfaces.",
+    "There is a Ball on the Table of the diameter 0.3 meter made of Plastic  in which X Arm is equipped. Height of the table is 1.5 meter.",
+    "The arm can drop an object safely only if a box or receiving unit is present below the table at the designated catch location (2.25, 1.25). This ensures safe retrieval during vertical object transfers.",
+    "The arm should ensure that objects being pushed or dropped have a safe receiving mechanism or robot/robots below before executing the action.",
+    "Robots in formation can be used to receive, catch, or stabilize objects that are manipulated by the arm from elevated positions.",
+    "Before initiating a push or drop from an elevated platform, verify that the receiver (robot, box, or container) is correctly positioned at the target location below.",
+    "When the system lacks the ability or resources to safely execute a task, or when unexpected events occur during execution, it should prompt the user for assistance or suggest corrective actions.",
+    "All actions must validate environment readiness, robot positioning, and object-specific constraints before execution.",
+    "The system should be able to reason about fallback or assistive strategies when task constraints cannot be satisfied autonomously.",
+    "The arm and robot teams must reason about each other's current capabilities and positions when planning collaborative object handling.",
+    "Catchers or containers must be aligned and ready before any object is dropped or pushed from height.",
+    "Only when all preconditions for safe object manipulation are satisfied should the action be executed.",
+    "Safety checks and readiness verification are mandatory steps before executing actions like pushing or dropping objects from elevated positions.",
+    "if in case of impossible task such as picking item form the  ground which is out of robot capability due to height of the ta le in which robotic arm is present and formation robots does not have any armm, then the sysytem can ask help form the user",
+    ""
+
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}
+
+
+

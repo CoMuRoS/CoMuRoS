@@ -1,0 +1,66 @@
+{
+  "robot_names": [
+    "aquaRover",
+    "duneRunner",
+    "shoreHauler",
+    "medBot"
+  ],
+
+  "robot_capabilities": {
+    "aquaRover": "Equipped with a robotic arm and precise control. Can insert support rods or small jacks under rubble. It can team up with other robots.",
+    "duneRunner": "Powerful stabilizing robot. Can lift or tilt large slabs using its front brace system. It can team up with other robots.",
+    "shoreHauler": "Supports debris transport. Once rubble is lifted, it pulls or carries slabs away to clear space. It can team up with other robots.",
+    "medBot": "Medical support robot. Can carry injured persons gently, monitor vital signs, and alert human rescuers. Equipped with stretcher arms and health scanner. `"
+  },
+
+  "robot_morphology": {
+    "aquaRover": "Payload: ~30 kg, Speed: 0–2.5 m/s, Weight: 20 kg, Size: 400 × 350 × 200 mm, Arm Reach: 400 mm, Tool Compatibility: Support brace, Jack",
+    "duneRunner": "Payload: ~30 kg, Speed: 0–3.5 m/s, Weight: 20 kg, Size: 800 × 400 × 550 mm, Brace Strength: High, Lifting Angle: Up to 45°",
+    "shoreHauler": "Payload: ~30 kg, Speed: 0–2 m/s, Weight: 20 kg, Size: 1000 × 600 × 500 mm, Tray Capacity: Large rubble",
+    "medBot": "Payload: ~70 kg (human), Speed: 0–1.5 m/s, Weight: 25 kg, Size: 900 × 500 × 450 mm, Tools: Stretchable stretcher arms, Health monitor, Cushion platform"
+  },
+
+  "robot_states": {
+    "aquaRover": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "arm_state": "stowed",
+      "carry_state": "tool-free",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "duneRunner": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "brace_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "shoreHauler": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "tray_state": "empty",
+      "battery_state": "full",
+      "mode": "standby"
+    },
+    "medBot": {
+      "relative_position": null,
+      "relative_orientation": null,
+      "mobility_state": "idle",
+      "stretcher_state": "retracted",
+      "battery_state": "full",
+      "mode": "standby"
+    }
+  },
+
+  "task_specific_rules": [
+    "Wall slabs are 3000 mm long and weigh around 80 kg"
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

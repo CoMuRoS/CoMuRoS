@@ -1,0 +1,48 @@
+{
+  "robot_names": [
+    "differential_robot_with_carrier",
+    "differential_drive_robot_with_arm"
+  ],
+
+  "robot_capabilities": {
+    "differential_robot_with_carrier": "Can carry heavy tools, tar, cement mix, and debris. Moves reliably on paved and semi-rough roads. Equipped with camera, GPS, and large load tray. Cannot manipulate objects but serves as a support vehicle for material transport.",
+    "differential_drive_robot_with_arm": "Can patch potholes, paint road markings, tighten bolts on road signs, or place traffic cones. Equipped with robotic arm, depth camera, lidar, and GPS. Can manipulate, apply, and position road maintenance items. can paint using a paint sprayer or a roller."
+  },
+
+  "robot_morphology": {
+    "differential_robot_with_carrier": "Payload: ~30 kg, Speed: 0–2.2 m/s, Weight: 60 kg, Size: 1000 x 600 x 550 mm, Load Tray Capacity: ~45 L",
+    "differential_drive_robot_with_arm": "Payload: ~10 kg, Speed: 0–1.5 m/s, Weight: 50 kg, Size: 850 x 500 x 550 mm, Arm Reach: ~0.8 m"
+  },
+
+  "robot_states": {
+    "differential_robot_with_carrier": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "battery_state": "Full",
+      "mode": "Idle"
+    },
+    "differential_drive_robot_with_arm": {
+      "relative_position": "None",
+      "relative_orientation": "None",
+      "mobility_state": "Stationary",
+      "carry_state": "Empty",
+      "arm_state": "Stowed",
+      "battery_state": "Full",
+      "mode": "Idle"
+    }
+  },
+
+  "task_specific_rules": [
+    "to paint on the road, the carrier robot must carry the paint and carier robot should be with the arm robot",
+    "to remove the debris form the road, the arm robot must pick up the debris from the road and put in in the carrier robot, then the carrier robot must carry the debris to the dump site",
+    "Inspection of the manhole conver can be done by the arm robot, if the cover needs to be changed, the arm robot can change it. bu the carrier robot must carry the new cover to the arm robot"
+  ],
+
+  "task_replanning_rules": [
+    "If the arm robot encounters a broken tool, assign a nearby robot to bring a replacement.",
+    "If carrier robot is full of debris, it must dump it and return before continuing support.",
+    "If the road repair material is insufficient, alert the human operator and pause the task."
+  ]
+}
