@@ -4,7 +4,7 @@ Code for paper: LLM-Based Generalizable Hierarchical Task Planning and Execution
 
 A ROS 2 Python package that enables natural-language interaction with a team of homogeneous or heterogeneous robot/s through a chat-based interface using Large Language Models (LLMs). The system provides a GUI for interaction, a manager for tracking conversations, and a task manager that converts natural language into robot-executable plans.
 
-## 🚀 Quick Start for New Users
+## Quick Start for New Users
 
 **Want to get started immediately?** Follow these 4 simple steps:
 
@@ -27,53 +27,66 @@ A ROS 2 Python package that enables natural-language interaction with a team of 
 ## File Structure
 
 ```
-chatty/
-├── chatty/
-│   ├── __init__.py
-│   ├── chat_gui.py            # GUI interface using customtkinter
-│   ├── chat_manager.py        # Manages chat history & routing
-│   └── task_manager.py        # Converts chat to tasks using LLMs
-├── config/                    # Robot configuration JSON files
-│   └── robot_config_*.json  
-├── data/  
-│   └── chat_history.txt       # Stores all chat logs
-├── launch/
-│   └── chat_system.launch.py  # Launch file for all nodes
-├── resource/
-│   └── chatty
-├── test/
-│   └── test_*.py
-├── package.xml
-├── setup.py
-├── setup.cfg
-├── requirements.txt
-└── README.md
+CoMuRoS/
+├── CoMuRoS/
+│   ├── chatty/
+│   │   ├── chatty/
+│   │   │   ├── __init__.py
+│   │   │   ├── chat_gui.py            # GUI interface using customtkinter
+│   │   │   ├── chat_manager.py        # Manages chat history & routing
+│   │   │   └── task_manager.py        # Converts chat to tasks using LLMs
+│   │   ├── config/                    # Robot configuration JSON files
+│   │   │   └── robot_config_*.json  
+│   │   ├── data/
+│   │   │   └── chat_history.txt       # Stores all chat logs
+│   │   ├── launch/
+│   │   │   └── chat_system.launch.py  # Launch file for all nodes
+│   │   ├── package.xml
+│   │   ├── README.md
+│   │   ├── setup.cfg
+│   │   ├── setup.py
+│   │   └── test/
+│   │       ├── test_copyright.py
+│   │       ├── test_flake8.py
+│   │       └── test_pep257.py
+│   └── README.md
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## 📋 Installation Guide
+## Installation Guide
 
 ### Step 1: Prerequisites
 Make sure you have:
-- **ROS 2** (Humble or Iron recommended)
-- **Python 3.8+**
+- **ROS 2** (Humble recommended)
+- **Python 3.10+**
 - **Git**
 
 Check your ROS 2 installation:
 ```bash
-ros2 --version
+printenv | grep -i ROS
+```
+or
+```bash
+printenv | grep -E "ROS_VERSION|ROS_DISTRO|ROS_PYTHON_VERSION"
+```
+You should see variables like:
+```bash
+ROS_VERSION=2
+ROS_DISTRO=humble
+ROS_PYTHON_VERSION=3
 ```
 
 ### Step 2: Clone the Repository
 ```bash
-# Navigate to your ROS 2 workspace
+mkdir ~/ros2_ws/src -p
 cd ~/ros2_ws/src
 
-# Clone the repository
 git clone <repository-url> chatty
 
-# Navigate back to workspace root
 cd ~/ros2_ws
 ```
 
@@ -101,7 +114,7 @@ echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 
 ---
 
-## 🔐 Setting Up API Keys
+## Setting Up API Keys
 
 **IMPORTANT**: You need at least one API key to use the system.
 
@@ -128,7 +141,7 @@ source ~/.bashrc
 
 ---
 
-## 🎯 Running the System
+## Running the System
 
 ### Method 1: Launch Everything at Once (Recommended)
 ```bash
@@ -159,7 +172,7 @@ ros2 run chatty chat_gui
 
 ---
 
-## 🤖 Creating Your Own Scenario Configuration File for your environment and roboots
+## Creating Your Own Scenario Configuration File for your environment and roboots
 
 ### Step 1: Copy Example Template
 Copy the file robot_config_example.json and paste it in the same directory and thrn rename it
@@ -212,11 +225,13 @@ Open `robot_config_my_robots.json` and customize:
   },
 
   "task_specific_rules": [
-    ""
+    "robot1 cannot operate in wet environments",
+    "robot2 must recharge after 2 hours"
   ],
 
   "task_replanning_rules": [
-    ""
+    "If a robot is unavailable, reassign the task to the next available robot",
+    "If battery low, send robot to charging station before resuming task"
   ]
 }
 
@@ -298,7 +313,7 @@ ros2 launch chatty chat_system.launch.py config_file:=robot_config_my_robots
 
 ---
 
-## 🧠 Adding Your Own LLM Model
+## Adding Your Own LLM Model
 
 ### Step 1: Edit task_manager.py
 Open `chatty/chatty/task_manager.py` and find the model selection section.
@@ -341,25 +356,115 @@ ros2 launch chatty chat_system.launch.py model:=10
 
 ---
 
-## 📊 Available Models
+## Available Models
 
-| Model ID | Provider | Model Name          | 
-|----------|----------|---------------------|
-| 1        | OpenAI   | gpt-4               | 
-| 2        | OpenAI   | gpt-4.1-nano        | 
-| 3        | OpenAI   | gpt-3.5-turbo       | 
-| 4        | OpenAI   | gpt-4o              | 
-| 5        | OpenAI   | gpt-4.1-mini        | 
-| 6        | Gemini   | gemini-pro          | 
-| 7        | XAI      | grok-1              | 
-| 100      | Ollama   | llama2              | 
-| 101      | Ollama   | mistral             | 
+| Model ID | Provider | Model Name             |
+|----------|----------|------------------------|
+| 1        | OpenAI   | gpt-4                  |
+| 2        | OpenAI   | gpt-4.1-nano           |
+| 3        | OpenAI   | gpt-3.5-turbo          |
+| 4        | OpenAI   | gpt-4o                 |
+| 5        | OpenAI   | gpt-4.1-mini           |
+| 6        | OpenAI   | gpt-4o-mini            |
+| 7        | OpenAI   | gpt-4-turbo            |
+| 8        | OpenAI   | gpt-4.1                |
+| 9        | OpenAI   | o4-max                 |
+| 11       | OpenAI   | o1                     |
+| 12       | OpenAI   | o4-mini                |
+| 13       | OpenAI   | o1-mini                |
+| 14       | OpenAI   | o1-pro                 |
+| 15       | OpenAI   | o3-mini                |
+| 16       | Ollama   | gemma3:latest          |
+| 17       | Ollama   | gemma2                 |
+| 18       | Ollama   | gemma3:1b              |
+| 19       | Ollama   | gemma3                 |
+| 20       | Ollama   | gemma:2b               |
+| 21       | Ollama   | gemma3:4b              |
+| 22       | Ollama   | gemma2:latest          |
+| 23       | Ollama   | gemma:latest           |
+| 24       | Ollama   | deepseek-r1            |
+| 25       | Ollama   | deepseek-r1:latest     |
+| 26       | Ollama   | deepseek-v2            |
+| 27       | Ollama   | deepseek-r1:1.5b       |
+| 28       | Ollama   | deepseek-llm           |
+| 29       | Ollama   | deepseek-llm:7b        |
+| 30       | Ollama   | deepseek-llm:latest    |
+| 31       | Ollama   | deepseek-coder         |
+| 32       | Ollama   | qwen2:1.5b             |
+| 33       | Ollama   | qwen2:0.5b             |
+| 34       | Ollama   | qwen:1.8b              |
+| 35       | Ollama   | qwen:0.5b              |
+| 36       | Ollama   | qwen2:7b               |
+| 37       | Ollama   | qwen2.5:0.5b           |
+| 38       | Ollama   | qwen:4b                |
+| 39       | Ollama   | qwen2.5:7b             |
+| 40       | Ollama   | qwen2.5:latest         |
+| 41       | Ollama   | qwen2.5vl:latest       |
+| 42       | Ollama   | qwen2.5vl:7b           |
+| 43       | Ollama   | qwen3:1.7b             |
+| 44       | Ollama   | qwen3:8b               |
+| 45       | Ollama   | qwen2:latest           |
+| 46       | Ollama   | qwen:latest            |
+| 47       | Ollama   | qwen3:latest           |
+| 48       | Ollama   | llama3:8b              |
+| 49       | Ollama   | llama3:latest          |
+| 50       | Ollama   | llama3.1:latest        |
+| 51       | Ollama   | dolphin3:8b            |
+| 52       | Ollama   | dolphin3:latest        |
+| 53       | Ollama   | llama2:latest          |
+| 54       | Ollama   | llama2:7b              |
+| 55       | Ollama   | tinyllama:latest       |
+| 57       | Ollama   | llama3.2:latest        |
+| 58       | Ollama   | llama3.2:3b            |
+| 59       | Ollama   | llama4                 |
+| 60       | Ollama   | llama3.3               |
+| 61       | Ollama   | llama3.2               |
+| 62       | Ollama   | llama3.1               |
+| 63       | Ollama   | llama3                 |
+| 64       | Ollama   | llama2                 |
+| 65       | Ollama   | llama-pro              |
+| 66       | Ollama   | tinyllama              |
+| 67       | Ollama   | dolphin3               |
+| 68       | Ollama   | llama-pro:instruct     |
+| 69       | Ollama   | llama-pro:latest       |
+| 70       | Ollama   | llama-pro              |
+| 71       | Ollama   | mistral:7b             |
+| 72       | Ollama   | mistral-nemo           |
+| 73       | Ollama   | mistral-nemo:12b       |
+| 74       | Ollama   | minicpm-v              |
+| 75       | Ollama   | minicpm-v:8b           |
+| 76       | Ollama   | minicpm-v:latest       |
+| 77       | Ollama   | mistral-nemo:latest    |
+| 78       | Ollama   | mistral:latest         |
+| 80       | Gemini   | gemini-2.0-pro         |
+| 81       | Gemini   | gemini-2.5-pro         |
+| 82       | Gemini   | gemini-2.0-flash       |
+| 83       | Gemini   | gemini-2.0-flash-lite  |
+| 84       | Gemini   | gemini-1.5-flash       |
+| 85       | Gemini   | gemini-1.5-flash-8b    |
+| 86       | XAI      | grok-2-1212            |
+| 87       | XAI      | grok-2-vision-1212     |
+| 88       | XAI      | grok-3                 |
+| 89       | XAI      | grok-3-fast            |
+| 90       | XAI      | grok-3-mini            |
+| 91       | XAI      | grok-3-mini-fast       |
+| 92       | XAI      | grok-4-0709            |
+| 93       | Ollama   | phi3:mini              |
+| 94       | Ollama   | tinyllama:1.1b         |
+| 95       | Ollama   | deepseek-r1:7b         |
+| 96       | Ollama   | llama3:70b             |
+| 97       | Ollama   | deepseek-r1:32b        |
+| 98       | Ollama   | yi:34b                 |
+| 99       | Ollama   | gemma3:27b             |
+| 100      | Ollama   | qwen3:32b              |
+| 101      | Ollama   | mixtral:8x7b           |
+
 
 *Add your custom models*
 
 ---
 
-## 🎮 How to Use the System
+## How to Use the System
 
 ### 1. Start the System
 ```bash
@@ -380,7 +485,7 @@ The system converts your commands into structured JSON tasks that your robots ca
 
 ---
 
-## 🔧 System Architecture
+## System Architecture
 
 ### Nodes Overview
 
@@ -406,7 +511,7 @@ The system converts your commands into structured JSON tasks that your robots ca
 
 ---
 
-## 📁 Data Management
+## Data Management
 
 ### Chat History
 All chat messages are automatically timestamped and stored in:
@@ -418,7 +523,7 @@ This file helps restore conversation context when re-launching the system. The G
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -459,7 +564,7 @@ source install/setup.bash
 
 ---
 
-## 🎯 Next Steps
+## Next Steps
 
 After getting the system running:
 
@@ -471,7 +576,7 @@ After getting the system running:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
@@ -480,7 +585,7 @@ After getting the system running:
 
 ---
 
-## 📄 License
+## License
 
 MIT License
 
@@ -504,7 +609,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## 📞 Support
+## Support
 
 - **Issues**: Report bugs or request features on GitHub
 
