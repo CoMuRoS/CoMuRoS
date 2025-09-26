@@ -6,10 +6,10 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     # Declare launch arguments
     model_arg = DeclareLaunchArgument(
-        'model', default_value='1', description='Model number'
+        'model', default_value='4', description='Model number'
     )
     config_file_arg = DeclareLaunchArgument(
-        'config_file', default_value='default_config', description='Config file name'
+        'config_file', default_value='robot_config_assmble_help', description='Config file name'
     )
 
     # Use LaunchConfiguration substitutions

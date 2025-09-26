@@ -31,7 +31,8 @@
   },
 
   "task_specific_rules": [
-    ""
+    "lerobot1 must do tasks with red and white gears only.",
+    "lerobot2 must do tasks with yellow, green, greay, golden yellow and cream gears only."
   ],
 
   "task_replanning_rules": [
