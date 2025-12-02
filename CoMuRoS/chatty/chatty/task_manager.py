@@ -45,17 +45,14 @@ class TaskManager(Node):
 
         self.robot_state = None
 
-        self.declare_parameter("config_file", "robot_config_building_construction")
+        self.declare_parameter("config_file", "robot_config_assmble_help")
         cfg_file_name = self.get_parameter("config_file").get_parameter_value().string_value
         cfg_file = cfg_file_name + '.json'
         self.config_file = cfg_file
         print(f"Config file : {cfg_file}")
 
-        # self.declare_parameter("file_name", "data_saver")                                 
-        # file_name = self.get_parameter("file_name").get_parameter_value().string_value
-        # self.file_name = file_name + ".txt"
 
-        self.declare_parameter("model", 96)
+        self.declare_parameter("model", 4)
         self.model = self.get_parameter("model").get_parameter_value().integer_value
         self.get_logger().info(f"model number: {self.model}")
         self.model_name = ""
@@ -67,6 +64,10 @@ class TaskManager(Node):
         with open(cfg_path, 'r') as f:
             self.robot_config = json.load(f)
 
+        history_current_file = "chat_history_current.txt"
+        self.history_current = os.path.join(package_share, "data", history_current_file)
+
+        self.robot_state_pub = self.create_publisher(String,'/robot_states',10)
         self.set_robot_states()
         # self.system_prompt = self.build_system_prompt()
         self.system_prompt = None
@@ -83,17 +84,19 @@ class TaskManager(Node):
         self.master_status = False 
         self.multirobot_list = []
         self.singlerobot_list = []
+
         self.team_list = []
         self.single_tasks_dict = {}
+        self.current_time = f"Hours: {00}, Minutes: {00}, Seconds: {00}"
 
         self.subscription = self.create_subscription(String, "/chat/output", self.on_chat_output, 10)
         self.input_sub = self.create_subscription(String, "/chat/input" , self.on_chat_input, 10)
         self.status_pub = self.create_subscription(String, "/chat/task_status", self.on_status_callback,10)   
         self.robot_state_sub = self.create_subscription(String, "/robot_states", self.on_robot_state_callback,10)
+        self.time_sub = self.create_subscription(String, "/current_time", self.on_time_callback, 10)
 
         self.create_dynamic_subscribers()
 
-        self.robot_state_pub = self.create_publisher(String,'/robot_states',10)
         self.pub_tasks_json = self.create_publisher(String, "/task_manager/tasks_json", 10)
         self.pub_chat_input = self.create_publisher(String, "/chat/input", 10)
 
@@ -104,6 +107,12 @@ class TaskManager(Node):
     def set_robot_states(self):
         for name in self.robot_config["robot_names"]:
             setattr(self, f"{name}_state", "Starting position")
+        robot_states = self.robot_config['robot_states']
+        robot_states = {"robot_states": robot_states}
+        msg = String()
+        msg.data = json.dumps(robot_states)
+        self.robot_state_pub.publish(msg)
+        self.get_logger().info(f"[TaskManager] Initialized robot states for: {self.robot_config['robot_states']}")
 
     def create_dynamic_subscribers(self):
         print("Creating dynamic subscribers")
@@ -131,27 +140,47 @@ class TaskManager(Node):
 
         return callback
 
+    def on_time_callback(self, msg:String) :
+        # self.get_logger().info(f"[TaskManager] Time Callback : {msg.data}")
+        self.current_time = msg.data
+
+
+    def load_history(self):
+        """Loads previous chat history from file."""
+
+        if os.path.exists(self.history_current):
+            try:
+                with open(self.history_current, "r") as file:
+                    self.chat_log = file.read().splitlines()
+                # self.get_logger().info(f"[TaskManager] Loaded {len(self.chat_log)} previous messages.")
+            except Exception as e:
+                self.get_logger().error(f"[TaskManager] Failed to load history: {e}")
+
+
     # --------------------------------------------------------------------------
     #  BUILD SYSTEM PROMPT
     # --------------------------------------------------------------------------
     def build_system_prompt(self):
+
+        self.load_history()
+
         cfg = self.robot_config
         try :
 
             # --- Dynamic: Robot Capabilities ---
-            cap = "1. **Robot Capabilities:**\n"
+            capability = "1. **Robot Capabilities:**\n"
             for name in cfg['robot_names']:
                 title = name.replace('_', ' ').title()
                 desc  = cfg['robot_capabilities'].get(name, '').strip()
-                cap += f"   - **{title}**: {desc}\n"
+                capability += f"   - **{title}**: {desc}\n"
 
 
             # --- Dynamic: Robot Morphology ---
-            morph = "2. **Robot Morphology and Location:**\n"
+            morphology = "2. **Robot Morphology and Location:**\n"
             for name in cfg['robot_names']:
                 title = name.replace('_', ' ').title()
                 desc  = cfg['robot_morphology'].get(name, '').strip()
-                morph += f"   - **{title}**:{desc}\n"
+                morphology += f"   - **{title}**:{desc}\n"
 
 
             # --- Dynamic: Task‐Specific & Replanning Rules ---
@@ -166,7 +195,7 @@ class TaskManager(Node):
             # --- Assemble entire system prompt ---
             header = (
                 "You are a Task Manager AI for a team of robots. "
-                "Your job is to **ensure that all assigned tasks are completed efficiently** "
+                "Your job is to **ensure that all assigned valid tasks are completed efficiently** "
                 "by distributing work among the robots based on their capabilities.\n\n"
                 "### Task Execution Principles:\n"
             )
@@ -185,6 +214,7 @@ class TaskManager(Node):
 
             # --- Static remainder of your prompt (replanning, output format, etc.) ---
             static = (
+            "If conversation is general and does not involve any task assignment just reply politely and shortest possible answer.\n"
             "0. **Task Replanning Rules:**\n"
             "     - If the event directly affects or changes the state of an object, location, or condition involved in an active task, it is RELEVANT.\n"
             "     - Events can be triggered by robots, humans, or external factors.\n"
@@ -341,12 +371,30 @@ class TaskManager(Node):
             "7. Sequential execution (as described in Section 1) can cause delays. Therefore, for crit1ical tasks, use the independent task format provided in Section 2 whenever possible. \n"
             " IMPORTANT : DONT UNNECESSARY TEXT IN OUTPUT , DONT WANT ANY TASK DESCRIPTION . JUST MENTION PLAN AND/OR INDEPENDENT TASKS SECTION AND MULTI-ROBOT AND SINGLE ROBOT LISTS ACCORDING TO ABOVE RULES\n\n"
 
-            )  
+            "8. Chat History and Time:\n"
+            f"   - Current time: {self.current_time}\n"
+            "   - Time format is Hours: {hours:02d}, Minutes: {minutes:02d}, Seconds: {seconds:02d}"
+            "   - Time stamped Chat History:\n"
+            f"{self.chat_log}\n"
+            "   - Use this to remember the old chat history and the time stamps of conversation.\n"
+            
+
+            "9. Configuration file of current application.\n"
+            "   - Use this to understand the robot capabilities, morphology and task specific rules.\n"
+            "   - Make sure to strictly follow the rules and constraints below.\n\n"
+            f"  - Robot Capabilities: {capability}\n"
+            f"  - Robot Morphology: {morphology}\n"
+  
+            "11. Role and Task specific rules:**\n"
+            f"  - Task Specific Rules: {rules}\n"
+           
+            )
+
         except Exception as e :
             self.get_logger().warning(f"Error building prompt : {e}")
             return None
         
-        return header + cap + "\n" + morph + "\n" + rules + "\n" + static
+        return header + "\n" + static 
 
     def on_chat_input(self, msg: String):  
         entry = f"Config File name: {self.config_file} \nLLM No. : {self.model} \nLLM Name: {self.model_name}\n"
@@ -368,14 +416,16 @@ class TaskManager(Node):
         If it's a human line, parse new tasks (partial override).
         If it has 'Event:', we do a full re-plan.
         """
-        line = msg.data
-        self.conversation_log.append(line)
-        robot_names = self.robot_config["robot_names"]
+        self.current_message = msg.data
+        self.conversation_log.append(self.current_message)
+        # robot_names = self.robot_config["robot_names"]
 
         # if "] Human:" in line or any(f"{name} (msg)" in line for name in robot_names):
-        if "] Human:" in line or "(msg)" in line:
+        if "Human:" in self.current_message or "(msg)" in self.current_message:
             self.get_logger().info("[TaskManager] Detected user message -> parse tasks for subset of robots.")
+            self.get_logger().info(f"Chat Output: {self.current_message}")
             self.parse_tasks_with_gpt()
+
 
     def on_status_callback(self, msg:String) :
         self.get_logger().info("[TaskManager] Status Callback.")
@@ -403,6 +453,13 @@ class TaskManager(Node):
 
         messages.insert(0, {"role": "system", "content": self.system_prompt})
         # ai_output = self.call_openai(messages, debug_label="Allocation")
+
+        try:
+            with open('prompts.txt', "a") as file:
+                file.write(json.dumps(messages, indent=2))
+                file.write("\n")  # optional: add newline for readability            # self.get_logger().info(f"[TaskManager] Loaded {len(self.chat_log)} previous messages.")
+        except Exception as e:
+            self.get_logger().error(f"[TaskManager] Failed to write prompts: {e}")
 
         ######################### OPENAI MODELS #########################
 
@@ -1398,6 +1455,7 @@ class TaskManager(Node):
         Convert the entire conversation log to GPT messages.
         """
         messages = []
+        self.get_logger().info(f"   Conversation log: \n {self.conversation_log}")
         for line in self.conversation_log:
             parts = line.split("] ", 1)
             if len(parts) < 2:
@@ -1433,6 +1491,15 @@ class TaskManager(Node):
 
             messages.append({"role": role, "content": content_str})
 
+            self.get_logger().info(json.dumps(messages, indent=2))
+
+            # self.get_logger().info(f"current task : {content_str}\n")
+            # self.history_task = f"Time of the task assisgned :{self.current_time}; Task : {content_str}"
+            # self.history_task += f"[Task Assigned] {self.current_time} | [Task]: {content_str}\n"
+            # self.get_logger().info(f"All the past tasks with time \n {self.history_task}")
+            # self.get_logger().info(f"\n\n\n History of tasks ")
+
+        self.get_logger().info(json.dumps(messages, indent=2))
         return messages
 
 
@@ -1443,10 +1510,12 @@ def main():
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
-        node.get_logger().info("[TaskManager] KeyboardInterrupt -> shutting down.")
+        node.get_logger().info("[TaskManager] Shutting down....")
+        node.get_logger().info("Keyboard interrupt received. Shutting down.")
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == "__main__":
     main()

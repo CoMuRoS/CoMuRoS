@@ -1,0 +1,5 @@
+# robot_interface/srv/StartPick.srv
+string object_name
+---
+bool success
+string message

@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
+import json
+import os
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from std_srvs.srv import Trigger
+from ament_index_python.packages import get_package_share_directory
+
 import customtkinter as ctk
 from threading import Thread
 from datetime import datetime  
@@ -13,6 +17,18 @@ class ChatGUI(Node):
         
         self.publisher = self.create_publisher(String, "/chat/input", 10)
         self.subscription = self.create_subscription(String, "/chat/output", self.on_output, 10)
+        self.time_sub = self.create_subscription(String, "/current_time", self.on_time, 10)
+
+        self.declare_parameter("config_file", "robot_config_assmble_help")
+        cfg_file_name = self.get_parameter("config_file").get_parameter_value().string_value
+        package_share = get_package_share_directory("chatty")
+
+        cfg_file_name = cfg_file_name + ".json"
+        self.config_file_path = os.path.join(package_share, "config", cfg_file_name)
+
+        self.read_json_config()
+        self.robot_names = []
+        self.robot_colors = []
 
         # Set theme
         ctk.set_appearance_mode("light")
@@ -29,12 +45,16 @@ class ChatGUI(Node):
             "waffle_msg": "#9932a8",  # Purple 
             "drone_msg" : "#4E5734", # Grey
             "formation_msg" : "#6B6DE6", # Grey
-            "x_arm_msg": "#3A9026"  # Purple 
+            "x_arm_msg": "#3A9026" , # Purple 
+            "lerobot1_msg": "#FF69B4",  # Hot Pink
+            "lerobot2_msg": "#80E480",  # Deep Pink
+            "clock_msg": "#20B2AA",  # Light Sea Green
+            
             # here you can add more colors for different robots or messages
         }
 
         self.window = ctk.CTk()
-        self.window.title("Interactive Chat Interface")
+        self.window.title("CoMuRoS")
         self.window.geometry("700x600")
         self.window.configure(fg_color=self.colors["bg_light"])
 
@@ -91,6 +111,46 @@ class ChatGUI(Node):
         self.history_fetched = False
         self.window.after(500, self.fetch_history_once)
 
+    def read_json_config(self):
+
+
+        try:
+            # Ensure the file exists before opening
+            if not os.path.exists(self.config_file_path):
+                self.get_logger().error(f"[ChatGUI] Config file not found: {self.config_file_path}")
+                return 
+
+            with open(self.config_file_path, "r") as f:
+                config = json.load(f)
+
+            self.get_logger().info(f"[ChatGUI] Loaded config from {self.config_file_path}")
+
+            # --- Extract robot names and colors ---
+            robot_names = config.get("robot_names", [])
+            colors_assigned = config.get("colors_assigned", {})
+
+            # Create parallel color list (default to white if not found)
+            robot_colors = [colors_assigned.get(name, "#FFFFFF") for name in robot_names]
+
+            # Save to instance for later use
+            self.robot_names = robot_names
+            self.robot_colors = robot_colors
+
+            # Log results for debugging
+            self.get_logger().info(f"[ChatGUI] Robots: {self.robot_names}")
+            self.get_logger().info(f"[ChatGUI] Colors: {self.robot_colors}")
+
+            # Return lists
+            return 
+
+        except Exception as e:
+            self.get_logger().error(f"[ChatGUI] Failed to load config: {e}")
+            return 
+
+        
+    def on_time(self, msg):
+        self.current_time = msg.data
+
     def on_output(self, msg):
         line = msg.data
         self.get_logger().info(f"[ChatGUI] /chat/output -> {line}")
@@ -101,9 +161,14 @@ class ChatGUI(Node):
 
         self.window.after(0, lambda: self.append_text(line))
 
+
+        
+    
     def append_text(self, text_line):
         # Get timestamp in HH:MM format
         timestamp = datetime.now().strftime("%H:%M")
+        # if not timestamp :
+        #     timestamp = self.current_time
 
         if "Human:" in text_line:
             message_color = self.colors["human_msg"]
@@ -165,17 +230,65 @@ class ChatGUI(Node):
             text_line = text_line.replace("X Arm", "").strip()
             align = "w"
 
-        elif "Taskmanager:" in text_line or "Unknown" in text_line :
+
+        elif "Lerobot1 (msg)" in text_line :
             text_line = text_line.replace("Unknown:", "").strip()
+            text_line = text_line.replace("(msg)", "").strip()
+            text_line = text_line.replace(":", "").strip()
+            message_color = self.colors["lerobot1_msg"]
+            label_text = "Lerobot1"
+            text_line = text_line.replace("Lerobot1", "").strip()
+            align = "w"
+
+
+        elif "Lerobot2 (msg)" in text_line :
+            text_line = text_line.replace("Unknown:", "").strip()
+            text_line = text_line.replace("(msg)", "").strip()
+            text_line = text_line.replace(":", "").strip()
+            message_color = self.colors["lerobot2_msg"]
+            label_text = "Lerobot2"
+            text_line = text_line.replace("Lerobot2", "").strip()
+            align = "w"
+
+
+        elif "Clock (msg)" in text_line :
+            text_line = text_line.replace("Unknown:", "").strip()
+            text_line = text_line.replace("(msg)", "").strip()
+            text_line = text_line.replace(":", "").strip()
+            message_color = self.colors["clock_msg"]
+            label_text = "Clock"
+            text_line = text_line.replace("Clock", "").strip()
+            align = "w"
+
+
+        elif "Task Manager" in text_line or "Unknown" in text_line :
+            text_line = text_line.replace("Task Manager:", "").strip()
             message_color = self.colors["task_msg"]
-            label_text = "Task-Master"
+            label_text = "Task Manager:"
             text_line = text_line.replace("Taskmanager:", "").strip()
             align = "w"
 
         else:
-            message_color = "#ffffff"
-            label_text = "System"
-            align = "w"
+            self.get_logger().error(f"Checking for robot name: (msg): in {text_line}")
+
+            for name in self.robot_names:
+                # normailizing is need to be updated
+                self.get_logger().error(f"Checking for robot name: {name.capitalize() } (msg): in {text_line}")
+                if f"{name.capitalize()} (msg)" in text_line:
+                    self.get_logger().info("\n\n\n\n\n\n\n Match found \n\n\n\n\n\n\n")
+                    text_line = text_line.replace("Unknown:", "").replace("(msg)", "").replace(":", "").strip()
+                    message_color = self.colors.get(f"{name.lower()}_msg", "#000000")
+                    label_text = name.capitalize()
+                    text_line = text_line.replace(name, "").strip()
+                    align = "w"
+                    break
+
+            else:
+                self.get_logger().error("\n\n\n\n\n\n\n No match, defaulting to System\n\n\n\n\n\n\n")
+                message_color = "#ffffff"
+                label_text = "System"
+                align = "w"
+
 
         # Message frame
         message_frame = ctk.CTkFrame(self.chat_area, fg_color=message_color, corner_radius=10)

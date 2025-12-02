@@ -1,0 +1,5 @@
+# robot_interface/srv/GoTo.srv
+string name   # Goal
+---
+bool success # Result
+string message  #Result

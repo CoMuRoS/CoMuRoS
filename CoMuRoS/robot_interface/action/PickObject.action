@@ -1,0 +1,15 @@
+# pick_object_interface/action/PickObject.action
+
+# Goal (what the client sends)
+string object_name
+
+---
+
+# Result (what the server returns when finished)
+string status_msg     # Human-readable message: "Picked red_cup successfully" or "Failed: object not found"
+bool success          # True = picked, False = failed
+
+---
+
+# Feedback (sent periodically during execution)
+string json_state     # JSON string for robot state
