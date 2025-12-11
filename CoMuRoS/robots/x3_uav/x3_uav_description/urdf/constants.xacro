@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ====================== ARGUMENTS ====================== -->
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="use_ignition" default="true"/>
+  <xacro:arg name="use_plugin" default="true"/>
+
+  <xacro:property name="prefix" value="$(arg prefix)"/>
+  <xacro:property name="use_ignition" value="$(arg use_ignition)"/>
+  <xacro:property name="use_plugin" value="$(arg use_plugin)"/>
+
+  <xacro:property name="frame_prefix" value="${prefix + '/' if prefix else ''}"/>
+  <xacro:property name="ns_prefix" value="${prefix if prefix else 'x3'}"/>
+
+  <!-- ====================== MATERIALS ====================== -->
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+
+</robot>

@@ -1,0 +1,609 @@
+<?xml version="1.0"?>
+<sdf version="1.7">
+
+  <world name="foodcourt">
+
+  <plugin
+    filename="gz-sim-physics-system"
+    name="gz::sim::systems::Physics">
+  </plugin>
+  <plugin
+    filename="gz-sim-user-commands-system"
+    name="gz::sim::systems::UserCommands">
+  </plugin>
+  <plugin
+    filename="gz-sim-scene-broadcaster-system"
+    name="gz::sim::systems::SceneBroadcaster">
+  </plugin>
+  <plugin
+    filename="gz-sim-sensors-system"
+    name="gz::sim::systems::Sensors">
+    <render_engine>ogre2</render_engine>
+  </plugin>
+  <plugin
+    filename="gz-sim-imu-system"
+    name="gz::sim::systems::Imu">
+  </plugin>
+
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>150</iters>
+          <precon_iters>0</precon_iters>
+          <sor>1.400000</sor>
+          <use_dynamic_moi_rescaling>1</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>2000.000000</contact_max_correcting_vel>
+          <contact_surface_layer>0.01000</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <!-- ===============================
+         Scene / Lighting
+    ================================ -->
+<scene>
+  <ambient>1.0 1.0 1.0 1</ambient>
+  <background>1.0 1.0 1.0 1</background>
+  <shadows>false</shadows>
+</scene>
+
+<include>
+  <uri>model://actor_sitting</uri>
+</include>
+
+<!-- <light name="indoor_light" type="point">
+  <pose>0 0 1.2 0 0 0</pose>
+  <diffuse>1 1 1 1</diffuse>
+  <specular>0 0 0 1</specular>
+  <attenuation>
+    <range>6</range>
+    <constant>0.6</constant>
+    <linear>0.03</linear>
+    <quadratic>0.01</quadratic>
+  </attenuation>
+</light> -->
+
+    <light type="directional" name="sun">
+      <cast_shadows>false</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+
+   <!-- ===============================
+       Ground Plane (Scaled 0.2)
+  ================================ -->
+  <model name="ground_plane">
+  <static>true</static>
+  <pose>0 0 0 0 0 0</pose>
+  <link name="link">
+    <collision name="ground_collision">
+      <geometry>
+        <plane>
+          <normal>0 0 1</normal>
+          <size>10 10</size>
+        </plane>
+      </geometry>
+    </collision>
+    <visual name="ground_visual">
+      <geometry>
+        <plane>
+          <normal>0 0 1</normal>
+          <size>10 10</size>
+        </plane>
+      </geometry>
+      <material>
+  <ambient>0.75 0.65 0.45 1</ambient>
+  <diffuse>0.75 0.65 0.45 1</diffuse>
+  <specular>0.0 0.0 0.0 1</specular>
+</material>
+
+    </visual>
+  </link>
+</model>
+
+  <!-- ===============================
+       STALLS (Full uniform scale)
+  ================================ -->
+
+  <model name="stall_1">
+    <static>true</static>
+    <pose>-1.2 1.0 0.2 0 0 0</pose> <!-- -6 5 1 -->
+    <link name="link">
+      <collision name="col">
+        <geometry><box><size>0.6 0.3 0.4</size></box></geometry> <!-- 3 1.5 2 -->
+      </collision>
+      <visual name="vis">
+  <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+  <material>
+    <ambient>0.30 0.20 0.10 1</ambient>
+    <diffuse>0.30 0.20 0.10 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="stall_2">
+    <static>true</static>
+    <pose>-0.4 1.0 0.2 0 0 0</pose> <!-- -2 5 1 -->
+    <link name="link">
+      <collision name="col">
+        <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+      </collision>
+     <visual name="vis">
+  <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+  <material>
+    <ambient>0.30 0.20 0.10 1</ambient>
+    <diffuse>0.30 0.20 0.10 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="stall_3">
+    <static>true</static>
+    <pose>0.4 1.0 0.2 0 0 0</pose> <!-- 2 5 1 -->
+    <link name="link">
+      <collision name="col">
+        <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+      </collision>
+      <visual name="vis">
+  <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+  <material>
+    <ambient>0.30 0.20 0.10 1</ambient>
+    <diffuse>0.30 0.20 0.10 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="stall_4">
+    <static>true</static>
+    <pose>1.2 1.0 0.2 0 0 0</pose> <!-- 6 5 1 -->
+    <link name="link">
+      <collision name="col">
+        <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+      </collision>
+      <visual name="vis">
+  <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+  <material>
+    <ambient>0.30 0.20 0.10 1</ambient>
+    <diffuse>0.30 0.20 0.10 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <!-- ===============================
+       TABLES (Full uniform scale)
+  ================================ -->
+
+  <model name="table_1">
+    <static>true</static>
+    <pose>-1.2 0.2 0.08 0 0 0</pose>
+    <link name="link">
+
+      <collision name="col">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="vis">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.70 0.50 0.30 1</ambient>
+          <diffuse>0.70 0.50 0.30 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+
+
+  <model name="table_2">
+    <static>true</static>
+    <pose>-0.4 0.2 0.08 0 0 0</pose>
+    <link name="link">
+
+      <collision name="col">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="vis">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.70 0.50 0.30 1</ambient>
+          <diffuse>0.70 0.50 0.30 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+
+
+    <model name="table_3">
+    <static>true</static>
+    <pose>0.4 0.2 0.08 0 0 0</pose>
+    <link name="link">
+
+      <collision name="col">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="vis">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.70 0.50 0.30 1</ambient>
+          <diffuse>0.70 0.50 0.30 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+
+
+  <model name="table_4">
+    <static>true</static>
+    <pose>1.2 0.2 0.08 0 0 0</pose>
+    <link name="link">
+
+      <collision name="col">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="vis">
+        <geometry>
+          <cylinder>
+            <radius>0.12</radius>
+            <length>0.16</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.70 0.50 0.30 1</ambient>
+          <diffuse>0.70 0.50 0.30 1</diffuse>
+          <specular>0 0 0 1</specular>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+
+
+  <!-- ===============================
+       CHAIRS (Full uniform scale)
+  ================================ -->
+
+  <model name="chair_11">
+    <static>true</static>
+    <pose>-1.38 0.2 0.05 0 0 0</pose> <!-- -6.9 1 0.25 -->
+    <link name="link">
+      <collision name="col">
+        <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+      </collision>
+     <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_12">
+    <static>true</static>
+    <pose>-1.02 0.2 0.05 0 0 3.14159</pose> <!-- -5.1 1 0.25 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+     <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_21">
+    <static>true</static>
+    <pose>-0.58 0.2 0.05 0 0 0</pose> <!-- -2.9 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+      <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_22">
+    <static>true</static>
+    <pose>-0.22 0.2 0.05 0 0 3.14159</pose> <!-- -1.1 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+      <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_31">
+    <static>true</static>
+    <pose>0.22 0.2 0.05 0 0 0</pose> <!-- 1.1 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+      <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_32">
+    <static>true</static>
+    <pose>0.58 0.2 0.05 0 0 3.14159</pose> <!-- 2.9 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+      <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_41">
+    <static>true</static>
+    <pose>1.02 0.2 0.05 0 0 0</pose> <!-- 5.1 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+      <visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+
+    </link>
+  </model>
+
+  <model name="chair_42">
+    <static>true</static>
+    <pose>1.38 0.2 0.05 0 0 3.14159</pose> <!-- 6.9 -->
+    <link name="link">
+      <collision name="col"><geometry><box><size>0.08 0.08 0.10</size></box></geometry></collision>
+<visual name="vis">
+  <geometry><box><size>0.08 0.08 0.10</size></box></geometry>
+  <material>
+    <ambient>0.2 0.3 0.9 1</ambient>
+    <diffuse>0.2 0.3 0.9 1</diffuse>
+    <specular>0 0 0 1</specular>
+  </material>
+</visual>
+    </link>
+  </model>
+
+  <!-- ===============================
+       HUMANS (Full uniform scale)
+  ================================ -->
+
+  <model name="human_11">
+  <static>true</static>
+  <pose>-1.38 0.2 0.00 0 0 1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+
+<model name="human_12">
+  <static>true</static>
+  <pose>-1.02 0.2 0.00 0 0 -1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+<model name="human_21">
+  <static>true</static>
+  <pose>-0.58 0.2 0.00 0 0 1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+
+<model name="human_32">
+  <static>true</static>
+  <pose>0.58 0.2 0.00 0 0 -1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+
+<model name="human_41">
+  <static>true</static>
+  <pose>1.02 0.2 0.00 0 0 1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+<model name="human_42">
+  <static>true</static>
+  <pose>1.38 0.2 0.00 0 0 -1.57</pose>
+  <link name="link">
+    <visual name="vis">
+      <geometry>
+        <mesh>
+          <uri>file:///home/multi-robot/gazebo/models/sitting_human_01/meshes/sitting_human.obj</uri>
+          <scale>0.002 0.002 0.002</scale>
+        </mesh>
+      </geometry>
+      <material>
+        <ambient>0.7 0.7 0.7 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+      </material>
+    </visual>
+    <collision name="col"><geometry><sphere><radius>0.06</radius></sphere></geometry></collision>
+  </link>
+</model>
+
+
+  </world>
+</sdf>

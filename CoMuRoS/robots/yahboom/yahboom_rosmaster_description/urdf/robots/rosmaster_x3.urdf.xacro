@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rosmaster_x3">
+
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+    <xacro:arg name="robot_name" default="rosmaster_x3"/>
+    <xacro:arg name="prefix" default=""/>
+    <xacro:arg name="frame_prefix" default=""/>
+    <xacro:arg name="use_gazebo" default="false"/>
+    <xacro:arg name="use_ros2_control" default="false"/>
+    <xacro:arg name="use_mock_hardware" default="false"/>
+    <xacro:arg name="use_plugin" default="false"/>
+
+    <xacro:arg name="configure_controller" default="$(find yahboom_rosmaster_description)/config/$(arg robot_name)/ros2_controllers.yaml"/>
+    <!-- <xacro:arg name="configure_controller" default="$(find yahboom_rosmaster_description)/config/${robot_name}/ros2_controllers.yaml"/> -->
+
+
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/mech/rosmaster_x3_base.urdf.xacro"/>
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/mech/mecanum_wheel.urdf.xacro"/>
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/sensors/rgbd_camera.urdf.xacro"/>
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/sensors/lidar.urdf.xacro"/>
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/sensors/imu.urdf.xacro"/>
+
+    <xacro:rosmaster_x3_base frame_prefix="$(arg frame_prefix)"/>
+
+    <xacro:mecanum_wheel
+      frame_prefix="$(arg frame_prefix)"
+      side="front_left"
+      x_reflect="1"
+      y_reflect="1"/>
+
+    <xacro:mecanum_wheel
+      frame_prefix="$(arg frame_prefix)"
+      side="front_right"
+      x_reflect="1"
+      y_reflect="-1"/>
+
+    <xacro:mecanum_wheel
+      frame_prefix="$(arg frame_prefix)"
+      side="back_left"
+      x_reflect="-1"
+      y_reflect="1"/>
+
+    <xacro:mecanum_wheel
+      frame_prefix="$(arg frame_prefix)"
+      side="back_right"
+      x_reflect="-1"
+      y_reflect="-1"/>
+
+    <xacro:rgbd_camera
+      frame_prefix="$(arg frame_prefix)"
+      camera_name="cam_1"
+      xyz_offset="0.105 0 0.05"
+      rpy_offset="0 -0.50 0"/>
+
+    <xacro:lidar_sensor
+      frame_prefix="$(arg frame_prefix)"
+      parent="base_link"
+      frame_id="laser_frame"
+      xyz_offset="0 0 0.0825"
+      rpy_offset="0 0 0"
+      mesh_xyz_offset="0 0 0"
+      mesh_rpy_offset="${-M_PI/2} 0 0"
+      topic_name="scan"/>
+
+    <xacro:imu_sensor
+      frame_prefix="$(arg frame_prefix)"
+      parent="base_link"
+      frame_id="imu"
+      xyz_offset="0 0 0.006"
+      rpy_offset="0 0 0"
+      update_rate="15.0"
+      topic_name="imu/data"/>
+
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/control/velocity_control_plugin.urdf.xacro"/>
+    <xacro:load_velocity_control_plugin 
+    use_plugin="$(arg use_plugin)"
+    frame_prefix="$(arg frame_prefix)"/>
+
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/control/gazebo_sim_ros2_control.urdf.xacro" />
+    <xacro:load_gazebo_sim_ros2_control_plugin
+      use_gazebo="$(arg use_gazebo)"
+      frame_prefix="$(arg frame_prefix)"
+      configure_controller="$(arg configure_controller)"
+      use_ros2_control="$(arg use_ros2_control)"/>
+
+    <xacro:include filename="$(find yahboom_rosmaster_description)/urdf/control/rosmaster_x3_ros2_control.urdf.xacro" />
+    <xacro:yahboom_rosmaster_ros2_control
+      frame_prefix="$(arg frame_prefix)"
+      use_gazebo="$(arg use_gazebo)"
+      use_ros2_control="$(arg use_ros2_control)"
+      use_mock_hardware="$(arg use_mock_hardware)"/>
+
+  <!-- ====================== TOP CARGO PLATE LINK ====================== -->
+  <link name="$(arg frame_prefix)top_plate_link">
+    <!-- Visual -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.35 0.35 0.01"/>  <!-- 22cm × 22cm × 1cm -->
+      </geometry>
+        <material name="green">
+          <color rgba="0 0.7 0 1"/>
+        </material>
+    </visual>
+
+    <!-- Collision -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.35 0.35 0.01"/>
+      </geometry>
+    </collision>
+
+    <!-- Inertial -->
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.3"/>  <!-- 300 grams -->
+      <inertia
+        ixx="0.0005" ixy="0" ixz="0"
+        iyy="0.0005" iyz="0"
+        izz="0.0004"/>
+    </inertial>
+  </link>
+
+  <!-- ====================== TOP PLATE FIXED JOINT ====================== -->
+  <joint name="$(arg frame_prefix)top_plate_joint" type="fixed">
+    <parent link="$(arg frame_prefix)base_link"/>
+    <child  link="$(arg frame_prefix)top_plate_link"/>
+    <origin xyz="0 0 ${base_size_z + 0.02}" rpy="0 0 0"/>
+    <!-- plate sits above the base, 2 cm clearance -->
+  </joint>
+
+</robot>

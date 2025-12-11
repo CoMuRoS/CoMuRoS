@@ -28,31 +28,147 @@ A ROS 2 Python package that enables natural-language interaction with a team of 
 
 ```
 CoMuRoS/
-├── CoMuRoS/
-│   ├── chatty/
-│   │   ├── chatty/
+├── CoMuRoS
+│   ├── chatty
+│   │   ├── chatty
+│   │   │   ├── chat_gui.py
+│   │   │   ├── chat_manager.py
+│   │   │   ├── esp32_code.cpp
+│   │   │   ├── esp32_switch_pub.py
 │   │   │   ├── __init__.py
-│   │   │   ├── chat_gui.py            # GUI interface using customtkinter
-│   │   │   ├── chat_manager.py        # Manages chat history & routing
-│   │   │   └── task_manager.py        # Converts chat to tasks using LLMs
-│   │   ├── config/                    # Robot configuration JSON files
+│   │   │   ├── listen.py
+│   │   │   ├── microphone.py
+│   │   │   ├── __pycache__
+│   │   │   ├── speak.py
+│   │   │   ├── task_manager.py
+│   │   │   └── time.py
+│   │   ├── config
 │   │   │   └── robot_config_*.json  
-│   │   ├── data/
-│   │   │   └── chat_history.txt       # Stores all chat logs
-│   │   ├── launch/
-│   │   │   └── chat_system.launch.py  # Launch file for all nodes
+│   │   ├── data
+│   │   │   ├── chat_history_current.txt
+│   │   │   ├── chat_history_student_0.txt
+│   │   │   └── chat_history.txt
+│   │   ├── launch
+│   │   │   └── chat_system.launch.py
 │   │   ├── package.xml
 │   │   ├── README.md
+│   │   ├── resource
+│   │   │   └── chatty
 │   │   ├── setup.cfg
 │   │   ├── setup.py
-│   │   └── test/
+│   │   └── test
 │   │       ├── test_copyright.py
 │   │       ├── test_flake8.py
 │   │       └── test_pep257.py
-│   └── README.md
+│   ├── cleaning_bot
+│   │   ├── cleaning_bot
+│   │   │   ├── cleaning_bot_llm.py
+│   │   │   ├── holonomic_position_controller_service.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   ├── data
+│   │   │   ├── cleaning_bot_chat_history.txt
+│   │   │   └── cleaning_bot_task_history.txt
+│   │   ├── package.xml
+│   │   ├── resource
+│   │   │   └── cleaning_bot
+│   │   ├── setup.cfg
+│   │   ├── setup.py
+│   │   └── test
+│   │       ├── test_copyright.py
+│   │       ├── test_flake8.py
+│   │       └── test_pep257.py
+│   ├── delivery_bot
+│   │   ├── data
+│   │   │   ├── delivery_bot1_task_history.txt
+│   │   │   └── delivery_bot_chat_history.txt
+│   │   ├── delivery_bot
+│   │   │   ├── delivery_bot_llm.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   ├── package.xml
+│   │   ├── resource
+│   │   │   └── delivery_bot
+│   │   ├── setup.cfg
+│   │   ├── setup.py
+│   │   └── test
+│   │       ├── test_copyright.py
+│   │       ├── test_flake8.py
+│   │       └── test_pep257.py
+│   ├── drone
+│   │   ├── data
+│   │   │   ├── drone_chat_history.txt
+│   │   │   └── drone_task_history.txt
+│   │   ├── drone
+│   │   │   ├── drone_llm.py
+│   │   │   ├── drone_position_controller_client.py
+│   │   │   ├── drone_position_controller_service.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   ├── package.xml
+│   │   ├── resource
+│   │   │   └── drone
+│   │   ├── setup.cfg
+│   │   ├── setup.py
+│   │   └── test
+│   │       ├── test_copyright.py
+│   │       ├── test_flake8.py
+│   │       └── test_pep257.py
+│   ├── README.md
+│   ├── robot_interface
+│   │   ├── action
+│   │   │   └── PickObject.action
+│   │   ├── CMakeLists.txt
+│   │   ├── package.xml
+│   │   └── srv
+│   │       ├── Find.srv
+│   │       ├── GotoPoseDiffDrive.srv
+│   │       ├── GotoPoseDrone.srv
+│   │       ├── GotoPoseHolonomic.srv
+│   │       ├── GoTo.srv
+│   │       └── StartPick.srv
+│   ├── robot_llm
+│   │   ├── data
+│   │   │   ├── chat_history.txt
+│   │   │   ├── robot1_chat_history.txt
+│   │   │   ├── robot1_task_history.txt
+│   │   │   └── robot_task_history.txt
+│   │   ├── launch
+│   │   │   ├── robot_llms.launch.py
+│   │   │   └── robot_services.launch.py
+│   │   ├── package.xml
+│   │   ├── resource
+│   │   │   └── robot_llm
+│   │   ├── robot_llm
+│   │   │   ├── __init__.py
+│   │   │   └── robot_llm.py
+│   │   ├── setup.cfg
+│   │   ├── setup.py
+│   │   └── test
+│   │       ├── test_copyright.py
+│   │       ├── test_flake8.py
+│   │       └── test_pep257.py
+│   └── robots
+│       ├── multi_robot
+│       │   ├── CMakeLists.txt
+│       │   ├── env
+│       │   ├── launch
+│       │   ├── models
+│       │   ├── package.xml
+│       │   ├── rviz
+│       │   └── worlds
+│       ├── x3_uav
+│       │   ├── x3_uav_description
+│       │   ├── x3_uav_ignition
+│       │   └── x3_uav_llm
+│       └── yahboom
+│           ├── yahboom_llm
+│           ├── yahboom_rosmaster_description
+│           └── yahboom_rosmaster_gazebo
 ├── LICENSE
 ├── README.md
 └── requirements.txt
+
 ```
 
 ---

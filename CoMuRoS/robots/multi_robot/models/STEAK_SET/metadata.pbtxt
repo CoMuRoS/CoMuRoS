@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "STEAK_SET"
+description: "STEAK SET\nIncludes 1 plate, 1 fork, 1 knife, 1 steak, 1 roll, 1 piece of corn, and 2 slices of onion and mushrooms."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "PlanToys"
+}
+annotations {
+  key: "mpn"
+  value: "3465"
+}
+annotations {
+  key: "sku"
+  value: "0346500"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Toys"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="x3_uav_description" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Include all component files -->
+  <xacro:include filename="$(find x3_uav_description)/urdf/constants.xacro"/>
+  <xacro:include filename="$(find x3_uav_description)/urdf/links.xacro"/>
+  <xacro:include filename="$(find x3_uav_description)/urdf/joints.xacro"/>
+  <xacro:include filename="$(find x3_uav_description)/urdf/sensors.xacro"/>
+  <xacro:include filename="$(find x3_uav_description)/urdf/gazebo.xacro"/>
+
+</robot>

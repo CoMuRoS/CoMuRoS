@@ -1,0 +1,297 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+    <world name="food_court">
+
+        <plugin
+            filename="gz-sim-physics-system"
+            name="gz::sim::systems::Physics">
+        </plugin>
+        <plugin
+            filename="gz-sim-user-commands-system"
+            name="gz::sim::systems::UserCommands">
+        </plugin>
+        <plugin
+            filename="gz-sim-scene-broadcaster-system"
+            name="gz::sim::systems::SceneBroadcaster">
+        </plugin>
+        <plugin
+            filename="gz-sim-sensors-system"
+            name="gz::sim::systems::Sensors">
+                <render_engine>ogre2</render_engine>
+        </plugin>
+        <plugin
+            filename="gz-sim-imu-system"
+            name="gz::sim::systems::Imu">
+        </plugin>
+
+        <light type="directional" name="sun">
+            <cast_shadows>false</cast_shadows>
+            <pose>0 0 10 0 0 0</pose>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <attenuation>
+                <range>1000</range>
+                <constant>0.9</constant>
+                <linear>0.01</linear>
+                <quadratic>0.001</quadratic>
+            </attenuation>
+            <direction>-0.5 0.1 -0.9</direction>
+        </light>
+                    
+        <model name="ground_plane">
+            <static>true</static>
+            <pose>2.5 0 0.02 0 0 0</pose>
+            <link name="link">
+                <collision name="ground_collision">
+                    <geometry>
+                        <plane>
+                            <normal>0 0 1</normal>
+                            <size>22 15</size>
+                        </plane>
+                    </geometry>
+                </collision>
+                <visual name="ground_visual">
+                    <geometry>
+                        <plane>
+                            <normal>0 0 1</normal>
+                            <size>22 15</size>
+                        </plane>
+                    </geometry>
+            <material>
+                <!-- soft light blue -->
+                <ambient>0.45 0.65 0.95 1</ambient>
+                <diffuse>0.45 0.65 0.95 1</diffuse>
+
+                <!-- low specular to avoid shining -->
+                <specular>0.1 0.1 0.1 1</specular>
+            </material>
+                </visual>
+            </link>
+        </model>
+            
+        <model name="stall_1">
+            <static>true</static>
+            <pose>0 1.0039 0.2081 0 0 0</pose>
+            <link name="link">
+                <collision name="col">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                </collision>
+                <visual name="vis">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                    <material>
+                        <ambient>0.8 0.1 0.1 1</ambient>
+                        <diffuse>0.9 0.2 0.2 1</diffuse>
+                        <specular>0.3 0.3 0.3 1</specular>
+                    </material>
+                </visual>
+            </link>
+        </model>
+
+        <model name="stall_2">
+            <static>true</static>
+            <pose>4 1.0039 0.2081 0 0 0</pose>
+            <link name="link">
+                <collision name="col">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                </collision>
+                <visual name="vis">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                    <material>
+                        <ambient>0.8 0.1 0.1 1</ambient>
+                        <diffuse>0.9 0.2 0.2 1</diffuse>
+                        <specular>0.3 0.3 0.3 1</specular>
+                    </material>
+                </visual>
+            </link>
+        </model>
+
+        <model name="stall_3">
+            <static>true</static>
+            <pose>8 1.0039 0.2081 0 0 0</pose>
+            <link name="link">
+                <collision name="col">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                </collision>
+                <visual name="vis">
+                    <geometry><box><size>0.6 0.3 0.4</size></box></geometry>
+                    <material>
+                        <ambient>0.8 0.1 0.1 1</ambient>
+                        <diffuse>0.9 0.2 0.2 1</diffuse>
+                        <specular>0.3 0.3 0.3 1</specular>
+                    </material>
+                </visual>
+            </link>
+        </model>
+
+        <!-- Commented out tables
+        <include>
+            <uri>model://Table</uri>
+            <name>table_1</name>
+            <pose>0 1.0039 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://Table</uri>
+            <name>table_2</name>
+            <pose>0 1.0039 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://Table</uri>
+            <name>table_3</name>
+            <pose>4 1.0039 0.0 0 0 0</pose>
+        </include>
+        -->
+
+        <include>
+            <uri>model://CoffeeTable</uri>
+            <name>coffee1</name>
+            <pose>0 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://CoffeeTable</uri>
+            <name>coffee2</name>
+            <pose>3 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://CoffeeTable</uri>
+            <name>coffee3</name>
+            <pose>6 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://CoffeeTable</uri>
+            <name>coffee4</name>
+            <pose>9 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://KitchenSink</uri>
+            <name>kitchen_sink1</name>
+            <pose>-2.5 -0.5 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair1</name>
+            <pose>0.75 -2.0 0.0 0 0 3.14</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair2</name>
+            <pose>-0.9649 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair3</name>
+            <pose>2.25 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair4</name>
+            <pose>3.75 -2.0 0.0 0 0 3.14</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair5</name>
+            <pose>5.25 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair6</name>
+            <pose>6.75 -2.0 0.0 0 0 3.14</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair7</name>
+            <pose>8.25 -2.0 0.0 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://WoodenChair</uri>
+            <name>chair8</name>
+            <pose>9.75 -2.0 0.0 0 0 3.14</pose>
+        </include>
+    <!-- 
+        <include>
+            <uri>model://FoodCourtTable1</uri>
+            <name>table4</name>
+            <pose>0 1.0039 0.0 0 0 1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://FoodCourtTable1</uri>
+            <name>table5</name>
+            <pose>2 1.0039 0.0 0 0 1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://FoodCourtTable1</uri>
+            <name>table6</name>
+            <pose>4 1.0039 0.0 0 0 1.57</pose>
+        </include> -->
+
+        <include>
+            <uri>model://MaleVisitorSit</uri>
+            <name>person1</name>
+            <pose>-0.9649 -2.0 0.0 0 0 1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://VisitorKidSit</uri>
+            <name>person2</name>
+            <pose>2.25 -2.0 0 0 0 1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://FemaleVisitorSit</uri>
+            <name>person3</name>
+            <pose>0.75 -2.0 0.0 0 0 -1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://MaleVisitorSit</uri>
+            <name>person4</name>
+            <pose>6.75 -2.0 0.0 0 0 -1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://FemaleVisitorSit</uri>
+            <name>person5</name>
+            <pose>8.25 -2.0 0.0 0 0 1.57</pose>
+        </include>
+
+        <include>
+            <uri>model://PatientFSit</uri>
+            <name>person6</name>
+            <pose>9.75 -2.0 0.0 0 0 3.14</pose>
+        </include>
+
+        <include>
+            <uri>model://SANDWICH_MEAL</uri>
+            <name>food1</name>
+            <pose>0 1.0039 0.4081 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://STEAK_SET</uri>
+            <name>food2</name>
+            <pose>4 1.0039 0.4081 0 0 0</pose>
+        </include>
+
+        <include>
+            <uri>model://Coke</uri>
+            <name>food3</name>
+            <pose>8 1.0039 0.4081 0 0 0</pose>
+        </include>
+
+    </world>
+</sdf>

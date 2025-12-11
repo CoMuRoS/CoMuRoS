@@ -1,0 +1,18 @@
+[Time: Hours: 00, Minutes: 01, Seconds: 08] Task Manager:
+[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: First pick the ball and only then goto to the door
+[Time: Hours: 00, Minutes: 01, Seconds: 08] Task Manager:
+[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: First pick the ball and only then goto to the door
+[Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
+[Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
+Plan:
+1. Lerobot: Pick the ball
+2. Burger: Go to the door
+multirobot_list: [Lerobot, Burger]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
+[Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
+Plan:
+1. Lerobot: Pick the ball
+2. Burger: Go to the door
+multirobot_list: [Lerobot, Burger]
+singlerobot_list: []

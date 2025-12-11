@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:if value="${use_ignition}">
+    <xacro:if value="${use_plugin}">
+      <!-- ====================== MOTOR 0 (CCW) ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-multicopter-motor-model-system"
+                name="gz::sim::systems::MulticopterMotorModel">
+          <robotNamespace>${prefix}</robotNamespace>
+          <jointName>${frame_prefix}rotor_0_joint</jointName>
+          <linkName>${frame_prefix}rotor_0</linkName>
+          <turningDirection>ccw</turningDirection>
+          <timeConstantUp>0.0125</timeConstantUp>
+          <timeConstantDown>0.025</timeConstantDown>
+          <maxRotVelocity>800.0</maxRotVelocity>
+          <motorConstant>8.54858e-06</motorConstant>
+          <momentConstant>0.016</momentConstant>
+          <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+          <motorNumber>0</motorNumber>
+          <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+          <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+          <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
+          <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+          <motorType>velocity</motorType>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== MOTOR 1 (CCW) ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-multicopter-motor-model-system"
+                name="gz::sim::systems::MulticopterMotorModel">
+          <robotNamespace>${prefix}</robotNamespace>
+          <jointName>${frame_prefix}rotor_1_joint</jointName>
+          <linkName>${frame_prefix}rotor_1</linkName>
+          <turningDirection>ccw</turningDirection>
+          <timeConstantUp>0.0125</timeConstantUp>
+          <timeConstantDown>0.025</timeConstantDown>
+          <maxRotVelocity>800.0</maxRotVelocity>
+          <motorConstant>8.54858e-06</motorConstant>
+          <momentConstant>0.016</momentConstant>
+          <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+          <motorNumber>1</motorNumber>
+          <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+          <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+          <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
+          <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+          <motorType>velocity</motorType>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== MOTOR 2 (CW) ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-multicopter-motor-model-system"
+                name="gz::sim::systems::MulticopterMotorModel">
+          <robotNamespace>${prefix}</robotNamespace>
+          <jointName>${frame_prefix}rotor_2_joint</jointName>
+          <linkName>${frame_prefix}rotor_2</linkName>
+          <turningDirection>cw</turningDirection>
+          <timeConstantUp>0.0125</timeConstantUp>
+          <timeConstantDown>0.025</timeConstantDown>
+          <maxRotVelocity>800.0</maxRotVelocity>
+          <motorConstant>8.54858e-06</motorConstant>
+          <momentConstant>0.016</momentConstant>
+          <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+          <motorNumber>2</motorNumber>
+          <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+          <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+          <motorSpeedPubTopic>motor_speed/2</motorSpeedPubTopic>
+          <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+          <motorType>velocity</motorType>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== MOTOR 3 (CW) ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-multicopter-motor-model-system"
+                name="gz::sim::systems::MulticopterMotorModel">
+          <robotNamespace>${prefix}</robotNamespace>
+          <jointName>${frame_prefix}rotor_3_joint</jointName>
+          <linkName>${frame_prefix}rotor_3</linkName>
+          <turningDirection>cw</turningDirection>
+          <timeConstantUp>0.0125</timeConstantUp>
+          <timeConstantDown>0.025</timeConstantDown>
+          <maxRotVelocity>800.0</maxRotVelocity>
+          <motorConstant>8.54858e-06</motorConstant>
+          <momentConstant>0.016</momentConstant>
+          <commandSubTopic>gazebo/command/motor_speed</commandSubTopic>
+          <motorNumber>3</motorNumber>
+          <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+          <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+          <motorSpeedPubTopic>motor_speed/3</motorSpeedPubTopic>
+          <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+          <motorType>velocity</motorType>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== VELOCITY CONTROL PLUGIN ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-multicopter-control-system"
+                name="gz::sim::systems::MulticopterVelocityControl">
+          <robotNamespace>${ns_prefix}</robotNamespace>
+          <commandSubTopic>cmd_vel</commandSubTopic>
+          <enableSubTopic>enable</enableSubTopic>
+          <comLinkName>${frame_prefix}base_link</comLinkName>
+          <velocityGain>2.7 2.7 2.7</velocityGain>
+          <attitudeGain>2 3 0.15</attitudeGain>
+          <angularRateGain>0.4 0.52 0.18</angularRateGain>
+          <maximumLinearAcceleration>2 2 2</maximumLinearAcceleration>
+          <!-- <maximumLinearVelocity>5 5 5</maximumLinearVelocity>
+          <maximumAngularVelocity>3 3 3</maximumAngularVelocity>
+          <linearVelocityNoiseMean>0 0 0</linearVelocityNoiseMean>
+          <linearVelocityNoiseStdDev>0.1105 0.1261 0.0947</linearVelocityNoiseStdDev>
+          <angularVelocityNoiseMean>0 0 0</angularVelocityNoiseMean>
+          <angularVelocityNoiseStdDev>0.004 0.004 0.004</angularVelocityNoiseStdDev> -->
+          <rotorConfiguration>
+            <rotor>
+              <jointName>${frame_prefix}rotor_0_joint</jointName>
+              <forceConstant>8.54858e-06</forceConstant>
+              <momentConstant>0.016</momentConstant>
+              <direction>1</direction>
+            </rotor>
+            <rotor>
+              <jointName>${frame_prefix}rotor_1_joint</jointName>
+              <forceConstant>8.54858e-06</forceConstant>
+              <momentConstant>0.016</momentConstant>
+              <direction>1</direction>
+            </rotor>
+            <rotor>
+              <jointName>${frame_prefix}rotor_2_joint</jointName>
+              <forceConstant>8.54858e-06</forceConstant>
+              <momentConstant>0.016</momentConstant>
+              <direction>-1</direction>
+            </rotor>
+            <rotor>
+              <jointName>${frame_prefix}rotor_3_joint</jointName>
+              <forceConstant>8.54858e-06</forceConstant>
+              <momentConstant>0.016</momentConstant>
+              <direction>-1</direction>
+            </rotor>
+          </rotorConfiguration>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== ODOMETRY PUBLISHER ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-odometry-publisher-system"
+                name="ignition::gazebo::systems::OdometryPublisher">
+          <odom_frame>${frame_prefix}odom</odom_frame>
+          <robot_base_frame>${frame_prefix}base_link</robot_base_frame>
+          <odom_publish_frequency>50</odom_publish_frequency>
+          <odom_topic>${frame_prefix}odom</odom_topic>
+          <odom_covariance_topic>${frame_prefix}odometry_with_covariance</odom_covariance_topic>
+          <namespace>${frame_prefix}</namespace>
+          <tf_topic>/tf</tf_topic>
+          <dimensions>3</dimensions>
+        </plugin>
+      </gazebo>
+
+      <!-- ====================== JOINT STATE PUBLISHER ====================== -->
+      <gazebo>
+        <plugin filename="ignition-gazebo-joint-state-publisher-system"
+                name="ignition::gazebo::systems::JointStatePublisher">
+          <namespace>${frame_prefix}</namespace>
+          <topic>${frame_prefix}joint_states</topic>
+          <joint_name_prefix>${frame_prefix}</joint_name_prefix>
+          <update_rate>50</update_rate>
+        </plugin>
+      </gazebo>
+
+    </xacro:if>
+  </xacro:if>
+
+</robot>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:macro name="load_gazebo_sim_ros2_control_plugin" params="use_gazebo frame_prefix configure_controller use_ros2_control">
+        <xacro:if value="${use_gazebo}">
+            <xacro:if value="${use_ros2_control}">
+                <gazebo>
+                    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+                        <parameters>${configure_controller}</parameters>
+                        <ros>
+                            <namespace>${frame_prefix}</namespace>
+                        </ros>
+                    </plugin>
+                </gazebo>
+            </xacro:if>
+        </xacro:if>
+    </xacro:macro>
+</robot>

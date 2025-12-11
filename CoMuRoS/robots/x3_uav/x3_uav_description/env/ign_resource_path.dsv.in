@@ -1,0 +1,2 @@
+prepend-non-duplicate;IGN_GAZEBO_RESOURCE_PATH;@CMAKE_INSTALL_PREFIX@/share
+prepend-non-duplicate;IGN_FILE_PATH;@CMAKE_INSTALL_PREFIX@/share

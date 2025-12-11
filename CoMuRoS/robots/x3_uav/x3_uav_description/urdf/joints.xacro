@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ====================== BASE FOOTPRINT TO BASE JOINT ====================== -->
+  <!-- <joint name="${frame_prefix}base_footprint_to_base" type="fixed">
+    <parent link="${frame_prefix}base_footprint"/>
+    <child  link="${frame_prefix}base_link"/>
+    <origin xyz="0 0 0.053302" rpy="0 0 0"/>
+  </joint> -->
+
+  <!-- ====================== ROTOR 0 JOINT ====================== -->
+  <!-- <joint name="${frame_prefix}rotor_0_joint" type="continuous"> -->
+  <joint name="${frame_prefix}rotor_0_joint" type="revolute">
+    <parent link="${frame_prefix}base_link"/>
+    <child link="${frame_prefix}rotor_0"/>
+    <origin xyz="0.13 -0.22 0.023" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1e16" upper="1e16" effort="10" velocity="100"/>     <!-- for continuos joint remove this line-->
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- ====================== ROTOR 1 JOINT ====================== -->
+  <!-- <joint name="${frame_prefix}rotor_1_joint" type="continuous"> -->
+  <joint name="${frame_prefix}rotor_1_joint" type="revolute">
+    <parent link="${frame_prefix}base_link"/>
+    <child link="${frame_prefix}rotor_1"/>
+    <origin xyz="-0.13 0.2 0.023" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1e16" upper="1e16" effort="10" velocity="100"/>     <!-- for continuos joint remove this line-->
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- ====================== ROTOR 2 JOINT ====================== -->
+  <!-- <joint name="${frame_prefix}rotor_2_joint" type="continuous"> -->
+  <joint name="${frame_prefix}rotor_2_joint" type="revolute">
+    <parent link="${frame_prefix}base_link"/>
+    <child link="${frame_prefix}rotor_2"/>
+    <origin xyz="0.13 0.22 0.023" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1e16" upper="1e16" effort="10" velocity="100"/>     <!-- for continuos joint remove this line-->
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- ====================== ROTOR 3 JOINT ====================== -->
+  <!-- <joint name="${frame_prefix}rotor_3_joint" type="continuous"> -->
+  <joint name="${frame_prefix}rotor_3_joint" type="revolute">
+    <parent link="${frame_prefix}base_link"/>
+    <child link="${frame_prefix}rotor_3"/>
+    <origin xyz="-0.13 -0.2 0.023" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1e16" upper="1e16" effort="10" velocity="100"/>     <!-- for continuos joint remove this line-->
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- ====================== IMU JOINT ====================== -->
+  <joint name="${frame_prefix}imu_joint" type="fixed">
+    <parent link="${frame_prefix}base_link"/>
+    <child  link="${frame_prefix}imu_link"/>
+    <origin xyz="0.0 0.0 0.01" rpy="0 0 0"/>
+  </joint>
+
+<!-- ====================== FRONT CAMERA JOINT ====================== -->
+<joint name="${frame_prefix}front_camera_joint" type="fixed">
+  <parent link="${frame_prefix}base_link"/>
+  <child  link="${frame_prefix}front_camera_link"/>
+  <origin xyz="0.15 0.0 0.0" rpy="0 0 0"/>  <!-- Front of drone, facing forward -->
+</joint>
+
+<!-- ====================== BOTTOM CAMERA JOINT ====================== -->
+<joint name="${frame_prefix}bottom_camera_joint" type="fixed">
+  <parent link="${frame_prefix}base_link"/>
+  <child  link="${frame_prefix}bottom_camera_link"/>
+  <origin xyz="0.0 0.0 -0.055" rpy="0 1.5708 0"/>  <!-- Bottom of drone, facing down (90° pitch) -->
+</joint>
+
+</robot>

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name="KitchenSink">
+<link name="link">
+<pose>0 0 0 0 0 0</pose>
+<visual name="visual">
+<geometry>
+<mesh>
+  <uri>model://KitchenSink/meshes/kitchenSink.obj</uri>
+  <scale>0.75 0.75 0.75</scale>  <!-- 50% scale -->
+</mesh>
+</geometry>
+</visual>
+<collision name="collision">
+<geometry>
+<mesh>
+  <uri>model://KitchenSink/meshes/kitchenSink.obj</uri>
+  <scale>0.75 0.75 0.75</scale>  <!-- Same scale for collision -->
+</mesh>
+</geometry>
+</collision>
+</link>
+</model>
+</sdf>

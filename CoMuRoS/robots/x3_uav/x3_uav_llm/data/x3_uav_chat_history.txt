@@ -1,0 +1,15 @@
+[Time: Hours: 00, Minutes: 00, Seconds: 31] Task Manager:
+[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: hi
+[Time: Hours: 00, Minutes: 00, Seconds: 32] Task Manager:
+[Time: Hours: 00, Minutes: 00, Seconds: 32] Task Manager:
+Hello! How can I assist you today?
+[Time: Hours: 00, Minutes: 00, Seconds: 42] Task Manager:
+[Time: Hours: 00, Minutes: 00, Seconds: 42] Human: all goto car
+[Time: Hours: 00, Minutes: 00, Seconds: 44] Task Manager:
+[Time: Hours: 00, Minutes: 00, Seconds: 44] Task Manager:
+Independent Tasks:
+Yahboom tasks: go to car
+Burger tasks: go to car
+X Uav tasks: go to car
+multirobot_list: []
+singlerobot_list: [Yahboom, Burger, X Uav]

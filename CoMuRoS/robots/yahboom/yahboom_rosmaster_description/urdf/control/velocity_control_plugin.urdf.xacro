@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="load_velocity_control_plugin" params="use_plugin frame_prefix">
+    <xacro:if value="${use_plugin}">
+        <gazebo>
+            <!-- Fortress velocity control -->
+            <plugin
+                filename="ignition-gazebo-velocity-control-system"
+                name="ignition::gazebo::systems::VelocityControl">
+                <!-- <topic>/${frame_prefix}cmd_vel</topic> -->
+                <namespace>${frame_prefix}</namespace>
+                <topic>${frame_prefix}cmd_vel</topic>
+                <initial_linear>0 0 0</initial_linear>
+                <initial_angular>0 0 0</initial_angular>
+            </plugin>
+
+            <!-- Fortress odom publisher -->
+            <plugin
+                filename="ignition-gazebo-odometry-publisher-system"
+                name="ignition::gazebo::systems::OdometryPublisher">
+                <odom_frame>${frame_prefix}odom</odom_frame>
+                <robot_base_frame>${frame_prefix}base_footprint</robot_base_frame>
+                <odom_publish_frequency>50</odom_publish_frequency>
+                <odom_topic>${frame_prefix}odom</odom_topic>
+                <odom_covariance_topic>${frame_prefix}odometry_with_covariance</odom_covariance_topic>
+                <namespace>${frame_prefix}</namespace>
+                <tf_topic>/tf</tf_topic>
+                <dimensions>2</dimensions>
+            </plugin>
+
+            <plugin
+                filename="ignition-gazebo-joint-state-publisher-system"
+                name="ignition::gazebo::systems::JointStatePublisher">
+                <namespace>${frame_prefix}</namespace>
+                <topic>${frame_prefix}joint_states</topic>
+                <!-- <joint_name>${frame_prefix}front_left_wheel_joint</joint_name>
+                <joint_name>${frame_prefix}front_right_wheel_joint</joint_name>
+                <joint_name>${frame_prefix}back_left_wheel_joint</joint_name>
+                <joint_name>${frame_prefix}back_right_wheel_joint</joint_name> -->
+                <joint_name_prefix>${frame_prefix}</joint_name_prefix>
+                <update_rate>50</update_rate>
+            </plugin>
+
+        </gazebo>
+
+    </xacro:if>
+  </xacro:macro>
+
+</robot>
