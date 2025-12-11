@@ -4,7 +4,7 @@
   <name>robot_interface</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="surajb@iitgn.ac.in">suraj</maintainer>
+  <maintainer email="name@gmail.com">name</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>action_msgs</depend>

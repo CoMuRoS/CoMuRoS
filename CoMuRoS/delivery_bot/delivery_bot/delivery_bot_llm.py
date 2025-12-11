@@ -3,11 +3,11 @@
 
 import json
 import time
-
+import subprocess
 import openai
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 from dataclasses import dataclass
 import os
 from rclpy.callback_groups import (
@@ -15,12 +15,15 @@ from rclpy.callback_groups import (
     ReentrantCallbackGroup
 )
 from ament_index_python.packages import get_package_share_directory
-from rclpy.action import ActionClient
-from pick_object_interface.action import PickObject
-from pick_object_interface.srv import StartPick
+
+# from rclpy.action import ActionClient
+from robot_interface.srv import GotoPoseDiffDrive, Find, GotoPoseHolonomic
 
 
-ROBOT_TYPE = 'Robotic Arm'
+ROBOT_NAME   = 'delivery_bot'
+ROBOT_TYPE   = "Differential Drive Robot"
+NODE_NAME    = "delivery_bot_llm_node"
+PACKAGE_NAME = "delivery_bot"
 
 # Define available actions
 @dataclass
@@ -32,24 +35,37 @@ class TestOption:
 
 option_list = [
     TestOption(
-        name="Pick green object",
+        name="DeliverFood",
         id=0,
-        description="This is used pick or show the green object or gear",
-        example_code="node.pick_green_object()"
+        description="This is used to deliver food items from a stall to a table.",
+        example_code="node.deliver_food(stall_number=1, table_number=3)"
     ),
     TestOption(
-        name="Pick brown object",
+        name='ClearTable',
         id=1,
-        description="This is used pick or show the brown object or gear",
-        example_code="node.pick_brown_object()"
-    ),
-    TestOption(
-        name="Pick grey object",
-        id=2,
-        description="This is used pick or show the grey object or gear",
-        example_code="node.pick_grey_object()"
+        description='This is used to clear the plates from table and drop them in the sink. From the history, check which food items were delivered to the table and clear only those food items.',
+        example_code='node.clear_table(table_number=2, food_name="food1")'
     )
 ]
+
+TableLocation = {
+    1 : [0.0, -1.3, 0.0],
+    2 : [3.0, -1.3, 0.0],
+    3 : [6.0, -1.3, 0.0],
+    4 : [9.0, -1.3, 0.0],
+}
+
+StallLocation = {
+    1 : [0.0, 0.0, 0.0],
+    2 : [4.0, 0.0, 0.0],
+    3 : [8.0, 0.0, 0.0],
+}
+
+home_pose = [0.0, 0.0, 0.0]
+
+sink_pose = [-1.85, -0.5, 0.0]
+
+food = ['food1', 'food2', 'food3']
 
 class RobotLLMNode(Node):
     """
@@ -62,10 +78,10 @@ class RobotLLMNode(Node):
     _instance = None
 
     def __init__(self) -> None:
-        super().__init__('robot_llm_node')
+        super().__init__(NODE_NAME)
 
         # ---- Parameters ----
-        self.declare_parameter('robot_name', 'lerobot1')
+        self.declare_parameter('robot_name', ROBOT_NAME)   ## robot name parameter
         self.robot_name: str = self.get_parameter('robot_name').value
         robot_task_topic = f'{self.robot_name}_task_status'
 
@@ -75,9 +91,6 @@ class RobotLLMNode(Node):
         self.robot_task = ""
         self.robot_states = {}
 
-
-        # self._pick_future: Optional[Future] = None
-        # self._current_goal_handle = None           # THIS WAS MISSING!
 
         # GROUPS
         self.single_group = MutuallyExclusiveCallbackGroup()   # For single-threaded/exclusive ops, like chat
@@ -89,10 +102,9 @@ class RobotLLMNode(Node):
         self.pub_robot_states = self.create_publisher(String, '/robot_states', 10)
         self.pub_robot_task = self.create_publisher(String, robot_task_topic, 10)
 
-        # self._action_client = ActionClient(self, PickObject, 'pick_object')
-        # self._pick_client = self.create_client(StartPick, '/start_pick')
-        self._pick_client = self.create_client(StartPick, '/start_pick', callback_group=self.multi_group)
-        self._cancel_pub = self.create_publisher(String, '/start_pick/cancel', 10)
+        self._goto_client = self.create_client(GotoPoseHolonomic, '/r2/goto_pose', callback_group=self.multi_group)
+
+        self._cancel_goto_pub = self.create_publisher(Bool, '/r2/cancel_goto_pose_goal', 10)
 
         # ---- Subscriptions ----
         self.sub_robot_states = self.create_subscription(
@@ -115,9 +127,9 @@ class RobotLLMNode(Node):
         # self.sub_chat_history = self.create_subscription(
         #     String, '/chat/history', self.on_chat_history, 10
         # )
-        # self.sub_chat_task_status = self.create_subscription(
-        #     String, '/chat/task_status', self.on_chat_task_status, 10
-        # )
+        self.sub_chat_task_status = self.create_subscription(
+            String, '/chat/task_status', self.on_chat_task_status, 10
+        )
 
         # ---- Timer Callbacks ----
         # self.timer_period = 1.0  # seconds
@@ -131,14 +143,13 @@ class RobotLLMNode(Node):
             f'Publishing robot task status on "{robot_task_topic}".'
         )
 
-        package_name = "robot_llm"
         directry = "data"
-        package_path = get_package_share_directory(package_name)
+        package_path = get_package_share_directory(PACKAGE_NAME)
 
-        script_name = "chat_history.txt"
+        script_name = self.robot_name+"_chat_history.txt"
         self.history_file = os.path.join(package_path, directry, script_name)
 
-        script_name = 'robot_task_history.txt'
+        script_name = self.robot_name+'_task_history.txt'
         self.robot_task_history = os.path.join(package_path, directry, script_name)
 
         self.clear_files()
@@ -160,7 +171,10 @@ class RobotLLMNode(Node):
                 file.write("")  # Clear the file contents
             self.get_logger().info("Cleared chat history file on startup.")
         else:
-            self.get_logger().warn(f"Chat history file not found: {self.history_file}")
+            with open(self.history_file, "w") as file:
+                file.write("")  # Create empty file
+            self.get_logger().warn(f"Chat history file not found. Created new file: {self.history_file}")
+
         
         if os.path.exists(self.robot_task_history):
             with open(self.robot_task_history, "w") as file:
@@ -168,7 +182,9 @@ class RobotLLMNode(Node):
             self.get_logger().info("Cleared the robot task history file on startup.")
         else:
             self.get_logger().warn(f"Robot Task history file not found: {self.robot_task_history}")
-
+            with open(self.robot_task_history, "w") as file:
+                file.write("")  # Create empty file
+            self.get_logger().warn(f"Robot task history file not found. Created new file: {self.robot_task_history}")
 
     # -------------------- Callbacks --------------------
 
@@ -205,8 +221,19 @@ class RobotLLMNode(Node):
                     break
 
             robot_task = robot_tasks.get(robot_name, "").strip()
+            self.get_logger().debug(f"{self.robot_name} task fetched [1]")
+
+            if not robot_task:
+                robot_task = robot_tasks.get(self.robot_name+'_task', "").strip()
+                self.get_logger().debug(f"{self.robot_name+'_task'} task fetched [2]")
+
+            if not robot_task:
+                robot_task = robot_tasks.get(self.robot_name+'_tasks', "").strip()
+                self.get_logger().debug(f"{self.robot_name+'_tasks'} task fetched [3]")
+
             if not robot_task:
                 robot_task = f"No {self.robot_name} task found."
+                self.get_logger().debug(robot_task)
                 return
             
             elif "stop" in robot_task.lower():
@@ -258,9 +285,12 @@ class RobotLLMNode(Node):
     #     """Handle chat history stream."""
     #     # self.get_logger().debug(f'Received /chat/history len={len(msg.data)}')
 
-    # def on_chat_task_status(self, msg: String) -> None:
-    #     """Observe task status changes (external)."""
-    #     self.get_logger().debug(f'Observed /chat/task_status: {msg.data}')
+    def on_chat_task_status(self, msg: String) -> None:
+        """Observe task status changes (external)."""
+        self.get_logger().debug(f'Observed /chat/task_status: {msg.data}')
+        with open(self.history_file, "a") as file:
+            file.write(msg.data + "\n")
+        
 
     def on_current_time(self, msg: String) -> None:
         """Update current time from /current_time topic."""
@@ -432,11 +462,12 @@ class RobotLLMNode(Node):
         """Stop all robot tasks (stub function)."""
         self.get_logger().info("Stopping all robot tasks...")
 
-        msg = String()
-        msg.data = "STOP"
-        self._cancel_pub.publish(msg)
+        msg = Bool
+        msg.data = True
+        self._cancel_goto_pub.publish(msg)
 
-        self.get_logger().info("Cancel request sent to /start_pick/cancel")
+        self.get_logger().info("Cancel request sent to /goto/cancel")
+        self.get_logger().info("Cancel request sent to /find/cancel")
         self.get_logger().info("All tasks of the robot have been stopped.")
 
     def read_chat_history(self) -> str:
@@ -554,6 +585,9 @@ class RobotLLMNode(Node):
                 f"Current States of All Robots: {self.robot_states} "
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
+                "Use the name 'node' to refer to the RobotLLMNode instance. "
+                ""
+                # "Your geneatinig codes are case-sensitive, so DO NOT change the case of any function or variable names. "
                 # f"Task to be performed: {task} "
             )
 
@@ -581,70 +615,148 @@ class RobotLLMNode(Node):
             self.get_logger().error("Failed to generate valid code for the task.")
             self.robot_task_interrupted(task) ## Needs to be handled better If it became an EVENT it could be better
 
-    def pick_object(self, object_name: str = "red_gear") -> bool:
-        """Call StartPick service and wait without re-spinning the node."""
-        self.get_logger().info(f"Picking '{object_name}'...")
+    def goto_service(self, x: float, y: float, yaw_deg: float) -> bool:
+        """Call GoToPoseDiffDrive service (non-blocking, no nested spin)."""
 
-        if not self._pick_client.wait_for_service(timeout_sec=5.0):
-            self.get_logger().error("StartPick service not available!")
+        self.get_logger().info(f"Sending goto goal: x={x}, y={y}, yaw={yaw_deg}°")
+
+        # Check service availability
+        if not self._goto_client.wait_for_service(timeout_sec=5.0):
+            self.get_logger().error("GotoPoseDiffDrive service NOT available!")
             return False
 
-        req = StartPick.Request()
-        req.object_name = object_name
+        # Build request
+        # req = GotoPoseDiffDrive.Request()
+        req = GotoPoseHolonomic.Request()
+        req.x = x
+        req.y = y
+        req.yaw_deg = yaw_deg
 
-        future = self._pick_client.call_async(req)
-        self.get_logger().info(f"Waiting for /start_pick response for '{object_name}'...")
+        future = self._goto_client.call_async(req)
+        self.get_logger().info("Waiting for goto service response...")
 
-        # Non-blocking (no nested spin) – let the MultiThreadedExecutor do the work
-        deadline = time.time() + 120.0  # overall timeout
+        # Timeout protection
+        deadline = time.time() + 900000.0
         while rclpy.ok() and not future.done():
-            time.sleep(0.05)  # yield this thread; other executor threads handle callbacks
+            time.sleep(0.05)
             if time.time() > deadline:
-                self.get_logger().error(f"Service call for '{object_name}' timed out.")
+                self.get_logger().error("GotoPoseDiffDrive service call TIMED OUT.")
                 return False
 
+        # Get response
         try:
             res = future.result()
         except Exception as e:
             self.get_logger().error(f"Service call failed: {e}")
             return False
 
-        if res.success:
-            self.get_logger().info(f"Pick succeeded: {res.message}")
+        if res.accepted:
+            self.get_logger().info(f"Goto accepted: {res.message}")
             return True
         else:
-            self.get_logger().warn(f"Pick failed: {res.message}")
+            self.get_logger().warn(f"Goto rejected: {res.message}")
             return False
 
 
-    # —————————————————————— YOUR LLM FUNCTIONS (now perfect) ——————————————————————
-    def pick_green_object(self) -> bool:
-        self.get_logger().info("Picking green object...")
-        success = self.pick_object("green object")
-        if success:
-            self.robot_task_completed("pick green object")
-        else:
-            self.robot_task_interrupted("pick green object")
-        return 
+    def teleport(self, name, x, y, z):
+        self.get_logger().info(f"Teleport Object: {name}")
 
-    def pick_brown_object(self) -> bool:
-        self.get_logger().info("Picking brown object...")
-        success = self.pick_object("brown object")
-        if success:
-            self.robot_task_completed("pick brown object")
-        else:
-            self.robot_task_interrupted("pick brown object")
-        return 
+        req = (
+            f'name: "{name}", '
+            f'position: {{x: {x}, y: {y}, z: {z}}}, '
+            'orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}'
+        )
 
-    def pick_grey_object(self) -> bool:
-        self.get_logger().info("Picking grey object...")
-        success = self.pick_object("grey object")
-        if success:
-            self.robot_task_completed("pick grey object")
-        else:
-            self.robot_task_interrupted("pick grey object")
-        return 
+        cmd = [
+            'ign', 'service', '-s', '/world/food_court/set_pose',
+            '--reqtype', 'ignition.msgs.Pose',
+            '--reptype', 'ignition.msgs.Boolean',
+            '--timeout', '1000',
+            '--req', req
+        ]
         
+        result = subprocess.run(cmd, capture_output=True, text=True)
+
+        self.get_logger().info(f"Teleport result: {result.stdout}")
+        return result.returncode == 0
+
+
+    # —————————————————————— YOUR LLM FUNCTIONS (now perfect) ——————————————————————
+    
+    def deliver_food(self, stall_number, table_number):
+        self.get_logger().info('Delivering food ...')
+        table_pose = TableLocation.get(table_number)
+        stall_pose = StallLocation.get(stall_number)
+
+        if table_pose is None:
+            self.get_logger().error(f"Invalid table number: {table_number}")
+            return 
+
+        if stall_pose is None:
+            self.get_logger().error(f"Invalid stall number: {stall_number}")
+            return 
+
+        sx, sy, syaw = stall_pose
+        hx, hy, hyaw = table_pose
+        home_pose_x, home_pose_y, home_pose_yaw = home_pose
+
+        food_name = food[stall_number - 1]
+
+        result = self.goto_service(sx, sy+0.5, syaw) 
+        self.get_logger().info('Robot Near Stall')
+        time.sleep(2.0)
+
+        result = self.teleport(name=food_name, x=sx, y=sy+0.5, z=0.4)
+        self.get_logger().info('Food Picked from Stall')
+        time.sleep(2.0)
+
+        result = self.goto_service(hx, hy, hyaw)
+        self.get_logger().info('Robot Near Table')
+        time.sleep(2.0)
+
+        result = self.teleport(name=food_name, x=hx+0.1, y=hy-0.7, z=0.6)
+        self.get_logger().info('Food Delivered')
+        time.sleep(2.0)
+
+        result = self.goto_service(home_pose_x, home_pose_y, home_pose_yaw)
+        result = self.get_logger().info('Robot Went Home')
+
+
+    def clear_table(self, table_number, food_name):
+        self.get_logger().info('Clearing Table ...')
+        table_pose = TableLocation.get(table_number)
+
+        self.get_logger().info(f'Clear the food item: {food_name} from table number: {table_number}')
+
+        if table_pose is None:
+            self.get_logger().error(f"Invalid table number: {table_number}")
+            return 
+
+        table_x, table_y, table_yaw = table_pose
+        sink_x, sink_y, sink_yaw = sink_pose
+        home_pose_x, home_pose_y, home_pose_yaw = home_pose
+
+        # food_name = food[table_number - 1]
+
+        result = self.goto_service(table_x, table_y, table_yaw)
+        self.get_logger().info('Robot Near Table')
+        time.sleep(2.0)
+
+        result = self.teleport(name=food_name, x=table_x+0.1, y=table_y-0.7, z=0.6)
+        self.get_logger().info('Food Picked from Table')
+        time.sleep(2.0)
+
+        result = self.goto_service(sink_x, sink_y, sink_yaw)
+        self.get_logger().info('Robot Near Sink')
+        time.sleep(2.0)
+
+        result = self.teleport(name=food_name, x=home_pose_x, y=home_pose_y+0.5, z=0.6)
+        self.get_logger().info('Food Dropped in Sink')  
+        time.sleep(2.0)
+
+        result = self.goto_service(home_pose_x, home_pose_y, home_pose_yaw)
+        self.get_logger().info('Robot Went Home')
+
 
 def execute_python_code(code: str, node=None):
     """
@@ -660,7 +772,8 @@ def execute_python_code(code: str, node=None):
         if node is None:
             print("CRITICAL: Could not get node instance!")
             return
-    
+
+
     node.get_logger().info(f"Executing generated Python code:{code}")
     # node.get_logger().debug("Code to execute:\n%s", code)
 

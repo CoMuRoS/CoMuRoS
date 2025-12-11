@@ -14,6 +14,9 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/GoTo.srv"
   "srv/Find.srv"
   "srv/StartPick.srv"
+  "srv/GotoPoseDiffDrive.srv"
+  "srv/GotoPoseDrone.srv"
+  "srv/GotoPoseHolonomic.srv"
 )
 
 ament_package()

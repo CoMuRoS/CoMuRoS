@@ -13,7 +13,7 @@ from queue import Queue
 import openai
 from openai import OpenAI
 from google.genai import types
-from ollama import chat, ChatResponse
+# from ollama import chat, ChatResponse
 from google import genai
 
 
@@ -45,7 +45,7 @@ class TaskManager(Node):
 
         self.robot_state = None
 
-        self.declare_parameter("config_file", "robot_config_assmble_help")
+        self.declare_parameter("config_file", "robot_config_roscon_2025")
         cfg_file_name = self.get_parameter("config_file").get_parameter_value().string_value
         cfg_file = cfg_file_name + '.json'
         self.config_file = cfg_file
@@ -67,18 +67,11 @@ class TaskManager(Node):
         history_current_file = "chat_history_current.txt"
         self.history_current = os.path.join(package_share, "data", history_current_file)
 
-        self.robot_state_pub = self.create_publisher(String,'/robot_states',10)
-        self.set_robot_states()
-        # self.system_prompt = self.build_system_prompt()
         self.system_prompt = None
-        # print("SYSTEM PROMPT : \n")
-        # print(self.system_prompt)
-        
-        # Optional multi-step or overall plan
         self.sequence_of_tasks = ""
         self.task_status = "INIT"
         
-        self.conversation_log = [] # Full chat log
+        self.conversation_log = [] 
 
         self.multirobot_completion_status = False
         self.master_status = False 
@@ -89,12 +82,14 @@ class TaskManager(Node):
         self.single_tasks_dict = {}
         self.current_time = f"Hours: {00}, Minutes: {00}, Seconds: {00}"
 
+        self.time_sub = self.create_subscription(String, "/current_time", self.on_time_callback, 10)
         self.subscription = self.create_subscription(String, "/chat/output", self.on_chat_output, 10)
         self.input_sub = self.create_subscription(String, "/chat/input" , self.on_chat_input, 10)
         self.status_pub = self.create_subscription(String, "/chat/task_status", self.on_status_callback,10)   
         self.robot_state_sub = self.create_subscription(String, "/robot_states", self.on_robot_state_callback,10)
-        self.time_sub = self.create_subscription(String, "/current_time", self.on_time_callback, 10)
+        self.robot_state_pub = self.create_publisher(String,'/robot_states',10)
 
+        self.set_robot_states()
         self.create_dynamic_subscribers()
 
         self.pub_tasks_json = self.create_publisher(String, "/task_manager/tasks_json", 10)
@@ -262,9 +257,9 @@ class TaskManager(Node):
 
             "### **Task Output Format (STRICTLY FOLLOW THIS):**\n"
             "**First, think step-by-step: Imagine all the real-world actions required for the task. Try to understand what the user wants and try to understand the scene along with it to decide robot action. Identify if multiple robots and their capabilites or skills must interact. Only then classify the task into Plan or Independent or Team.**\n\n"
-            "1. If the task requires multiple robots to COORDINATE to do Tasks that cannot be done parallely and have sequential dependence , ONLY THEN generate a step-by-step plan in this format Else you SHOULD AND MUST Proceed with Independent tasks:\n"
+            "1. If the user requires tasks to be done one after another or If the task requires multiple robots to do Tasks that cannot be done parallely and have sequential dependence , ONLY THEN generate a step-by-step plan in this format Else you SHOULD AND MUST Proceed with Independent tasks:\n"
             "   - It is important that independent task must be identified as they can be done parallely.\n"
-            "   - Do not give the task from history unless it was stopped \n"
+            "   - Do not give the task from history unless it was interupted \n"
             "   - Every time the Task Manager assigns, resumes, or replans any task for any robot, the output must start with either Plan: (for sequential/coordinated tasks) or Independent Tasks: (for standalone tasks). One of these two section headers is mandatory when Task Manager is assigning tasks to robots.\n"
             "   - You are an AI assistant so use all your logic and create a logical plan which contains all steps needs to be taken to complete the given task if it falls under a Plan category\n"
             "   - Take extreme care about FEASIBILITY and MORE SAFETY while choosing the order of the tasks in the plan.\n"
@@ -454,12 +449,12 @@ class TaskManager(Node):
         messages.insert(0, {"role": "system", "content": self.system_prompt})
         # ai_output = self.call_openai(messages, debug_label="Allocation")
 
-        try:
-            with open('prompts.txt', "a") as file:
-                file.write(json.dumps(messages, indent=2))
-                file.write("\n")  # optional: add newline for readability            # self.get_logger().info(f"[TaskManager] Loaded {len(self.chat_log)} previous messages.")
-        except Exception as e:
-            self.get_logger().error(f"[TaskManager] Failed to write prompts: {e}")
+        # try:
+        #     with open('prompts.txt', "a") as file:
+        #         file.write(json.dumps(messages, indent=2))
+        #         file.write("\n")  # optional: add newline for readability            # self.get_logger().info(f"[TaskManager] Loaded {len(self.chat_log)} previous messages.")
+        # except Exception as e:
+        #     self.get_logger().error(f"[TaskManager] Failed to write prompts: {e}")
 
         ######################### OPENAI MODELS #########################
 

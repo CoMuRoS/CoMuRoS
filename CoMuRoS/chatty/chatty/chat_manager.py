@@ -81,7 +81,11 @@ class ChatManager(Node):
             self.chat_entry = f"[Time: {timestamp}] {role.capitalize()}: {content}"
         else:
             role, content = "Task Manager", msg.data
+            # role, content = "Task Manager (msg)", msg.data
             self.chat_entry = f"[Time: {timestamp}] {role}:\n{content}"
+
+        # self.chat_entry = f"[Time: {timestamp}] {role.capitalize()}: {content}"
+        
 
         self.get_logger().info(f"[ChatManager] Received on /input-> {self.chat_entry}")
 

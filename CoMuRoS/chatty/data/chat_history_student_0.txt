@@ -1,25 +1,24 @@
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 15] Human: hi
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hu
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 15] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hu
 [Time: Hours: 00, Minutes: 00, Seconds: 37] Human: hi
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: hi
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 06] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 06] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 07] Human: how are you ?
@@ -34,8 +33,8 @@ Independent Tasks:
 Lerobot1 tasks: show the ball
 multirobot_list: []
 singlerobot_list: [Lerobot1]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 18] Human: lerobot1 pick grey gear
@@ -44,8 +43,8 @@ Independent Tasks:
 Lerobot2 tasks: pick grey gear
 multirobot_list: []
 singlerobot_list: [Lerobot2]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 17] Human: lerobot1 pick grey gear
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 17] Human: lerobot1 pick grey gear
 [Time: Hours: 00, Minutes: 00, Seconds: 18] Task Manager:
 Independent Tasks:
 Lerobot1 tasks: pick grey gear
@@ -78,9 +77,16 @@ Independent Tasks:
 Lerobot2 tasks: pick green gear
 multirobot_list: []
 singlerobot_list: [Lerobot2]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 02, Seconds: 40] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 44] Human: throw green object
+[Time: Hours: 00, Minutes: 00, Seconds: 45] Task Manager:
+Independent Tasks:
+Lerobot1 tasks: pick and throw green object
+multirobot_list: []
+singlerobot_list: [Lerobot1]
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 02, Seconds: 40] Human: hi
 [Time: Hours: 00, Minutes: 02, Seconds: 41] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 03, Seconds: 21] Human: navigate to the bottle
@@ -128,8 +134,8 @@ Plan:
 3. user: pick the bat
 multirobot_list: [Lerobot,Burger]
 singlerobot_list: []
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 05] Human: pick  bottle
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 05] Human: pick  bottle
 [Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager:
 Independent Tasks:
 Lerobot tasks: pick bottle
@@ -171,32 +177,32 @@ Independent Tasks:
 Lerobot tasks: pick cup
 multirobot_list: []
 singlerobot_list: [Lerobot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hu
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Could you please clarify or provide more information?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Human: pick the brown ball
@@ -214,8 +220,8 @@ Nearby, a wise old turtle named Tilly was resting under a tree. Benny hopped ove
 Benny pondered Tilly's words and realized that the true magic was in his heart and the friendships he made. From that day on, Benny explored the forest with a newfound appreciation, knowing that the world was full of wonders, as long as he kept his heart open.
 
 And so, Benny the rabbit continued his adventures, spreading joy and magic wherever he went. The end.
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Human: pick green tes
@@ -227,17 +233,17 @@ Independent Tasks:
 Lerobot tasks: pick green tea
 multirobot_list: []
 singlerobot_list: [Lerobot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: First pick the ball and only then goto to the door
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: First pick the ball and only then goto to the door
 [Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
 Plan:
 1. Lerobot: Pick the ball
 2. Burger: Go to the door
 multirobot_list: [Lerobot, Burger]
 singlerobot_list: []
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 32] Human: First pick ball and then goto door
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 32] Human: First pick ball and then goto door
 [Time: Hours: 00, Minutes: 00, Seconds: 34] Task Manager:
 Independent Tasks:
 Lerobot tasks: pick ball
@@ -258,8 +264,8 @@ Lerobot tasks: pick bottle
 Burger tasks: goto door
 multirobot_list: []
 singlerobot_list: [Lerobot, Burger]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 18] Human: pick and show me the cloth, and only then bring it to table
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 18] Human: pick and show me the cloth, and only then bring it to table
 [Time: Hours: 00, Minutes: 01, Seconds: 19] Task Manager:
 Independent Tasks:
 Lerobot tasks: pick and show cloth, bring cloth to table
@@ -274,16 +280,16 @@ singlerobot_list: [Burger]
 [Time: Hours: 00, Minutes: 06, Seconds: 28] Human: why are u not giving plans ?
 [Time: Hours: 00, Minutes: 06, Seconds: 32] Task Manager:
 The tasks assigned so far have been independent and do not require coordination between multiple robots, which is why they were handled as independent tasks. If a task requires sequential steps or coordination between multiple robots, a plan will be provided.
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: gimme plan pick the ball and keep it in the right side of your , and after placing it someone goto the door and check whther its locked or not
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 08] Human: gimme plan pick the ball and keep it in the right side of your , and after placing it someone goto the door and check whther its locked or not
 [Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
 Plan:
 1. Lerobot: Pick the ball and place it on the right side.
 2. Burger: Go to the door and check whether it's locked or not.
 multirobot_list: [Lerobot, Burger]
 singlerobot_list: []
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 07] Human: gimme plan pick the ball and keep it in the right side of your , and after placing it someone goto the door and check whther its locked or not
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 07] Human: gimme plan pick the ball and keep it in the right side of your , and after placing it someone goto the door and check whther its locked or not
 [Time: Hours: 00, Minutes: 00, Seconds: 10] Task Manager:
 Plan:
 1. Lerobot: Pick the ball and place it on the right side.
@@ -291,8 +297,8 @@ Plan:
 
 multirobot_list: [Lerobot, Burger]
 singlerobot_list: []
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 41] Human: gimme plan pick the ball and after picking it someone goto the door and check whther its locked or not
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 41] Human: gimme plan pick the ball and after picking it someone goto the door and check whther its locked or not
 [Time: Hours: 00, Minutes: 00, Seconds: 43] Task Manager:
 Plan:
 1. Lerobot: Pick the ball
@@ -308,8 +314,8 @@ multirobot_list: [Burger]
 singlerobot_list: []
 [Time: Hours: 00, Minutes: 01, Seconds: 33] Task Manager:
 Thank you for your assistance. Please let me know once the door is located.
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: gimme plan pick the ball and after picking it someone goto the door and check whther its locked or not
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: gimme plan pick the ball and after picking it someone goto the door and check whther its locked or not
 [Time: Hours: 00, Minutes: 00, Seconds: 11] Task Manager:
 Plan:
 1. Lerobot: Pick the ball
@@ -327,21 +333,58 @@ singlerobot_list: []
 [Time: Hours: 00, Minutes: 00, Seconds: 37] Task Manager:
  !! Multi-Robot Task Completed Successfully !!.
 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 06] Human (msg): hii
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 37] Human: go to the door and only then pick towel
+[Time: Hours: 00, Minutes: 00, Seconds: 38] Task Manager:
+Independent Tasks:
+Burger tasks: go to the door
+Lerobot tasks: pick towel
+multirobot_list: []
+singlerobot_list: [Burger, Lerobot]
+[Time: Hours: 00, Minutes: 01, Seconds: 39] Human: bring me cup from the table
+[Time: Hours: 00, Minutes: 01, Seconds: 41] Task Manager:
+Plan:
+1. Lerobot: STOP
+2. Burger: STOP
+3. User: Bring the cup from the table
+multirobot_list: [Lerobot, Burger]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 03, Seconds: 17] Human: burger carry the vegetable to lerobot. lerobot pick the vegetable once burger brings it to you.
+[Time: Hours: 00, Minutes: 03, Seconds: 19] Task Manager:
+Plan:
+1. Lerobot: STOP
+2. Burger: STOP
+3. Burger: carry the vegetable to Lerobot
+4. Lerobot: pick the vegetable from Burger
+multirobot_list: [Lerobot, Burger]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 07, Seconds: 24] Human: burger carry the ball placed on your back to the lerobot . Then lerobot you should pick the ball from the back of burger
+[Time: Hours: 00, Minutes: 07, Seconds: 26] Task Manager:
+Plan:
+1. Lerobot: STOP
+2. Burger: STOP
+3. Burger: carry the ball placed on your back to Lerobot
+4. Lerobot: pick the ball from the back of Burger
+multirobot_list: [Lerobot, Burger]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 08, Seconds: 14] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 06] Human (msg): hii
 [Time: Hours: 00, Minutes: 00, Seconds: 09] Task manager (msg): Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 11] Task manager (msg): Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 13] Task manager (msg): Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 04] Task manager (msg): Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 05] Task manager (msg): Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 07] Task manager (msg): Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 06] Task Manager (msg):
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 07] Task Manager (msg):
@@ -364,8 +407,8 @@ Hello! How can I assist you today?
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 15] Task Manager (msg):
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 03] Task Manager (msg):
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 04] Task Manager (msg):
@@ -374,16 +417,17 @@ Hello! How can I assist you today?
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 05] Task Manager (msg):
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 04] Task Manager (msg):
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 06] Task Manager (msg):
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager (msg):
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 0, Minutes: 0, Seconds: 0] Human: hi
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager (msg):
 Hello! How can I assist you today?
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager (msg):
@@ -392,13 +436,13 @@ Hello! How can I assist you today?
 Hello! How can I assist you today?
 [Time: Hours: 0, Minutes: 0, Seconds: 0] Task Manager (msg):
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 03] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 04] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 32] Task Manager:
 Hello! How can I assist you today?
 [Time: Hours: 00, Minutes: 00, Seconds: 42] Human: all goto car
@@ -409,19 +453,19 @@ Burger tasks: go to car
 X Uav tasks: go to car
 multirobot_list: []
 singlerobot_list: [Yahboom, Burger, X Uav]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 02] Human: hi
 [Time: Hours: 00, Minutes: 00, Seconds: 05] Task Manager:
 Hello! How can I assist you today?
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 02, Seconds: 29] Human: cleaning bot goto table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 02, Seconds: 29] Human: cleaning bot goto table 1
 [Time: Hours: 00, Minutes: 02, Seconds: 32] Task Manager:
 Independent Tasks:
 cleaning_bot tasks: goto table 1
 multirobot_list: []
 singlerobot_list: [cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 04, Seconds: 56] Human: delivery bot goto table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 04, Seconds: 56] Human: delivery bot goto table 1
 [Time: Hours: 00, Minutes: 04, Seconds: 58] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: goto table 1
@@ -439,8 +483,8 @@ Independent Tasks:
 Drone tasks: goto 1st floor
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: cleaning robto goto kitchen
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: cleaning robto goto kitchen
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: go to kitchen
@@ -452,8 +496,8 @@ Independent Tasks:
 Cleaning Bot tasks: go to kitchen
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 50] Human: cleaning robot goto kitchen
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 50] Human: cleaning robot goto kitchen
 [Time: Hours: 00, Minutes: 00, Seconds: 52] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: go to kitchen
@@ -495,15 +539,15 @@ Independent Tasks:
 Cleaning Bot tasks: go to hall
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 10] Human: cleaning bot goto hall
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 10] Human: cleaning bot goto hall
 [Time: Hours: 00, Minutes: 00, Seconds: 13] Task Manager:
 Independent Tasks:
 cleaning_bot tasks: goto hall
 multirobot_list: []
 singlerobot_list: [cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: cleaning bot goto car
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: cleaning bot goto car
 [Time: Hours: 00, Minutes: 00, Seconds: 15] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: goto car
@@ -575,29 +619,29 @@ Independent Tasks:
 Drone tasks: goto bus
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: drone go home
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: drone go home
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Drone tasks: Perform Return to Home
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: drone goto home
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: drone goto home
 [Time: Hours: 00, Minutes: 00, Seconds: 33] Task Manager:
 Independent Tasks:
 Drone tasks: Perform Return to Home
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 29] Human: drone goto home
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 29] Human: drone goto home
 [Time: Hours: 00, Minutes: 01, Seconds: 32] Task Manager:
 Independent Tasks:
 Drone tasks: Perform Return to Home
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: drone goto table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: drone goto table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Drone tasks: go to table 3
@@ -636,8 +680,8 @@ Independent Tasks:
 Delivery_bot tasks: go to the shipyard
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: carriage robot goto bus
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 34] Human: carriage robot goto bus
 [Time: Hours: 00, Minutes: 00, Seconds: 35] Task Manager:
 I'm sorry, but there is no "carriage robot" in the current configuration. Please specify the task for one of the available robots: Cleaning Bot, Delivery Bot, or Drone.
 [Time: Hours: 00, Minutes: 00, Seconds: 49] Human: delivery robot goto bus
@@ -646,8 +690,8 @@ Independent Tasks:
 Delivery_bot tasks: goto bus
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: delivery robot go home
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: delivery robot go home
 [Time: Hours: 00, Minutes: 00, Seconds: 29] Task Manager:
 Independent Tasks:
 delivery_bot tasks: go home
@@ -659,31 +703,31 @@ Independent Tasks:
 delivery_bot tasks: goto bus
 multirobot_list: []
 singlerobot_list: [delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 12] Human: dron goto car
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 12] Human: dron goto car
 [Time: Hours: 00, Minutes: 01, Seconds: 16] Task Manager:
 Independent Tasks:
 Drone tasks: go to car
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 17] Human: deliver food  item from sttall number 2 to table number 1
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 17] Human: deliver food  item from sttall number 2 to table number 1
 [Time: Hours: 00, Minutes: 01, Seconds: 19] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food item from stall number 2 to table number 1
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 55] Human: deliver food to table 3 from stall 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 55] Human: deliver food to table 3 from stall 2
 [Time: Hours: 00, Minutes: 00, Seconds: 56] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food to table 3 from stall 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 41] Human: deliver food to table 3 from stall 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 41] Human: deliver food to table 3 from stall 2
 [Time: Hours: 00, Minutes: 00, Seconds: 44] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 2 to table 3
@@ -695,15 +739,15 @@ Independent Tasks:
 Delivery Bot tasks: deliver food from stall 3 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 40] Human: deliver food from stall 2 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 40] Human: deliver food from stall 2 to table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 42] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 2 to table 3
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Delivery_Bot tasks: deliver food from stall 2 to table 3
@@ -763,8 +807,8 @@ Independent Tasks:
 Delivery_Bot tasks: deliver food from stall 3 to table 1
 multirobot_list: []
 singlerobot_list: [Delivery_Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 02, Seconds: 19] Human: deliver food from stall 3 to table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 02, Seconds: 19] Human: deliver food from stall 3 to table 1
 [Time: Hours: 00, Minutes: 02, Seconds: 21] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 3 to table 1
@@ -818,8 +862,8 @@ Independent Tasks:
 Delivery_bot tasks: deliver food from stall 3 to table 1
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 46] Human: deliver food from stall 3 to table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 46] Human: deliver food from stall 3 to table 1
 [Time: Hours: 00, Minutes: 00, Seconds: 47] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 3 to table 1
@@ -843,30 +887,30 @@ Independent Tasks:
 Delivery_bot tasks: deliver food from stall 3 to table 1
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 47] Human: deliver food from stall 3 to table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 47] Human: deliver food from stall 3 to table 1
 [Time: Hours: 00, Minutes: 00, Seconds: 49] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 3 to table 1
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 22] Human: deliver the food from stall 3 to table 1
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 22] Human: deliver the food from stall 3 to table 1
 [Time: Hours: 00, Minutes: 01, Seconds: 24] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver the food from stall 3 to table 1
 multirobot_list: []
 singlerobot_list: [delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 03, Seconds: 05] Human: deliver 'food2' from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 03, Seconds: 05] Human: deliver 'food2' from stall 2 to table 2
 [Time: Hours: 00, Minutes: 03, Seconds: 07] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver 'food2' from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 44] Human: deliver food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 44] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 48] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 2 to table 2
@@ -875,128 +919,128 @@ singlerobot_list: [Delivery Bot]
 [Time: Hours: 00, Minutes: 10, Seconds: 21] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 10, Seconds: 23] Task Manager:
 The task to deliver food from stall 2 to table 2 has already been completed. If you have any other tasks or need further assistance, please let me know!
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: deliver food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 30] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 35] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 30] Human: deliver food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 30] Human: deliver food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 31] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: deliver teh food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 26] Human: deliver teh food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 28] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver the food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: deliver the food from stall 1 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: deliver the food from stall 1 to table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 1 to table 3
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 28] Human: deliver the food from 2nd stall to 4th table
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 28] Human: deliver the food from 2nd stall to 4th table
 [Time: Hours: 00, Minutes: 00, Seconds: 29] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from 2nd stall to 4th table
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 50] Human: deliver food from stall 2 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 50] Human: deliver food from stall 2 to table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 53] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver food from stall 2 to table 3
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 41] Human: deliver the food from stall 2 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 41] Human: deliver the food from stall 2 to table 3
 [Time: Hours: 00, Minutes: 01, Seconds: 45] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver the food from stall 2 to table 3
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 45] Human: deliver stall 1 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 45] Human: deliver stall 1 to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 47] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver stall 1 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 10] Human: deliver the  food from table 1 to stall 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 10] Human: deliver the  food from table 1 to stall 2
 [Time: Hours: 00, Minutes: 01, Seconds: 11] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver the food from table 1 to stall 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 32] Human: clean thw floor
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 32] Human: clean thw floor
 [Time: Hours: 00, Minutes: 00, Seconds: 34] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the floor
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 29] Human: clean the place
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 29] Human: clean the place
 [Time: Hours: 00, Minutes: 00, Seconds: 32] Task Manager:
 Independent Tasks:
 Cleaning_bot tasks: clean the area
 multirobot_list: []
 singlerobot_list: [Cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 14] Human: clean the place
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 14] Human: clean the place
 [Time: Hours: 00, Minutes: 00, Seconds: 17] Task Manager:
 Independent Tasks:
 Cleaning_bot tasks: clean the place
 multirobot_list: []
 singlerobot_list: [Cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 27] Human: clean the place
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 27] Human: clean the place
 [Time: Hours: 00, Minutes: 00, Seconds: 29] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the place
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: clean the place
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: clean the place
 [Time: Hours: 00, Minutes: 00, Seconds: 22] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the place
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 05, Seconds: 59] Human: drone goto 2, 2, 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 05, Seconds: 59] Human: drone goto 2, 2, 2
 [Time: Hours: 00, Minutes: 06, Seconds: 01] Task Manager:
 Independent Tasks:
 Drone tasks: go to coordinates (2, 2, 2)
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 24] Human: drone goto (2, 1, 1)
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 24] Human: drone goto (2, 1, 1)
 [Time: Hours: 00, Minutes: 00, Seconds: 26] Task Manager:
 Independent Tasks:
 Drone tasks: goto (2, 1, 1)
@@ -1008,11 +1052,11 @@ Independent Tasks:
 Drone tasks: goto 3, 3, 2
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 46] Human: deliver the food from stall 2 to table 1, clean the place, drone goto (3, 0, 2)
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 46] Human: deliver the food from stall 2 to table 1, clean the place, drone goto (3, 0, 2)
 [Time: Hours: 00, Minutes: 01, Seconds: 50] Task Manager:
 Independent Tasks:
 Delivery_Bot tasks: deliver food from stall 2 to table 1
@@ -1020,9 +1064,9 @@ Cleaning_Bot tasks: clean the place
 Drone tasks: goto (3, 0, 2)
 multirobot_list: []
 singlerobot_list: [Delivery_Bot, Cleaning_Bot, Drone]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 00] Human: deliver the food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 00] Human: deliver the food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 01, Seconds: 01] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver the food from stall 2 to table 2
@@ -1040,16 +1084,16 @@ Independent Tasks:
 Delivery Bot tasks: deliver the food from stall 2 to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 02] Human: drone goto (3, 0, 3), deliver the food from stall 2 to table 2, clean the place
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 02] Human: drone goto (3, 0, 3), deliver the food from stall 2 to table 2, clean the place
 [Time: Hours: 00, Minutes: 01, Seconds: 04] Task Manager:
 Independent Tasks:
 Drone tasks: goto (3, 0, 3), deliver the food from stall 2 to table 2
 Cleaning Bot tasks: clean the place
 multirobot_list: []
 singlerobot_list: [Drone, Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to tabl e2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: deliver food from stall 2 to tabl e2
 [Time: Hours: 00, Minutes: 00, Seconds: 35] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver food from stall 2 to table 2
@@ -1067,10 +1111,10 @@ Independent Tasks:
 Drone tasks: goto (3, 0, 3)
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 10] Human: clean the place, drone goto(3, 0, 3), deliver the food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 10] Human: clean the place, drone goto(3, 0, 3), deliver the food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 01, Seconds: 12] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the place
@@ -1096,8 +1140,8 @@ Independent Tasks:
 Drone tasks: goto (-2, 0, 4)
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 05, Seconds: 51] Human: deliiver the food from stall 2 to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 05, Seconds: 51] Human: deliiver the food from stall 2 to table 2
 [Time: Hours: 00, Minutes: 05, Seconds: 55] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: deliver the food from stall 2 to table 2
@@ -1115,24 +1159,24 @@ Independent Tasks:
 Cleaning_bot tasks: clear the table 2
 multirobot_list: []
 singlerobot_list: [Cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 04] Human: clean the floor
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 04] Human: clean the floor
 [Time: Hours: 00, Minutes: 01, Seconds: 06] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the floor
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 57] Human: clean the floor
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 57] Human: clean the floor
 [Time: Hours: 00, Minutes: 00, Seconds: 59] Task Manager:
 Independent Tasks:
 Cleaning_bot tasks: clean the floor
 multirobot_list: []
 singlerobot_list: [Cleaning_bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 05, Seconds: 02] Human: clean the floor
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 05, Seconds: 02] Human: clean the floor
 [Time: Hours: 00, Minutes: 05, Seconds: 03] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the floor
@@ -1150,15 +1194,15 @@ Independent Tasks:
 Cleaning Bot tasks: clean the floor
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 30] Human: get some non veg food for guest at table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 30] Human: get some non veg food for guest at table 2
 [Time: Hours: 00, Minutes: 01, Seconds: 33] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: go to stall 2, pick up non-veg food, deliver to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 36] Human: get some juice to last table
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 36] Human: get some juice to last table
 [Time: Hours: 00, Minutes: 00, Seconds: 38] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: Deliver juice to the last table
@@ -1170,55 +1214,55 @@ Independent Tasks:
 Delivery Bot tasks: Deliver juice to the 4th table
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 07] Human: get the juice to 4th table
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 07] Human: get the juice to 4th table
 [Time: Hours: 00, Minutes: 01, Seconds: 11] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: deliver juice to 4th table
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: from stall 2 get something to table 2
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 20] Human: from stall 2 get something to table 2
 [Time: Hours: 00, Minutes: 00, Seconds: 22] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: go to stall 2, pick up item, deliver item to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: get the juice from stall 3 to table 3
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 33] Human: get the juice from stall 3 to table 3
 [Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: get the juice from stall 3, deliver juice to table 3
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 49] Human: from stall 2 carry food to 2nd table
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 49] Human: from stall 2 carry food to 2nd table
 [Time: Hours: 00, Minutes: 00, Seconds: 51] Task Manager:
 Independent Tasks:
 Delivery Bot tasks: carry food from stall 2 to 2nd table
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: goto stall 2 and get food to tabke 2
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: goto stall 2 and get food to tabke 2
 [Time: Hours: 00, Minutes: 00, Seconds: 23] Task Manager:
 Independent Tasks:
 Delivery_bot tasks: goto stall 2, get food, deliver to table 2
 multirobot_list: []
 singlerobot_list: [Delivery_bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 08, Seconds: 52] Human: server the table with the tall guy with nonveg
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 08, Seconds: 52] Human: server the table with the tall guy with nonveg
 [Time: Hours: 00, Minutes: 08, Seconds: 54] Task Manager:
 Independent Tasks:
 Drone tasks: observe and identify the table with the tall guy
 multirobot_list: []
 singlerobot_list: [Drone]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 05, Seconds: 44] Human: serve the tall guy with the nonveg meal
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 05, Seconds: 44] Human: serve the tall guy with the nonveg meal
 [Time: Hours: 00, Minutes: 05, Seconds: 48] Task Manager:
 Independent Tasks:
 Drone tasks: Fly to locate the tall guy
@@ -1226,9 +1270,9 @@ Delivery Bot tasks: Pick up nonveg meal from stall 2
 
 multirobot_list: []
 singlerobot_list: [Drone, Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 01, Seconds: 05] Human: serve the tall guy sitting on the table with nonveg meal
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 01, Seconds: 05] Human: serve the tall guy sitting on the table with nonveg meal
 [Time: Hours: 00, Minutes: 01, Seconds: 08] Task Manager:
 Independent Tasks:
 Drone tasks: fly to the table, identify the tall guy, confirm if he wants a nonveg meal
@@ -1250,8 +1294,8 @@ Delivery Bot tasks: resume go to stall 2, pick up nonveg meal, deliver to the ta
 
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 02, Seconds: 33] Human: serve nonveg to the child
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 02, Seconds: 33] Human: serve nonveg to the child
 [Time: Hours: 00, Minutes: 02, Seconds: 35] Task Manager:
 Independent Tasks:
 Drone tasks: identify the location of the child and the non-vegetarian food stall
@@ -1266,13 +1310,13 @@ singlerobot_list: [Delivery Bot]
 Independent Tasks:
 Delivery Bot tasks: pick up non-vegetarian food from stall 2, deliver to the child at table 2
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 58] Human: serve the child with nonveg meal
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 58] Human: serve the child with nonveg meal
 [Time: Hours: 00, Minutes: 01, Seconds: 00] Task Manager:
 Drone: Could you please identify the table number where the child is seated?
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: serve teh child veg meal
+*********     NEW EXPERIMNET           ********* 
+Student 0*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: serve teh child veg meal
 [Time: Hours: 00, Minutes: 00, Seconds: 14] Task Manager:
 Independent Tasks:
 Drone tasks: Identify the location of the child who needs to be served a veg meal, Identify the table number of the child
@@ -1284,8 +1328,8 @@ Independent Tasks:
 Delivery Bot tasks: Pick up veg meal from stall 1, Deliver veg meal to table 2
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 02, Seconds: 23] Human: serve the child veg meal
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 02, Seconds: 23] Human: serve the child veg meal
 [Time: Hours: 00, Minutes: 02, Seconds: 26] Task Manager:
 Independent Tasks:
 Drone tasks: identify table where the child is seated
@@ -1309,34 +1353,10 @@ Independent Tasks:
 Delivery Bot tasks: pick up chicken meal from stall 2, deliver to table 1
 multirobot_list: []
 singlerobot_list: [Delivery Bot]
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 11, Seconds: 03] Human: Please clean the red curry that has spilled on the floor.
+*********     NEW EXPERIMNET           ********* 
+Student 0[Time: Hours: 00, Minutes: 11, Seconds: 03] Human: Please clean the red curry that has spilled on the floor.
 [Time: Hours: 00, Minutes: 11, Seconds: 06] Task Manager:
 Independent Tasks:
 Cleaning Bot tasks: clean the red curry spilled on the floor
-multirobot_list: []
-singlerobot_list: [Cleaning Bot]
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-****************   NEW EXPERIMENT   ********************** 
-[Time: Hours: 00, Minutes: 00, Seconds: 45] Human: deluver the pepsi to the table wheere that chilld is sitting
-[Time: Hours: 00, Minutes: 00, Seconds: 48] Task Manager:
-Independent Tasks:
-Drone tasks: Identify the table where the child is sitting
-
-multirobot_list: []
-singlerobot_list: [Drone]
-[Time: Hours: 00, Minutes: 01, Seconds: 17] Human: deliver the water bottle to table 1
-[Time: Hours: 00, Minutes: 01, Seconds: 20] Task Manager:
-Independent Tasks:
-Delivery Bot tasks: Deliver the water bottle to table 1
-
-multirobot_list: []
-singlerobot_list: [Delivery Bot]
-[Time: Hours: 00, Minutes: 01, Seconds: 48] Human: clean the place
-[Time: Hours: 00, Minutes: 01, Seconds: 50] Task Manager:
-Independent Tasks:
-Cleaning Bot tasks: Clean the place
-
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]

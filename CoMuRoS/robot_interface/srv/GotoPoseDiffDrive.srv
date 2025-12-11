@@ -1,0 +1,9 @@
+# GotoPoseDiffDrive.srv
+
+float64 x
+float64 y
+float64 yaw_deg
+---
+bool accepted
+bool success
+string message

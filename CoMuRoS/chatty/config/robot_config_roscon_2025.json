@@ -1,0 +1,55 @@
+{
+  "robot_names": ["cleaning_bot", "delivery_bot", "drone"],
+
+  "robot_capabilities": {
+    "cleaning_bot": "A 4-wheel holonomic drive robot. It can clean floors.",
+    "delivery_bot": "A 4-wheel holonomic drive robot. It can carry/deliver items on its top surface.",
+    "drone": "A drone is positioned at a place where it can observe entire food court. Its primary job is to answer questions about the scene for awareness of Task Manager and other robots. "
+  },
+
+  "robot_morphology": {
+    "cleaning_bot": "Speed: 0.6 m/s, Dimensions: 260 X 210 X 140 mm (L X W X H), Drive: 4-wheel holonomic",
+    "delivery_bot":  "Payload: 2 kg, Speed: 0.22 m/s, Dimensions: 138 X 178 X 192 mm (L X W X H), Drive: 4-wheel holonomic",
+    "drone":   "Payload: 1.5 kg, Speed: 0-3 m/s, Dimensions: 450 X 450 X 200 mm, Type: quadrotor UAV, "
+  },
+
+  "robot_states": {
+    "cleaning_bot": {
+      "relative_position": "Home",
+      "relative_orientation": "Facing forward",
+      "carry_state": "Empty",
+      "mobility_state": "Stopped",
+      "mode": "Idle"
+    },
+
+    "delivery_bot": {
+      "relative_position": "Home",
+      "relative_orientation": "Facing forward",
+      "carry_state": "Empty",
+      "mobility_state": "Stopped",
+      "mode": "Idle"
+    },
+
+    "drone": {
+      "relative_position": "Home",
+      "relative_orientation": "Level attitude",
+      "carry_state": "Empty",
+      "mobility_state": "Holding position",
+      "mode": "Idle"
+    }
+  },
+
+
+  "task_specific_rules": [
+    "stall 1 is Vegetarian Food Stall",
+    "stall 2 is Non-Vegetarian Food Stall",
+    "stall 3 is Cold Drinks Stall",
+    "Whenever you need specific info like stall no or table no as a Task Manager you must Ask the drone about it.",
+    "After the drone replies to your question, you can continue to allocate task.",
+    "Answering questions should be classified as an independent task. "
+  ],
+
+  "task_replanning_rules": [
+    ""
+  ]
+}

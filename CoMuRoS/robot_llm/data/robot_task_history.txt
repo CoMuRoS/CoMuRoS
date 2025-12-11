@@ -1,0 +1,6 @@
+Lerobot (status) :  : NO CURRENT TASK
+Lerobot (status) : Pick the ball : TASK IN PROGRESS
+Lerobot (status) : pick ball : TASK COMPLETED
+Lerobot (status) : Pick the ball : TASK COMPLETED
+Burger (status) : Go to the door : TASK IN PROGRESS
+Burger (status) : Go to the door : TASK INTERRUPTED

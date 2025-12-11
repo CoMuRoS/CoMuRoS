@@ -1,0 +1,4 @@
+Cleaning_bot (status) :  : NO CURRENT TASK
+Cleaning_bot (status) : Clean the place : TASK IN PROGRESS
+Cleaning_bot (status) : clean : TASK INTERRUPTED
+Cleaning_bot (status) : Clean the place : TASK COMPLETED

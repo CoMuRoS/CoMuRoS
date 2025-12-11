@@ -1,0 +1,4 @@
+Drone (status) :  : NO CURRENT TASK
+Drone (status) : Identify the table where the child is sitting : TASK IN PROGRESS
+Drone (status) : describe screen with prompt: in which table is child is sitting? : TASK INTERRUPTED
+Drone (status) : Identify the table where the child is sitting : TASK COMPLETED

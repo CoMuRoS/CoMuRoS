@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 import json
 import time
 
 import openai
+import base64
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
+from sensor_msgs.msg import CompressedImage
 from dataclasses import dataclass
 import os
 from rclpy.callback_groups import (
@@ -15,10 +15,21 @@ from rclpy.callback_groups import (
     ReentrantCallbackGroup
 )
 from ament_index_python.packages import get_package_share_directory
-from rclpy.action import ActionClient
-from pick_object_interface.action import PickObject
 
-ROBOT_TYPE = 'Robotic Arm'
+from robot_interface.srv import GotoPoseDrone, Find
+from openai import OpenAI
+
+
+from concurrent.futures import Future
+from typing import Optional
+
+ROBOT_NAME   = 'drone'
+ROBOT_TYPE   = "Quadrotor UAV"
+NODE_NAME    = "drone_llm_node"
+PACKAGE_NAME = "drone"
+
+api_key = os.getenv("OPENAI_API_KEY")
+
 
 # Define available actions
 @dataclass
@@ -30,23 +41,18 @@ class TestOption:
 
 option_list = [
     TestOption(
-        name="Pick green object",
+        name="Hover",
         id=0,
-        description="This is used pick or show the green object or gear",
-        example_code="node.pick_green_object()"
+        description="This is used to make the drone hover or it can be used to goto the specified position",
+        example_code="node.hover(x=1.0, y=2.0, z=3.0, yaw_deg=0.0)"
     ),
     TestOption(
-        name="Pick brown object",
+        name="DescribeScreen",
         id=1,
-        description="This is used pick or show the brown object or gear",
-        example_code="node.pick_brown_object()"
+        description="This is used to describe the current screen view of the drone given a prompt. Answer the prompt in only one go. ",
+        example_code="node.describe_screen(prompt='in which table is child is sitting?')"
     ),
-    TestOption(
-        name="Pick grey object",
-        id=2,
-        description="This is used pick or show the grey object or gear",
-        example_code="node.pick_grey_object()"
-    )
+
 ]
 
 class RobotLLMNode(Node):
@@ -60,10 +66,10 @@ class RobotLLMNode(Node):
     _instance = None
 
     def __init__(self) -> None:
-        super().__init__('robot_llm_node')
+        super().__init__(NODE_NAME)
 
         # ---- Parameters ----
-        self.declare_parameter('robot_name', 'lerobot1')
+        self.declare_parameter('robot_name', ROBOT_NAME)
         self.robot_name: str = self.get_parameter('robot_name').value
         robot_task_topic = f'{self.robot_name}_task_status'
 
@@ -73,21 +79,33 @@ class RobotLLMNode(Node):
         self.robot_task = ""
         self.robot_states = {}
 
+        self.Visionclient = OpenAI(api_key=api_key)
+        self.latest_image_b64 = None
+
+
         # GROUPS
-        self.single_group = MutuallyExclusiveCallbackGroup()   # runs 1-at-a-time
-        self.multi_group  = ReentrantCallbackGroup()           # runs in parallel
+        self.single_group = MutuallyExclusiveCallbackGroup()   # For single-threaded/exclusive ops, like chat
+        self.seq_group = MutuallyExclusiveCallbackGroup()      # New: For sequential execution of robot_states and current_time
+        self.multi_group = ReentrantCallbackGroup()            # For parallel ops, consolidated into one for simplicity
 
         # ---- Publishers ----
         self.pub_task_status = self.create_publisher(String, '/chat/task_status', 10)
+        self.pub_input_msg = self.create_publisher(String, '/chat/input', 10)
         self.pub_robot_states = self.create_publisher(String, '/robot_states', 10)
         self.pub_robot_task = self.create_publisher(String, robot_task_topic, 10)
 
-        self._action_client = ActionClient(self, PickObject, 'pick_object')
+        self._goto_client = self.create_client(GotoPoseDrone, '/r3/goto_pose', callback_group=self.multi_group)
+
+        self._cancel_goto_pub = self.create_publisher(Bool, '/r3/cancel_goto_pose_goal', 10)
 
         # ---- Subscriptions ----
         self.sub_robot_states = self.create_subscription(
             String, '/robot_states', self.on_robot_states, 10,
-            callback_group=self.multi_group
+            callback_group=self.seq_group
+        )
+        self.current_time_sub = self.create_subscription(
+            String, '/current_time', self.on_current_time, 10,
+            callback_group=self.seq_group
         )
         self.sub_tasks_json = self.create_subscription(
             String, '/task_manager/tasks_json', self.on_tasks_json, 10,
@@ -98,17 +116,12 @@ class RobotLLMNode(Node):
             callback_group=self.single_group
         )
 
-        self.current_time_sub = self.create_subscription(
-            String, '/current_time', self.on_current_time, 10,
-            callback_group=self.multi_group
-        )
-
         # self.sub_chat_history = self.create_subscription(
         #     String, '/chat/history', self.on_chat_history, 10
         # )
-        # self.sub_chat_task_status = self.create_subscription(
-        #     String, '/chat/task_status', self.on_chat_task_status, 10
-        # )
+        self.sub_chat_task_status = self.create_subscription(
+            String, '/chat/task_status', self.on_chat_task_status, 10
+        )
 
         # ---- Timer Callbacks ----
         # self.timer_period = 1.0  # seconds
@@ -117,23 +130,30 @@ class RobotLLMNode(Node):
         #     callback_group=self.multi_group
         # )
 
+        self.create_subscription(
+            CompressedImage,
+            "/r3/bottom_camera/color/image_raw/compressed",
+            self.image_callback, 10,
+            callback_group=self.single_group
+        )
+
         self.get_logger().info(
             f'RobotLLMNode started for robot="{self.robot_name}". '
             f'Publishing robot task status on "{robot_task_topic}".'
         )
 
-        package_name = "robot_llm"
         directry = "data"
-        package_path = get_package_share_directory(package_name)
+        package_path = get_package_share_directory(PACKAGE_NAME)
 
-        script_name = "chat_history.txt"
+        script_name = self.robot_name+"_chat_history.txt"
         self.history_file = os.path.join(package_path, directry, script_name)
 
-        script_name = 'robot_task_history.txt'
+        script_name = self.robot_name+'_task_history.txt'
         self.robot_task_history = os.path.join(package_path, directry, script_name)
 
         self.clear_files()
         self.robot_has_no_current_task()
+
 
     @classmethod
     def get_instance(cls):
@@ -151,7 +171,10 @@ class RobotLLMNode(Node):
                 file.write("")  # Clear the file contents
             self.get_logger().info("Cleared chat history file on startup.")
         else:
-            self.get_logger().warn(f"Chat history file not found: {self.history_file}")
+            with open(self.history_file, "w") as file:
+                file.write("")  # Create empty file
+            self.get_logger().warn(f"Chat history file not found. Created new file: {self.history_file}")
+
         
         if os.path.exists(self.robot_task_history):
             with open(self.robot_task_history, "w") as file:
@@ -159,9 +182,20 @@ class RobotLLMNode(Node):
             self.get_logger().info("Cleared the robot task history file on startup.")
         else:
             self.get_logger().warn(f"Robot Task history file not found: {self.robot_task_history}")
+            with open(self.robot_task_history, "w") as file:
+                file.write("")  # Create empty file
+            self.get_logger().warn(f"Robot task history file not found. Created new file: {self.robot_task_history}")
 
 
     # -------------------- Callbacks --------------------
+
+    def image_callback(self, msg: CompressedImage):
+        """Store latest image in Base64."""
+        try:
+            self.latest_image_b64 = base64.b64encode(msg.data).decode("utf-8")
+        except Exception as e:
+            self.get_logger().error(f"Error converting image: {e}")
+
 
     def on_robot_states(self, msg: String) -> None:
         """Handle robot state updates (expects JSON string in msg.data)."""
@@ -196,13 +230,24 @@ class RobotLLMNode(Node):
                     break
 
             robot_task = robot_tasks.get(robot_name, "").strip()
+            self.get_logger().debug(f"{self.robot_name} task fetched [1]")
+
+            if not robot_task:
+                robot_task = robot_tasks.get(self.robot_name+'_task', "").strip()
+                self.get_logger().debug(f"{self.robot_name+'_task'} task fetched [2]")
+
+            if not robot_task:
+                robot_task = robot_tasks.get(self.robot_name+'_tasks', "").strip()
+                self.get_logger().debug(f"{self.robot_name+'_tasks'} task fetched [3]")
+
             if not robot_task:
                 robot_task = f"No {self.robot_name} task found."
+                self.get_logger().debug(robot_task)
                 return
             
             elif "stop" in robot_task.lower():
                 self.get_logger().info(f"{self.robot_name} task: {robot_task}")
-                self.robot_task_interrupted()
+                self.robot_task_interrupted(robot_task)
                 self.stop_tasks()
                 msg.data = f'{self.robot_name.capitalize()} (status): STOP TASKS COMPLETED'
                 self.pub_task_status.publish(msg)
@@ -249,9 +294,12 @@ class RobotLLMNode(Node):
     #     """Handle chat history stream."""
     #     # self.get_logger().debug(f'Received /chat/history len={len(msg.data)}')
 
-    # def on_chat_task_status(self, msg: String) -> None:
-    #     """Observe task status changes (external)."""
-    #     self.get_logger().debug(f'Observed /chat/task_status: {msg.data}')
+    def on_chat_task_status(self, msg: String) -> None:
+        """Observe task status changes (external)."""
+        self.get_logger().debug(f'Observed /chat/task_status: {msg.data}')
+        with open(self.history_file, "a") as file:
+            file.write(msg.data + "\n")
+        
 
     def on_current_time(self, msg: String) -> None:
         """Update current time from /current_time topic."""
@@ -279,15 +327,11 @@ class RobotLLMNode(Node):
         if robot_name is None:
             robot_name = self.robot_name
 
-        # 1) Ensure top-level container exists
         if self.robot_states is None:
             self.robot_states = {}
             self.get_logger().info("Created top-level robot_states container dict")
 
-        # 2) Make sure we have a "robot_states" key at top-level
         if "robot_states" not in self.robot_states:
-            # Heuristic: if current dict already *looks* like it only contains robots,
-            # then wrap it under "robot_states" instead of losing it.
             if all(isinstance(v, dict) for v in self.robot_states.values()) and len(self.robot_states) > 0:
                 # Wrap existing as robot_states
                 self.robot_states = {"robot_states": self.robot_states}
@@ -422,11 +466,15 @@ class RobotLLMNode(Node):
     def stop_tasks(self) -> None:
         """Stop all robot tasks (stub function)."""
         self.get_logger().info("Stopping all robot tasks...")
-        # Implement logic to stop robot tasks here
 
-        # For now, just log the action
+        msg = Bool()
+        msg.data = True
+        self._cancel_find_pub.publish(msg)
+        self._cancel_goto_pub.publish(msg)
 
-        self.get_logger().info("All tasks of the robot has been stopped.")
+        self.get_logger().info("Cancel request sent to /goto/cancel")
+        self.get_logger().info("Cancel request sent to /find/cancel")
+        self.get_logger().info("All tasks of the robot have been stopped.")
 
     def read_chat_history(self) -> str:
         """
@@ -491,7 +539,7 @@ class RobotLLMNode(Node):
                 max_tokens=500,
                 temperature=0.5,
             )
-            self.get_logger().info(f"LLM Response: {response}")
+            self.get_logger().debug(f"LLM Response: {response}")
 
             raw = response.choices[0].message.content.strip()
             # code = response.choices[0].message['content'].strip()
@@ -504,7 +552,7 @@ class RobotLLMNode(Node):
                 # self.get_logger().info(f"explaination: {explaination}")
                 return code, explaination
 
-            return code, ""
+            return "", ""
             
         except openai.Timeout:
             self.get_logger().error("OpenAI request TIMED OUT (no response in time)")
@@ -532,7 +580,7 @@ class RobotLLMNode(Node):
                 [f"Function Name: {opt.name} \nFunction Description: {opt.description} (e.g., {opt.example_code})" for opt in option_list]
             )
 
-            self.get_logger().info(f"Action message: {available_actions}")
+            self.get_logger().debug(f"Action message: {available_actions}")
 
             self.get_logger().info("Building system messages")
             prompt = (
@@ -542,10 +590,13 @@ class RobotLLMNode(Node):
                 f"Recent Tasks (History): {chat_history} "
                 f"Current States of All Robots: {self.robot_states} "
                 f"Available Actions: {available_actions} "
+                "Using the class reference name same as the example is important. "
+                "Use the name 'node' to refer to the RobotLLMNode instance. "
+                # "Your geneatinig codes are case-sensitive, so DO NOT change the case of any function or variable names. "
                 # f"Task to be performed: {task} "
             )
 
-            self.get_logger().info(f"Prompt message: {prompt}")
+            self.get_logger().debug(f"Prompt message: {prompt}")
 
         except Exception as e:
             self.get_logger().warning(f"{e}")
@@ -562,95 +613,183 @@ class RobotLLMNode(Node):
             # execute_python_code(code)
             execute_python_code(code, node=self)
 
+
+
             self.get_logger().info("Robot Task Completed.")
             self.robot_task_completed(task)
             self.tasks_completed(task)
+
         else:
             self.get_logger().error("Failed to generate valid code for the task.")
             self.robot_task_interrupted(task) ## Needs to be handled better If it became an EVENT it could be better
 
-    # def pick_green_object(self) -> bool:
-    def pick_green_object(self):
-        """Action: Pick green object."""
-        self.get_logger().info("Picking green object...")
+    def find_service(self, name: str = "red_gear") -> bool:
+        """Call Find service and wait without re-spinning the node."""
+        self.get_logger().info(f"Finding '{name}'...")
 
-        task_successful = self.pick_object("green object")
-        return task_successful
-
-    # def pick_brown_object(self) -> bool:
-    def pick_brown_object(self) :
-        """Action: Pick brown object."""
-        self.get_logger().info("Picking brown object...")
-
-        task_successful = self.pick_object("brown object")
-        return task_successful
-
-    # def pick_grey_object(self) -> bool:
-    def pick_grey_object(self):
-        """Action: Pick grey object."""
-        self.get_logger().info("Picking grey object...")
-
-        task_successful = self.pick_object("grey object")
-        return task_successful
-        
-
-    def pick_object(self, object_name: str = "red_gear") -> bool:
-        """Blocking call: sends goal and waits for result. Returns True only if success."""
-        self.get_logger().debug(f"Picking '{object_name}' object...")
-
-        # 1. Wait for server
-        if not self._action_client.wait_for_server(timeout_sec=5.0):
-            self.get_logger().error("Action server not available!")
+        if not self._find_client.wait_for_service(timeout_sec=5.0):
+            self.get_logger().error("Find service not available!")
             return False
 
-        # 2. Create and send goal
-        goal_msg = PickObject.Goal()
-        goal_msg.object_name = object_name
+        req = Find.Request()
+        req.name = name
 
-        self.get_logger().info(f"Sending goal: pick '{object_name}'")
-        send_goal_future = self._action_client.send_goal_async(
-            goal_msg,
-            feedback_callback=self.feedback_callback
-        )
+        future = self._find_client.call_async(req)
+        self.get_logger().info(f"Waiting for /find response for '{name}'...")
 
-        # BLOCK until goal is accepted/rejected
-        rclpy.spin_until_future_complete(self, send_goal_future, timeout_sec=10.0)
+        # Non-blocking (no nested spin) – let the MultiThreadedExecutor do the work
+        deadline = time.time() + 120.0  # overall timeout
+        while rclpy.ok() and not future.done():
+            time.sleep(0.05)  # yield this thread; other executor threads handle callbacks
+            if time.time() > deadline:
+                self.get_logger().error(f"Service call for Find '{name}' timed out.")
+                return False
 
-        if not send_goal_future.done():
-            self.get_logger().error("Goal send timed out")
+        try:
+            res = future.result()
+        except Exception as e:
+            self.get_logger().error(f"Service call failed: {e}")
             return False
 
-        goal_handle = send_goal_future.result()
-        if not goal_handle.accepted:
-            self.get_logger().warn("Goal rejected by server")
-            return False
-
-        self.get_logger().info("Goal accepted")
-
-        # 3. Wait for result
-        result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future, timeout_sec=60.0)
-
-        if not result_future.done():
-            self.get_logger().error("Action timed out!")
-            return False
-
-        result = result_future.result().result
-        if result.success:
-            self.get_logger().info(f"SUCCESS: {result.status_msg}")
+        if res.success:
+            self.get_logger().info(f"Pick succeeded: {res.message}")
             return True
         else:
-            self.get_logger().warn(f"FAILED: {result.status_msg}")
+            self.get_logger().warn(f"Pick failed: {res.message}")
             return False
 
 
-    def feedback_callback(self, feedback_msg):
+    def goto_service(self, x: float, y: float, z: float, yaw_deg: float) -> bool:
+        """
+        Call Drone GoTo service and wait (non-blocking, no nested spin).
+        Returns True on success, False on failure.
+        """
+
+        self.get_logger().info(f"Sending drone goto goal: x={x}, y={y}, z={z}, yaw={yaw_deg}°")
+
+        # Wait for service
+        if not self._goto_client.wait_for_service(timeout_sec=5.0):
+            self.get_logger().error("GotoPoseDrone service NOT available!")
+            return False
+
+        # Construct request
+        req = GotoPoseDrone.Request()
+        req.x = x
+        req.y = y
+        req.z = z
+        req.yaw_deg = yaw_deg
+
+        # Call service asynchronously
+        future = self._goto_client.call_async(req)
+        self.get_logger().info("Waiting for drone service response...")
+
+        # Timeout protection
+        deadline = time.time() + 1000000.0  # 2 minutes max
+        while rclpy.ok() and not future.done():
+            time.sleep(0.05)   # allow other executor threads to run callbacks
+            if time.time() > deadline:
+                self.get_logger().error("Drone goto service call TIMED OUT.")
+                return False
+
+        # Get result
         try:
-            data = json.loads(feedback_msg.feedback.json_state)
-            # self.get_logger().info(f"Feedback → {data}")
-            self.update_robot_state(data)
-        except json.JSONDecodeError:
-            self.get_logger().info(f"Feedback → {feedback_msg.feedback.json_state}")
+            res = future.result()
+        except Exception as e:
+            self.get_logger().error(f"Drone goto service call failed: {e}")
+            return False
+
+        # Handle result
+        if not res.accepted:
+            self.get_logger().warn(f"Drone goto request was NOT accepted: {res.message}")
+            return False
+
+        # The node will return final result via the same service response
+        if res.success:
+            self.get_logger().info(f"Drone goto SUCCESS: {res.message}")
+            return True
+        else:
+            self.get_logger().warn(f"Drone goto FAILED: {res.message}")
+            return False
+
+    def query_callback(self, prompt: str) -> bool:
+
+        if self.latest_image_b64 is None:
+            self.get_logger().warn("No image received yet. Cannot query VLM.")
+            return False
+
+        self.get_logger().info("Sending image to VLM...")
+
+        self.system_prompt = (
+            "The table numbers are from left to right 1 to 4. "
+            "The stall numbers are from left to right 1 to 3. "
+            "You are a vision-based event detection assistant for a Drone. "
+            "Your job is to analyze the image from the drone's bottom camera and answer the user's questions based on the visual content. IN SHORT, CONCISE ANSWERS ONLY. "
+        )
+
+        try:
+            # Full message to GPT (system + user + image)
+            response = self.Visionclient.chat.completions.create(
+                model="gpt-4.1",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": self.system_prompt
+                    },
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            # {"type": "text", "text": question_2},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/jpeg;base64,{self.latest_image_b64}"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            )
+
+            answer = response.choices[0].message.content
+
+            # Publish output
+            self.get_logger().info(f"VLM Answer: {answer}")
+            answer = f"Drone (msg) | {answer}"
+            self.pub_input_msg.publish(String(data=answer))
+            return True
+
+
+        except Exception as e:
+            self.get_logger().error(f"OpenAI VLM request failed: {e}")
+            return False
+
+
+    # —————————————————————— YOUR LLM FUNCTIONS (now perfect) ——————————————————————
+
+
+    def describe_screen(self, prompt: str = "What is in front of the drone?"):
+        self.get_logger().info(f'Describing screen with prompt: "{prompt}"...')
+
+        success = self.query_callback(prompt)
+        if success:
+            self.get_logger().info(f"Screen description completed.")
+            self.robot_task_completed(f"describe screen with prompt: {prompt}")
+        else:
+            self.robot_task_interrupted(f"describe screen with prompt: {prompt}")
+        return
+
+    def hover(self, x: float = 0.0, y: float = 0.0, z: float = 2.0, yaw_deg: float = 0.0):
+        self.get_logger().info(f"Hovering at position x={x}, y={y}, z={z}, yaw={yaw_deg}...")
+
+        success = self.goto_service(x=x, y=y, z=z, yaw_deg=yaw_deg)
+        if success:
+            self.get_logger().info(f"Hovering at position x={x}, y={y}, z={z} completed.")
+            self.robot_task_completed(f"hover at x={x}, y={y}, z={z}")
+        else:
+            self.robot_task_interrupted(f"hover at x={x}, y={y}, z={z}")
+        return
+
 
 def execute_python_code(code: str, node=None):
     """
@@ -666,14 +805,20 @@ def execute_python_code(code: str, node=None):
         if node is None:
             print("CRITICAL: Could not get node instance!")
             return
-    
+
+
     node.get_logger().info(f"Executing generated Python code:{code}")
     # node.get_logger().debug("Code to execute:\n%s", code)
 
-    # node.pick_brown_object()
     try:
         exec(code, {"__builtins__": {}}, {"node": node})
         node.get_logger().info("Code executed successfully")
+
+
+
+
+    except TypeError as e:
+        pass
     except Exception as e:
         node.get_logger().error("Failed to execute generated code: %s", e)
 

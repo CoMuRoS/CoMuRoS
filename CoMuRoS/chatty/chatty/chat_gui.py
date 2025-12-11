@@ -323,6 +323,7 @@ class ChatGUI(Node):
         if user_input:
             out_msg = String()
             out_msg.data = f"human|{user_input}"
+            # out_msg.data = f"Human (msg) | {user_input}"
             self.publisher.publish(out_msg)
             self.get_logger().info(f"[ChatGUI] Sent -> {user_input}")
         self.entry.delete(0, 'end')

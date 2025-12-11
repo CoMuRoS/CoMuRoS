@@ -1,38 +1,35 @@
 {
-  "robot_names": ["lerobot1", "lerobot2"],
+  "robot_names": ["lerobot", "burger"],
 
   "robot_capabilities": {
-    "lerobot1": "A robotic arm with 5 DOF. It has a gripper (end effector) to hold items. The robot can pick and place objects and can show the objects.",
-    "lerobot2": "A robotic arm with 5 DOF. It has a gripper (end effector) to hold items. The robot can pick and place objects and can show the objects."
+    "lerobot": "A robotic arm with 5 DOF. It has a gripper (end effector) to hold items. The robot can pick and place the objects.",
+    "burger": "A mobile robot with 2 Wheel Drive, can move on 2D plane, can goto specific location, can find objects in its vicinity (within 1 meter radius), cannot pick and place objects."
   },
 
   "robot_morphology": {
-    "lerobot1": "Payload: 500 g, Reach: 0.4 m, Degrees of Freedom: 5",
-    "lerobot2": "Payload: 500 g, Reach: 0.4 m, Degrees of Freedom: 5"
-  },
+    "lerobot": "Payload: 500 g, Reach: 0.4 m, Degrees of Freedom: 5" ,
+    "burger": " Payload: ~8 kg (max ~12 kg), Speed: 0 ~ 3.7 m/s (max ~5 m/s), Weight: 15kg, Size: 700 x 310 x 400 mm"
+   },
 
   "robot_states": {
-    "lerobot1": {
+    "lerobot": {
       "relative_position": "Fixed",
       "relative_orientation": "Facing forward",
       "carry_state": "Empty",
       "arm_state": "Stowed",
       "mode": "Idle"
     },
-
-    "lerobot2": {
-      "relative_position": "Fixed",
-      "relative_orientation": "Facing right",
-      "carry_state": "Empty",
-      "arm_state": "Stowed",
-      "mode": "Idle"
+    "burger": {
+        "relative_position": "None",
+        "relative_orientation": "None",
+        "carry_state": "Empty",
+        "mode": "Idle"
     }
 
   },
 
   "task_specific_rules": [
-    "lerobot1 must do tasks with red and white gears only.",
-    "lerobot2 must do tasks with yellow, green, greay, golden yellow and cream gears only."
+    ""
   ],
 
   "task_replanning_rules": [
