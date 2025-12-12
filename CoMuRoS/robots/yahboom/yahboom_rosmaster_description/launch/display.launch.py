@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""
-Launch RViz visualization for the Yahboom (ROSMASTER) robot.
 
-This launch file sets up the complete visualization environment for the robot,
-including robot state publisher, joint state publisher, and RViz2. It handles loading
-and processing of URDF/XACRO files and controller configurations.
-
-:author: Addison Sears-Collins
-:date: November 20, 2024
-"""
 import os
 from pathlib import Path
 from launch import LaunchDescription

@@ -16,12 +16,8 @@ from rclpy.callback_groups import (
 )
 from ament_index_python.packages import get_package_share_directory
 
-from robot_interface.srv import GotoPoseDrone, Find
+from robot_interface.srv import GotoPoseDrone
 from openai import OpenAI
-
-
-from concurrent.futures import Future
-from typing import Optional
 
 ROBOT_NAME   = 'drone'
 ROBOT_TYPE   = "Quadrotor UAV"

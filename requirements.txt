@@ -1,4 +1,28 @@
+# GUI
 customtkinter==5.2.2
+
+# LLM / AI
+openai==1.66.3
 google-generativeai==0.8.5
 ollama==0.4.8
-openai==1.66.3
+requests>=2.31.0
+
+# Audio / Speech
+sounddevice>=0.4.6
+scipy>=1.10.0
+numpy>=1.23.0
+pydub>=0.25.1
+edge-tts>=6.1.10
+
+# Speech-to-text
+torch>=2.0.0
+openai-whisper>=20231117
+
+# Utilities
+regex>=2023.10.3
+
+
+
+
+# sudo apt update
+# sudo apt install -y ffmpeg portaudio19-dev

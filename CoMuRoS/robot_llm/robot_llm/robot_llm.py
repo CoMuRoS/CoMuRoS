@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import json
 import time
@@ -19,9 +18,6 @@ from rclpy.action import ActionClient
 from robot_interface.action import PickObject
 from robot_interface.srv import StartPick
 
-
-from concurrent.futures import Future
-from typing import Optional
 
 ROBOT_NAME   = 'robot1'
 ROBOT_TYPE   = 'Robotic Arm'

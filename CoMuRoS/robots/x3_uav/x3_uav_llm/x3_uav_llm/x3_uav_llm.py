@@ -20,9 +20,6 @@ from robot_interface.srv import GotoPoseDrone, Find
 from openai import OpenAI
 
 
-from concurrent.futures import Future
-from typing import Optional
-
 ROBOT_NAME   = 'drone'
 ROBOT_TYPE   = "Quadrotor UAV"
 NODE_NAME    = "drone_llm_node"

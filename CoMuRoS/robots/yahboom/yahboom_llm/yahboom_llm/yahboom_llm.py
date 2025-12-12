@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 import json
 import time
@@ -17,8 +16,7 @@ from rclpy.callback_groups import (
 )
 from ament_index_python.packages import get_package_share_directory
 
-# from rclpy.action import ActionClient
-from robot_interface.srv import GotoPoseHolonomic, Find
+from robot_interface.srv import GotoPoseHolonomic
 
 
 
@@ -42,36 +40,7 @@ option_list = [
         description='Navigate along the predefined cleaning path to clean the area.',
         example_code="node.clean()"
     )
-    # TestOption(
-    #     name="Goto",
-    #     id=0,
-    #     description="Navigate to a target location or named object.",
-    #     example_code="node.goto('charging_station')"
-    # ),
-    # TestOption(
-    #     name="Find",
-    #     id=1,
-    #     description="Search for and detect a specified object in the environment.",
-    #     example_code="node.find('ball')"
-    # ),
-    # TestOption(
-    #     name="Strafe",
-    #     id=2,
-    #     description="Move sideways without rotating the robot.",
-    #     example_code="node.strafe(distance=0.5, direction='left')"
-    # ),
-    # TestOption(
-    #     name="Slide",
-    #     id=3,
-    #     description="Translate diagonally or laterally in a straight line.",
-    #     example_code="node.slide(x=0.3, y=-0.3)"
-    # ),
-    # TestOption(
-    #     name="Rotate",
-    #     id=4,
-    #     description="Rotate in place by a specified yaw angle.",
-    #     example_code="node.rotate(90)"
-    # ),
+
 ]
 
 

@@ -15,8 +15,7 @@ from rclpy.callback_groups import (
 )
 from ament_index_python.packages import get_package_share_directory
 
-# from rclpy.action import ActionClient
-from robot_interface.srv import GotoPoseDiffDrive, Find, GotoPoseHolonomic
+from robot_interface.srv import GotoPoseHolonomic
 
 
 ROBOT_NAME   = 'delivery_bot'
