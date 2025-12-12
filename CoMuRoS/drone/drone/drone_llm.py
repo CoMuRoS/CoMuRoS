@@ -45,7 +45,7 @@ option_list = [
     TestOption(
         name="DescribeScreen",
         id=1,
-        description="This is used to describe the current screen view of the drone given a prompt. Answer the prompt in only one go. ",
+        description="This is used to describe the current screen view of the drone given a prompt. All questions about the scene must be handled in one unified function without repeating it.",
         example_code="node.describe_screen(prompt='in which table is child is sitting?')"
     ),
 
@@ -588,6 +588,7 @@ class RobotLLMNode(Node):
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
                 "Use the name 'node' to refer to the RobotLLMNode instance. "
+                "While "
                 # "Your geneatinig codes are case-sensitive, so DO NOT change the case of any function or variable names. "
                 # f"Task to be performed: {task} "
             )
@@ -618,42 +619,6 @@ class RobotLLMNode(Node):
         else:
             self.get_logger().error("Failed to generate valid code for the task.")
             self.robot_task_interrupted(task) ## Needs to be handled better If it became an EVENT it could be better
-
-    def find_service(self, name: str = "red_gear") -> bool:
-        """Call Find service and wait without re-spinning the node."""
-        self.get_logger().info(f"Finding '{name}'...")
-
-        if not self._find_client.wait_for_service(timeout_sec=5.0):
-            self.get_logger().error("Find service not available!")
-            return False
-
-        req = Find.Request()
-        req.name = name
-
-        future = self._find_client.call_async(req)
-        self.get_logger().info(f"Waiting for /find response for '{name}'...")
-
-        # Non-blocking (no nested spin) – let the MultiThreadedExecutor do the work
-        deadline = time.time() + 120.0  # overall timeout
-        while rclpy.ok() and not future.done():
-            time.sleep(0.05)  # yield this thread; other executor threads handle callbacks
-            if time.time() > deadline:
-                self.get_logger().error(f"Service call for Find '{name}' timed out.")
-                return False
-
-        try:
-            res = future.result()
-        except Exception as e:
-            self.get_logger().error(f"Service call failed: {e}")
-            return False
-
-        if res.success:
-            self.get_logger().info(f"Pick succeeded: {res.message}")
-            return True
-        else:
-            self.get_logger().warn(f"Pick failed: {res.message}")
-            return False
-
 
     def goto_service(self, x: float, y: float, z: float, yaw_deg: float) -> bool:
         """

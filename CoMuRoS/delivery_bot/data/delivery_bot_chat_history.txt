@@ -1,30 +1,8 @@
-[Time: Hours: 00, Minutes: 00, Seconds: 45] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 45] Human: deluver the pepsi to the table wheere that chilld is sitting
-[Time: Hours: 00, Minutes: 00, Seconds: 48] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 48] Task Manager:
+[Time: Hours: 0, Minutes: 10, Seconds: 0] Task Manager:
+[Time: Hours: 00, Minutes: 18, Seconds: 37] Human: serve the chick food to child
+[Time: Hours: 0, Minutes: 10, Seconds: 0] Task Manager:
+[Time: Hours: 00, Minutes: 18, Seconds: 39] Task Manager:
 Independent Tasks:
-Drone tasks: Identify the table where the child is sitting
-
+Drone tasks: Identify the location of the child and the stall number for chicken
 multirobot_list: []
 singlerobot_list: [Drone]
-Drone (status): ALL TASKS COMPLETED
-[Time: Hours: 00, Minutes: 01, Seconds: 17] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 17] Human: deliver the water bottle to table 1
-[Time: Hours: 00, Minutes: 01, Seconds: 20] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 20] Task Manager:
-Independent Tasks:
-Delivery Bot tasks: Deliver the water bottle to table 1
-
-multirobot_list: []
-singlerobot_list: [Delivery Bot]
-Delivery_bot (status): ALL TASKS COMPLETED
-[Time: Hours: 00, Minutes: 01, Seconds: 48] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 48] Human: clean the place
-[Time: Hours: 00, Minutes: 01, Seconds: 50] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 50] Task Manager:
-Independent Tasks:
-Cleaning Bot tasks: Clean the place
-
-multirobot_list: []
-singlerobot_list: [Cleaning Bot]
-Cleaning_bot (status): ALL TASKS COMPLETED

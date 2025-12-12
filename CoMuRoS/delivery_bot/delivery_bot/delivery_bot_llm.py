@@ -41,7 +41,7 @@ option_list = [
     TestOption(
         name='ClearTable',
         id=1,
-        description='This is used to clear the plates from table and drop them in the sink. From the history, check which food items were delivered to the table and clear only those food items.',
+        description='This is used to clear the plates from table and drop them in the sink. From the history, check which food items were delivered to the table and clear only those food items. from the history check the name of the food which was kept at the table and send that also',
         example_code='node.clear_table(table_number=2, food_name="food1")'
     )
 ]
@@ -584,6 +584,10 @@ class RobotLLMNode(Node):
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
                 "Use the name 'node' to refer to the RobotLLMNode instance. "
+                "'food1' is the name of the food from stall 1"
+                "'food2' is the name of the food from stall 2"
+                "'food3' is the name of the food from stall 3"
+                "remember this name to pick the food from stall or table"
                 ""
                 # "Your geneatinig codes are case-sensitive, so DO NOT change the case of any function or variable names. "
                 # f"Task to be performed: {task} "

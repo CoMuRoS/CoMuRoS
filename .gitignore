@@ -3,4 +3,5 @@ __pycache__/
 
 # data/
 
-esp32_code.cpp
+esp32*.cpp
+esp32*.py

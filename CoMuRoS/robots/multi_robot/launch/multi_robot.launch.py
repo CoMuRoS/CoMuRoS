@@ -19,7 +19,7 @@ def generate_launch_description():
 
     # Packages
     pkg_shared            = get_package_share_directory('multi_robot')
-    pkg_turtlebot3_gazebo = get_package_share_directory('turtlebot3_gazebo')
+    # pkg_turtlebot3_gazebo = get_package_share_directory('turtlebot3_gazebo')
     pkg_yahboom_gazebo    = get_package_share_directory('yahboom_rosmaster_gazebo')
     pkg_x3_uav_gazebo     = get_package_share_directory('x3_uav_ignition')
     pkg_ros_gz_sim        = get_package_share_directory('ros_gz_sim')
@@ -99,9 +99,9 @@ def generate_launch_description():
         pkg_yahboom_gazebo, 'launch', 'yahboom_robot.launch.py'
     ])
 
-    tb3_launch = PathJoinSubstitution([
-        pkg_turtlebot3_gazebo, 'launch', 'turtlebot3_robot.launch.py'
-    ])
+    # tb3_launch = PathJoinSubstitution([
+    #     pkg_turtlebot3_gazebo, 'launch', 'turtlebot3_robot.launch.py'
+    # ])
 
     x3_uav_robot = PathJoinSubstitution([
         pkg_x3_uav_gazebo, 'launch', 'x3_uav_robot.launch.py'
