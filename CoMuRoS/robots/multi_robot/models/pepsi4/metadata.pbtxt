@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Pepsi_Caffeine_Free_Diet_12_CT"
+description: "Pepsi Caffeine Free Diet - 12 CT\n0 calories per can.  Sugar free.  Very low sodium, 35 mg or less per 8 fl oz (240 ml).  Please recycle."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Pepsi"
+}
+annotations {
+  key: "gtin"
+  value: "00012000810039"
+}
+annotations {
+  key: "mpn"
+  value: "0012000810039"
+}
+annotations {
+  key: "sku"
+  value: "9286103_20130524_114893"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

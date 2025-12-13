@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Pepsi_Cola_Caffeine_Free_12_12_fl_oz_355_ml_cans_144_fl_oz_426_lt"
+description: "Pepsi Cola, Caffeine Free - 12 - 12 fl oz (355 ml) cans [144 fl oz (4.26 lt)]\n150 calories per can.  Very low sodium.  Please recycle."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Pepsi"
+}
+annotations {
+  key: "gtin"
+  value: "00012000810022"
+}
+annotations {
+  key: "mpn"
+  value: "0012000810022"
+}
+annotations {
+  key: "sku"
+  value: "9286103_20130524_114892"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

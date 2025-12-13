@@ -3,7 +3,7 @@
 
   "robot_capabilities": {
     "cleaning_bot": "A 4-wheel holonomic drive robot. It can clean floors.",
-    "delivery_bot": "A 4-wheel holonomic drive robot. It can carry/deliver items on its top surface.",
+    "delivery_bot": "A 4-wheel holonomic drive robot. It can carry/deliver items on its top surface. It can also clear tables.",
     "drone": "A drone is positioned at a place where it can observe entire food court. Its primary job is to answer questions about the scene for awareness of Task Manager and other robots. "
   },
 
@@ -41,12 +41,16 @@
 
 
   "task_specific_rules": [
-    "stall 1 is Vegetarian Food Stall",
-    "stall 2 is Non-Vegetarian Food Stall",
-    "stall 3 is Cold Drinks Stall",
-    "Whenever you need specific info like stall no or table no as a Task Manager you must Ask the drone about it.",
-    "After the drone replies to your question, you can continue to allocate task.",
-    "Answering questions should be classified as an independent task. "
+    "Stall 1 has all types of vegetarian food. ",
+    "Stall 2 has all types of non-vegetarian food. ",
+    "Stall 3 has all types of juices or drinks. ",
+    "Tables 1, 2, 3, and 4 are present in the restaurant environment. ",
+    "Stalls, Tables and a Sinks locations are known to robots. ",
+    "Whenever specific information is not known ask the drone about it. ",
+    "After the drone replies to your question, you can continue to allocate task. ",
+    "Answering questions should be classified as an independent task. ",
+    "Always assign the task with the correct Stall Number or Table Number. If the information is not known, ask the drone for it. ",
+    ""
   ],
 
   "task_replanning_rules": [

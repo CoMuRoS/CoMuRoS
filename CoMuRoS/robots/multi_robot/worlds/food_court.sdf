@@ -40,13 +40,13 @@
                     
         <model name="ground_plane">
             <static>true</static>
-            <pose>2.5 0 0.02 0 0 0</pose>
+            <pose>0 0 0 0 0 0</pose>
             <link name="link">
                 <collision name="ground_collision">
                     <geometry>
                         <plane>
                             <normal>0 0 1</normal>
-                            <size>22 15</size>
+                            <size>30 30</size>
                         </plane>
                     </geometry>
                 </collision>
@@ -54,17 +54,18 @@
                     <geometry>
                         <plane>
                             <normal>0 0 1</normal>
-                            <size>22 15</size>
+                            <size>30 30</size>
                         </plane>
                     </geometry>
-            <material>
-                <!-- soft light blue -->
-                <ambient>0.45 0.65 0.95 1</ambient>
-                <diffuse>0.45 0.65 0.95 1</diffuse>
+                <material>
+                    <!-- very light pastel blue -->
+                    <ambient>0.75 0.85 0.98 1</ambient>
+                    <diffuse>0.75 0.85 0.98 1</diffuse>
 
-                <!-- low specular to avoid shining -->
-                <specular>0.1 0.1 0.1 1</specular>
-            </material>
+                    <!-- keep specular very low -->
+                    <specular>0.05 0.05 0.05 1</specular>
+                </material>
+
                 </visual>
             </link>
         </model>
@@ -288,7 +289,7 @@
         </include>
 
         <include>
-            <uri>model://Coke</uri>
+            <uri>model://pepsi2</uri>
             <name>food3</name>
             <pose>8 1.0039 0.4081 0 0 0</pose>
         </include>

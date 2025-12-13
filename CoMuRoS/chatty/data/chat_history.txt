@@ -1351,3 +1351,383 @@ Error from GPT.
 [Time: Hours: 00, Minutes: 00, Seconds: 22] Human: serve the child with chicken
 [Time: Hours: 00, Minutes: 01, Seconds: 26] Task Manager:
 Error from GPT.
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 52] Human: serve the child with nonveg food
+[Time: Hours: 00, Minutes: 01, Seconds: 54] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child who needs to be served, identify the location of non-vegetarian food stall
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 02, Seconds: 04] Drone (msg): The child who needs to be served is sitting at table 3 (from the left). The non-vegetarian food stall is stall 2 (middle stall from the left).
+[Time: Hours: 00, Minutes: 02, Seconds: 06] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: pick up non-vegetarian food from stall 2, deliver food to table 3
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 05, Seconds: 54] Human: clear the table
+[Time: Hours: 00, Minutes: 05, Seconds: 56] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clear the table
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 03, Seconds: 08] Human: serve the kid with chicken
+[Time: Hours: 00, Minutes: 03, Seconds: 11] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the stall number for chicken
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 03, Seconds: 16] Drone (msg): The chicken is at stall number 1.
+[Time: Hours: 00, Minutes: 03, Seconds: 19] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Delivery Bot: Go to stall number 1
+3. Delivery Bot: Pick up chicken
+4. Delivery Bot: Serve the kid with chicken
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Human: serve the kid with chicken
+[Time: Hours: 00, Minutes: 00, Seconds: 20] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the kid and the stall number for chicken
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 28] Drone (msg): - The kid is located near table 1 (far left).
+- The chicken stall is stall number 1 (far left).
+[Time: Hours: 00, Minutes: 00, Seconds: 30] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Delivery Bot: Pick up chicken from stall number 1
+3. Delivery Bot: Deliver chicken to the kid at table 1
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 16] Human: serve the kid with chicken
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the kid and the stall number for chicken
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 28] Drone (msg): The kid is located near stall 1 (leftmost green figure). The chicken is at stall number 3 (rightmost, with a chicken image).
+[Time: Hours: 00, Minutes: 00, Seconds: 29] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: deliver chicken from stall number 3 to the kid near stall 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Human: serve the kid with chicken meal
+[Time: Hours: 00, Minutes: 00, Seconds: 12] Task Manager:
+Independent Tasks:
+Drone tasks: identify the stall number for the chicken meal
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Drone (msg): The chicken meal is at stall number 2 (middle stall).
+[Time: Hours: 00, Minutes: 00, Seconds: 21] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Pick up chicken meal from stall number 2, Deliver chicken meal to the kid
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 16] Human: serve teh child with chiceken meal
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child and the stall number for the chicken meal
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 25] Drone (msg): The child is seated at table 2 (second from the left). The chicken meal is at stall 2 (middle stall).
+[Time: Hours: 00, Minutes: 00, Seconds: 27] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: deliver the chicken meal from stall 2 to table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 58] Human: clear the table
+[Time: Hours: 00, Minutes: 03, Seconds: 00] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Cleaning Bot: clean the table at table 2
+multirobot_list: [Delivery Bot, Cleaning Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 24] Human: serve the child with chicken meal
+[Time: Hours: 00, Minutes: 00, Seconds: 26] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child and the stall number for chicken meal
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 36] Drone (msg): The child is located near the first table from the left. The chicken meal is at stall number 1 (the leftmost stall with a chicken icon).
+[Time: Hours: 00, Minutes: 00, Seconds: 39] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Serve the child with chicken meal from stall number 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 28] Human: clear the table
+[Time: Hours: 00, Minutes: 02, Seconds: 30] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Clear the table
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 39] Human: serve the chicken to kid
+[Time: Hours: 00, Minutes: 00, Seconds: 41] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the stall number for chicken serving
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 48] Drone (msg): The chicken is being served at stall number 1 (leftmost stall).
+[Time: Hours: 00, Minutes: 00, Seconds: 50] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Delivery Bot: Pick up chicken from stall number 1
+3. Delivery Bot: Deliver the chicken to the kid
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 55] Human: serve the child with chicken
+[Time: Hours: 00, Minutes: 01, Seconds: 58] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: pick up chicken from Stall 2, deliver chicken to the child
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 27] Human: serve teh child with chicken
+[Time: Hours: 00, Minutes: 00, Seconds: 29] Task Manager:
+Independent Tasks:
+Drone tasks: provide information about the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 35] Drone (msg): The child is sitting at table 2, in the left seat.
+[Time: Hours: 00, Minutes: 00, Seconds: 36] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: pick up chicken from Stall 2, deliver chicken to table 2, left seat
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 17] Human: serve teh child with chicken
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Task Manager:
+Independent Tasks:
+Drone tasks: Identify table number where the child is seated
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 25] Drone (msg): The child is sitting at table 2.
+[Time: Hours: 00, Minutes: 00, Seconds: 27] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Serve chicken to the child at table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: serve child with chicken
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Task Manager:
+Independent Tasks:
+Drone tasks: identify table number where the child is seated
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Drone (msg): The child is sitting at table 2.
+[Time: Hours: 00, Minutes: 00, Seconds: 22] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: collect chicken from Stall 2, deliver chicken to table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 53] Human: clear the table
+[Time: Hours: 00, Minutes: 02, Seconds: 55] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: clear table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 06, Seconds: 21] Human: clear the table again
+[Time: Hours: 00, Minutes: 06, Seconds: 22] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: clear table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 20, Seconds: 09] Human: clear the table again
+[Time: Hours: 00, Minutes: 20, Seconds: 11] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: clear table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 24, Seconds: 02] Human: clear the table again
+[Time: Hours: 00, Minutes: 24, Seconds: 03] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: clear table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: get some drinks to table 3
+[Time: Hours: 00, Minutes: 00, Seconds: 14] Task Manager:
+Independent Tasks:
+Drone tasks: Provide stall number for drinks
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 22] Drone (msg): There is no visible information in the image to determine the stall number for drinks.
+[Time: Hours: 00, Minutes: 00, Seconds: 23] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Drone: STOP
+3. User: Please provide the stall number for drinks as the drone couldn't determine it.
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: get the lemonade to table 3
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Task Manager:
+Independent Tasks:
+Drone: Identify the location of table 3
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Drone (msg): There is no table visible in the image.
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Task Manager:
+Independent Tasks:
+Drone: Identify the location of table 3 again
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 25] Drone (msg): The image is blank, so I cannot locate table 3.
+[Time: Hours: 00, Minutes: 00, Seconds: 27] Task Manager:
+Independent Tasks:
+Drone: Identify the location of table 3 once more
+multirobot_list: []
+singlerobot_list: [Drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 12] Human: get the lemonade to table 3
+[Time: Hours: 00, Minutes: 00, Seconds: 14] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of stall with lemonade
+multirobot_list: []
+singlerobot_list: [Drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Human: get the lemonade to table 3
+[Time: Hours: 00, Minutes: 00, Seconds: 12] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of table 3
+multirobot_list: []
+singlerobot_list: [Drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 15] Human: get the lemonde to child
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 23] Drone (msg): There is no child visible in the image.
+[Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
+Plan:
+1. Drone: STOP
+2. Delivery Bot: STOP
+3. User: Locate the child manually or provide further instructions. 
+
+multirobot_list: [Drone, Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: table 3
+[Time: Hours: 00, Minutes: 00, Seconds: 32] Task Manager:
+Plan:
+1. Drone: STOP
+2. Delivery Bot: STOP
+3. User: Locate the child manually or provide further instructions. 
+
+multirobot_list: [Drone, Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 00, Seconds: 43] Human: child is in teh table3
+[Time: Hours: 00, Minutes: 00, Seconds: 44] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Drone: STOP
+3. User: Place the lemonade on the Delivery Bot at Stall 3
+4. Delivery Bot: Deliver the lemonade to Table 3
+
+multirobot_list: [Delivery Bot, Drone]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 00, Seconds: 51] Human: its a juice
+[Time: Hours: 00, Minutes: 00, Seconds: 52] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Drone: STOP
+3. User: Place the juice on the Delivery Bot at Stall 3
+4. Delivery Bot: Deliver the juice to Table 3
+
+multirobot_list: [Delivery Bot, Drone]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: get the lemonade to child
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 16] Drone (msg): There is no child visible in the image. The image is blank.
+[Time: Hours: 00, Minutes: 00, Seconds: 17] Task Manager:
+Independent Tasks:
+Drone tasks: Where is the child located?
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 22] Drone (msg): There is no child visible in the image.
+[Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
+Independent Tasks:
+Drone tasks: continue searching for the child
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 29] Drone (msg): There is no child visible in the image.
+[Time: Hours: 00, Minutes: 00, Seconds: 30] Task Manager:
+Could you please provide more information or specify the location of the child?
+[Time: Hours: 00, Minutes: 00, Seconds: 37] Human: child is in the 2nd table
+[Time: Hours: 00, Minutes: 00, Seconds: 39] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: deliver lemonade from Stall 3 to the child at the 2nd table
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 03, Seconds: 12] Human: clear the table
+[Time: Hours: 00, Minutes: 03, Seconds: 13] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: clear the table at the 2nd table
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Human: get something to drink to that child
+[Time: Hours: 00, Minutes: 00, Seconds: 20] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 47] Human: i think child is at table 2
+[Time: Hours: 00, Minutes: 00, Seconds: 49] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Deliver drink from Stall 3 to Table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 23] Human: get some drinks to gentleman
+[Time: Hours: 00, Minutes: 01, Seconds: 26] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: go to Stall 3, pick up drinks, deliver drinks to the gentleman
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 16] Human: delivery robot stop
+[Time: Hours: 00, Minutes: 02, Seconds: 17] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 02, Seconds: 18] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 13] Human: clean the place
+[Time: Hours: 00, Minutes: 00, Seconds: 15] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the floors
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: stop cleaning
+[Time: Hours: 00, Minutes: 00, Seconds: 23] Task Manager:
+Plan:
+1. Cleaning Bot: STOP
+multirobot_list: [Cleaning Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+
+[Time: Hours: 00, Minutes: 01, Seconds: 03] Human: get the chicken biriyani to table3
+[Time: Hours: 00, Minutes: 01, Seconds: 06] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: get the chicken biriyani from Stall 2, deliver it to Table 3
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 01, Seconds: 20] Human: stop the serving chicken
+[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+

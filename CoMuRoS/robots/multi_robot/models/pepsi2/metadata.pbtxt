@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Pepsi_Max_Cola_Zero_Calorie_12_12_fl_oz_355_ml_cans_144_fl_oz_426_lt"
+description: "Pepsi Max Cola, Zero Calorie - 12 - 12 fl oz (355 ml) cans [144 fl oz (4.26 lt)]\n0 calorie cola. 0 calories per can.  Maximum taste.  Sugar free.  Very low sodium, 35 mg or less per 240 ml (8 fl oz).  Caffeine Content: 69 ml/12 fl oz. www.pepsi.com.  Please recycle."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Pepsi"
+}
+annotations {
+  key: "gtin"
+  value: "00012000018794"
+}
+annotations {
+  key: "mpn"
+  value: "0012000018794"
+}
+annotations {
+  key: "sku"
+  value: "9091050_20130419_30001879"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}
