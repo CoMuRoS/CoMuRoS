@@ -49,7 +49,8 @@ def main(args=None):
     node = DroneGotoClient()
 
     # Modify this goal as needed:
-    node.send_goal(x=5.0, y=0.0, z=8.0, yaw_deg=90.0)
+    # node.send_goal(x=5.0, y=-1.0, z=5.3, yaw_deg=90.0)
+    node.send_goal(x=5.0, y=-1.0, z=5.3, yaw_deg=90.0)
 
     node.destroy_node()
     rclpy.shutdown()
@@ -57,3 +58,17 @@ def main(args=None):
 
 if __name__ == "__main__":
     main()
+
+
+'''
+
+ign service -s /world/food_court/set_pose \
+  --reqtype ignition.msgs.Pose \
+  --reptype ignition.msgs.Boolean \
+  --timeout 5000 \
+  --req 'name: "r3" position: { x: 5.0 y: -1.0 z: 5.3 } orientation: { x: 0.0 y: 0.0 z: 0.7071 w: 0.7071 }'
+
+
+
+
+'''

@@ -32,6 +32,8 @@ setup(
 
             'holonomic_position_controller_service = cleaning_bot.holonomic_position_controller_service:main',
 
+            'spawn_waste = cleaning_bot.spawn_waste:spawn_ground_plane',
+
         ],
     },
 )

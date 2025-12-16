@@ -574,18 +574,19 @@ class RobotLLMNode(Node):
             
             prompt = (
                 f"You are a robot control system controlling a {ROBOT_TYPE} named '{self.robot_name}'. "
-                "You can generate python code to perform actions. "
-                "Based on the given task, you need to choose the appropriate action from the available options. "
+                "You must generate python code to perform the task. "
+                "Based on the given task, generate code using available actions."
                 f"Recent Tasks (History): {chat_history} "
                 f"Current States of All Robots: {self.robot_states} "
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
                 "Use the name 'node' to refer to the RobotLLMNode instance. "
-                "'food1' is the name of the food from stall 1 "
-                "'food2' is the name of the food from stall 2 "
-                "'food3' is the name of the food from stall 3 "
-                "remember this name to pick the food from stall or table "
-                # "IMPORTANT: Add 'node.check_cancelled()' at the start of loops and between long operations. "
+                "Task Specific Rules: "
+                "   'food1' is the name of the food from stall 1 "
+                "   'food2' is the name of the food from stall 2 "
+                "   'food3' is the name of the food from stall 3 "
+                "   Table 1, 2, 3, and 4 are present in the restaurant environment. "
+                "   remember this name to pick the food from stall or table "
             )
 
             self.get_logger().debug(f"Prompt message: {prompt}")
@@ -683,57 +684,134 @@ class RobotLLMNode(Node):
     # —————————————————————— LLM FUNCTIONS ——————————————————————
     
     def deliver_food(self, stall_number, table_number):
-        """Deliver food with cancellation support."""
+        """Deliver food with cancellation support and state updates."""
         self.get_logger().info('Delivering food ...')
+        
+        # Update state: Task started
+        self.update_robot_state({
+            "current_task": "deliver_food",
+            "task_status": "in_progress",
+            "stall_number": stall_number,
+            "table_number": table_number,
+            "delivery_stage": "started"
+        })
+        
         table_pose = TableLocation.get(table_number)
         stall_pose = StallLocation.get(stall_number)
 
         if table_pose is None:
             self.get_logger().error(f"Invalid table number: {table_number}")
+            self.update_robot_state({
+                "task_status": "failed",
+                "failure_reason": f"invalid_table_number_{table_number}"
+            })
             return 
 
         if stall_pose is None:
             self.get_logger().error(f"Invalid stall number: {stall_number}")
+            self.update_robot_state({
+                "task_status": "failed",
+                "failure_reason": f"invalid_stall_number_{stall_number}"
+            })
             return 
 
         sx, sy, syaw = stall_pose
         hx, hy, hyaw = table_pose
         home_pose_x, home_pose_y, home_pose_yaw = home_pose
-
         food_name = food[stall_number - 1]
 
         # ========== CHECK CANCELLATION ==========
         self.check_cancelled()
         # ========================================
 
+        # Update state: Navigating to stall
+        self.update_robot_state({
+            "task_status": "navigating_to_stall",
+            "delivery_stage": "going_to_stall",
+            "target_coords": {"x": sx, "y": sy+0.5, "yaw": syaw},
+            "food_item": food_name
+        })
+        
         result = self.goto_service(sx, sy+0.5, syaw) 
         self.get_logger().info('Robot Near Stall')
         time.sleep(2.0)
 
+        # Update state: Picking food
+        self.update_robot_state({
+            "task_status": "picking_food",
+            "delivery_stage": "at_stall",
+            "current_location": f"stall_{stall_number}"
+        })
+        
         result = self.teleport(name=food_name, x=sx, y=sy+0.5, z=0.4)
         self.get_logger().info('Food Picked from Stall')
-        time.sleep(2.0)
+        time.sleep(3.0)
 
+        # Update state: Food picked, navigating to table
+        self.update_robot_state({
+            "task_status": "navigating_to_table",
+            "delivery_stage": "carrying_food",
+            "food_picked": True,
+            "target_coords": {"x": hx, "y": hy, "yaw": hyaw}
+        })
+        
         result = self.goto_service(hx, hy, hyaw)
         self.get_logger().info('Robot Near Table')
         time.sleep(2.0)
 
+        # Update state: Delivering food to table
+        self.update_robot_state({
+            "task_status": "delivering_food",
+            "delivery_stage": "at_table",
+            "current_location": f"table_{table_number}"
+        })
+        
         result = self.teleport(name=food_name, x=hx+0.1, y=hy-0.7, z=0.6)
         self.get_logger().info("Food Delivered to table")
-        time.sleep(2.0)
+        time.sleep(3.0)
 
+        # Update state: Returning home
+        self.update_robot_state({
+            "task_status": "returning_home",
+            "delivery_stage": "going_home",
+            "food_delivered": True,
+            "delivery_completed_at": time.time()
+        })
+        
         result = self.goto_service(home_pose_x, home_pose_y, home_pose_yaw)
-        result = self.get_logger().info('Robot Went Home')
+        self.get_logger().info('Robot Went Home')
+
+        # Update state: Task completed
+        self.update_robot_state({
+            "task_status": "completed",
+            "delivery_stage": "at_home",
+            "current_location": "home",
+            f"delivery_stall{stall_number}_to_table{table_number}": "completed",
+            "completion_timestamp": time.time()
+        })
 
     def clear_table(self, table_number, food_name):
-        """Clear table with cancellation support."""
+        """Clear table with cancellation support and state updates."""
         self.get_logger().info('Clearing Table ...')
+        
+        # Update state: Task started
+        self.update_robot_state({
+            "current_task": "clear_table",
+            "task_status": "in_progress",
+            "table_number": table_number,
+            "food_to_clear": food_name,
+            "clearing_stage": "started"
+        })
+        
         table_pose = TableLocation.get(table_number)
-
         self.get_logger().info(f'Clear the food item: {food_name} from table number: {table_number}')
 
         if table_pose is None:
             self.get_logger().error(f"Invalid table number: {table_number}")
+            self.update_robot_state({
+                "task_status": "failed",
+                "failure_reason": f"invalid_table_number_{table_number}"
+            })
             return 
 
         table_x, table_y, table_yaw = table_pose
@@ -744,24 +822,71 @@ class RobotLLMNode(Node):
         self.check_cancelled()
         # ========================================
 
+        # Update state: Navigating to table
+        self.update_robot_state({
+            "task_status": "navigating_to_table",
+            "clearing_stage": "going_to_table",
+            "target_coords": {"x": table_x, "y": table_y, "yaw": table_yaw}
+        })
+        
         result = self.goto_service(table_x, table_y, table_yaw)
         self.get_logger().info('Robot Near Table')
         time.sleep(2.0)
 
+        # Update state: Picking food from table
+        self.update_robot_state({
+            "task_status": "picking_food_from_table",
+            "clearing_stage": "at_table",
+            "current_location": f"table_{table_number}"
+        })
+        
         result = self.teleport(name=food_name, x=table_x, y=table_y, z=0.4)
         self.get_logger().info('Food Picked from Table')
-        time.sleep(2.0)
+        time.sleep(3.0)
 
+        # Update state: Navigating to sink
+        self.update_robot_state({
+            "task_status": "navigating_to_sink",
+            "clearing_stage": "carrying_dishes",
+            "food_picked": True,
+            "target_coords": {"x": sink_x, "y": sink_y, "yaw": sink_yaw}
+        })
+        
         result = self.goto_service(sink_x, sink_y, sink_yaw)
         self.get_logger().info('Robot Near Sink')
         time.sleep(2.0)
 
+        # Update state: Dropping food in sink
+        self.update_robot_state({
+            "task_status": "dropping_in_sink",
+            "clearing_stage": "at_sink",
+            "current_location": "sink"
+        })
+        
         result = self.teleport(name=food_name, x=-2.5, y=-0.5, z=0.6)
         self.get_logger().info('Food Dropped in Sink')  
-        time.sleep(2.0)
+        time.sleep(3.0)
 
+        # Update state: Returning home
+        self.update_robot_state({
+            "task_status": "returning_home",
+            "clearing_stage": "going_home",
+            "dishes_cleared": True,
+            "clearing_completed_at": time.time()
+        })
+        
         result = self.goto_service(home_pose_x, home_pose_y, home_pose_yaw)
         self.get_logger().info('Robot Went Home')
+
+        # Update state: Task completed
+        self.update_robot_state({
+            "task_status": "completed",
+            "clearing_stage": "at_home",
+            "current_location": "home",
+            f"table_{table_number}_cleared": True,
+            f"cleared_item": food_name,
+            "completion_timestamp": time.time()
+        })
 
 
 def execute_python_code(code: str, node=None):

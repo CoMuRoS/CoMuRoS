@@ -107,21 +107,22 @@ def generate_launch_description():
         pkg_x3_uav_gazebo, 'launch', 'x3_uav_robot.launch.py'
     ])
 
-    robot1_launch = TimerAction(
+
+    robot3_launch = TimerAction(
         period=5.0,
         actions=[
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(yahboom_launch),
+                PythonLaunchDescriptionSource(x3_uav_robot),
                 launch_arguments={
                     'use_sim_time': use_sim_time,
-                    'robot_name': 'rosmaster_x3',
-                    'prefix': 'r1',
+                    'robot_name': 'x3_uav',
+                    'prefix': 'r3',
                     'use_ignition': use_ignition,
                     'use_plugin': 'True',
-                    'use_ros2_control': 'False',
-                    'use_mock_hardware': 'False',
-                    'spawn_x': '11.0',
-                    'spawn_y': '0.0',
+                    'use_ros2_control': 'false',
+                    'use_mock_hardware': 'false',
+                    'spawn_x': '-1.0',
+                    'spawn_y': '1.0',
                     'spawn_z': '0.05',
                     'spawn_roll': '0.0',
                     'spawn_pitch': '0.0',
@@ -181,21 +182,24 @@ def generate_launch_description():
     #     ]
     # )
 
-    robot3_launch = TimerAction(
+
+
+
+    robot1_launch = TimerAction(
         period=25.0,
         actions=[
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(x3_uav_robot),
+                PythonLaunchDescriptionSource(yahboom_launch),
                 launch_arguments={
                     'use_sim_time': use_sim_time,
-                    'robot_name': 'x3_uav',
-                    'prefix': 'r3',
+                    'robot_name': 'rosmaster_x3',
+                    'prefix': 'r1',
                     'use_ignition': use_ignition,
                     'use_plugin': 'True',
-                    'use_ros2_control': 'false',
-                    'use_mock_hardware': 'false',
-                    'spawn_x': '-1.0',
-                    'spawn_y': '1.0',
+                    'use_ros2_control': 'False',
+                    'use_mock_hardware': 'False',
+                    'spawn_x': '11.0',
+                    'spawn_y': '0.0',
                     'spawn_z': '0.05',
                     'spawn_roll': '0.0',
                     'spawn_pitch': '0.0',
@@ -228,9 +232,9 @@ def generate_launch_description():
 
         igntion_bridge_cmd,
 
-        robot1_launch,
-        robot2_launch,
         robot3_launch,
+        robot2_launch,
+        robot1_launch,
 
         single_rviz_node
     ])

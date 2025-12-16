@@ -1,4 +1,4 @@
 Cleaning_bot (status) :  : NO CURRENT TASK
-Cleaning_bot (status) : clean the floors : TASK IN PROGRESS
-Cleaning_bot (status) : STOP : TASK INTERRUPTED
-Cleaning_bot (status) : clean the floors : TASK INTERRUPTED
+Cleaning_bot (status) : clean the red curry spilled on the floor : TASK IN PROGRESS
+Cleaning_bot (status) : clean : TASK COMPLETED
+Cleaning_bot (status) : clean the red curry spilled on the floor : TASK COMPLETED

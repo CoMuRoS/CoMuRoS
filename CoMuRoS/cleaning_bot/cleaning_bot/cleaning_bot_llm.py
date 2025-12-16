@@ -554,14 +554,13 @@ class RobotLLMNode(Node):
             
             prompt = (
                 f"You are a robot control system controlling a {ROBOT_TYPE} named '{self.robot_name}'. "
-                "You can generate python code to perform actions. "
-                "Based on the given task, you need to choose the appropriate action from the available options. "
+                "You must generate python code to perform the task. "
+                "Based on the given task, generate code using available actions."
                 f"Recent Tasks (History): {chat_history} "
                 f"Current States of All Robots: {self.robot_states} "
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
                 "Use the name 'node' to refer to the RobotLLMNode instance. "
-                # "IMPORTANT: Add 'node.check_cancelled()' at the start of loops and between long operations. "
             )
 
             self.get_logger().debug(f"Prompt message: {prompt}")
@@ -647,9 +646,17 @@ class RobotLLMNode(Node):
         return result.returncode == 0
 
     def clean(self) -> None:
-        """Cleaning task with cancellation support."""
-        self.get_logger().info(f"Starting cleaning task...")
-
+        """Cleaning task with cancellation support and state updates."""
+        self.get_logger().info(f"Starting restaurant cleaning task...")
+        
+        # Update state: Task started
+        self.update_robot_state({
+            "current_task": "clean_restaurant",
+            "task_status": "in_progress",
+            "cleaning_progress": "0/6",
+            "cleaning_description": "Cleaning restaurant floor areas"
+        })
+        
         cleaning_locations = [
             (11.0, -3.0, 0.0),
             (4.0, -3.0, 0.0),
@@ -658,36 +665,107 @@ class RobotLLMNode(Node):
             (11.0, 3.0, 0.0),
             (11.0, 0.0, 0.0)
         ]
-
+        
         for idx, (x, y, yaw) in enumerate(cleaning_locations):
             # ========== CHECK CANCELLATION ==========
             self.check_cancelled()
             # ========================================
-
+            
+            # Update state: Navigating to location
+            self.update_robot_state({
+                "task_status": "navigating",
+                "target_location": f"cleaning_point_{idx + 1}",
+                "target_coords": {"x": x, "y": y, "yaw": yaw},
+                "cleaning_progress": f"{idx}/6"
+            })
+            
             self.get_logger().info(f"Navigating to cleaning location {idx + 1} at x={x}, y={y}, yaw={yaw}°")
             success = self.goto_service(x=x, y=y, yaw_deg=yaw)
             
             if not success:
                 self.get_logger().error(f"Failed to reach cleaning location {idx + 1}. Aborting cleaning task.")
+                
+                # Update state: Navigation failed
+                self.update_robot_state({
+                    "task_status": "failed",
+                    "failure_reason": f"navigation_failed_at_location_{idx + 1}",
+                    "cleaning_progress": f"{idx}/6"
+                })
+                
                 self.robot_task_interrupted("clean")
                 return
-
-            self.get_logger().info(f"Performing cleaning at location {idx + 1}...")
             
+            # Update state: Arrived at location, starting cleaning
+            self.update_robot_state({
+                "task_status": "cleaning_area",
+                "current_location": f"cleaning_point_{idx + 1}",
+                "current_coords": {"x": x, "y": y, "yaw": yaw},
+                "activity": "Cleaning restaurant floor"
+            })
+            
+            self.get_logger().info(f"Cleaning restaurant area at location {idx + 1}...")
+            
+            # Special handling for location 2 (obstacle encountered)
             if idx == 1:
-                self.get_logger().info("Removing obstacle (small_cube) during cleaning...")
+                self.get_logger().info("Obstacle (small_cube) detected during cleaning - attempting removal...")
+                
+                # Update state: Removing obstacle
+                self.update_robot_state({
+                    "task_status": "removing_obstacle",
+                    "obstacle_type": "small_cube",
+                    "activity": "Removing obstacle blocking cleaning path"
+                })
+                
                 remove_success = self.remove_cube()
+                
                 if remove_success:
-                    self.get_logger().info("Obstacle removed successfully.")
+                    self.get_logger().info("Obstacle removed successfully. Continuing restaurant cleaning.")
+                    
+                    # Update state: Obstacle removed, continuing cleaning
+                    self.update_robot_state({
+                        "obstacle_removed": True,
+                        "obstacle_removal_location": f"cleaning_point_{idx + 1}",
+                        "obstacle_removal_status": "Success",
+                        "activity": "Resumed cleaning after obstacle removal"
+                    })
                 else:
-                    self.get_logger().warn("Failed to remove obstacle.")
+                    self.get_logger().warn("Failed to remove obstacle. Continuing with remaining cleaning areas.")
+                    
+                    # Update state: Obstacle removal failed, but continuing
+                    self.update_robot_state({
+                        "obstacle_removed": False,
+                        "obstacle_removal_failed": True,
+                        "obstacle_removal_status": "Failed",
+                        "activity": "Continuing cleaning (obstacle removal failed)"
+                    })
             
-            time.sleep(2)  # Simulate cleaning time
-
-        self.get_logger().info("Cleaning task completed successfully.")
+            # Simulate cleaning time
+            self.get_logger().info(f"Cleaning restaurant floor at location {idx + 1}...")
+            time.sleep(2.0)
+            
+            # Update state: Location cleaned
+            self.update_robot_state({
+                "task_status": "in_progress",
+                "cleaning_progress": f"{idx + 1}/6",
+                f"location_{idx + 1}_cleaned": True,
+                f"location_{idx + 1}_cleaned_at": time.time(),
+                "activity": f"Completed cleaning at point {idx + 1}"
+            })
+            
+            self.get_logger().info(f"Restaurant area {idx + 1} cleaned successfully.")
+        
+        # Update state: All cleaning completed
+        self.update_robot_state({
+            "task_status": "completed",
+            "cleaning_progress": "6/6",
+            "all_locations_cleaned": True,
+            "completion_timestamp": time.time(),
+            "activity": "Restaurant cleaning completed successfully"
+        })
+        
+        self.get_logger().info("Restaurant cleaning task completed successfully.")
         self.robot_task_completed("clean")
         return
-
 
 def execute_python_code(code: str, node=None):
     """Execute generated Python code safely with cancellation support."""

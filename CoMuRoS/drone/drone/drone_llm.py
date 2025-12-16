@@ -570,14 +570,19 @@ class RobotLLMNode(Node):
             
             prompt = (
                 f"You are a robot control system controlling a {ROBOT_TYPE} named '{self.robot_name}'. "
-                "You can generate python code to perform actions. "
-                "Based on the given task, you need to choose the appropriate action from the available options. "
+                "You must generate python code to perform the task. "
+                "Based on the given task, generate code using available actions."
                 f"Recent Tasks (History): {chat_history} "
                 f"Current States of All Robots: {self.robot_states} "
                 f"Available Actions: {available_actions} "
                 "Using the class reference name same as the example is important. "
                 "Use the name 'node' to refer to the RobotLLMNode instance. "
-                # "IMPORTANT: Add 'node.check_cancelled()' at the start of loops and between long operations. "
+                "Task Specific Rules: "
+                "   'food1' is the name of the food from stall 1 "
+                "   'food2' is the name of the food from stall 2 "
+                "   'food3' is the name of the food from stall 3 "
+                "   Tables 1, 2, 3, and 4 are present in the restaurant environment. "
+                "   remember this name to pick the food from stall or table "
             )
 
             self.get_logger().debug(f"Prompt message: {prompt}")
@@ -702,29 +707,113 @@ class RobotLLMNode(Node):
     # —————————————————————— LLM FUNCTIONS ——————————————————————
 
     def describe_screen(self, prompt: str = "What is in front of the drone?"):
-        """Describe screen with cancellation support."""
+        """Describe screen with cancellation support and state updates."""
         self.get_logger().info(f'Describing screen with prompt: "{prompt}"...')
+        
+        # Update state: Task started
+        self.update_robot_state({
+            "current_task": "describe_screen",
+            "task_status": "in_progress",
+            "vision_query": prompt,
+            "query_stage": "started"
+        })
+        
+        # Check if image available
+        if self.latest_image_b64 is None:
+            self.get_logger().warn("No image received yet. Cannot query VLM.")
+            self.update_robot_state({
+                "task_status": "failed",
+                "failure_reason": "no_image_available",
+                "query_stage": "failed"
+            })
+            self.robot_task_interrupted(f"describe screen with prompt: {prompt}")
+            return
+        
+        # Update state: Processing image with VLM
+        self.update_robot_state({
+            "task_status": "querying_vlm",
+            "query_stage": "processing_image",
+            "image_available": True
+        })
 
         success = self.query_callback(prompt)
+        
         if success:
             self.get_logger().info(f"Screen description completed.")
+            
+            # Update state: Task completed
+            self.update_robot_state({
+                "task_status": "completed",
+                "query_stage": "completed",
+                "last_query": prompt,
+                "query_successful": True,
+                "completion_timestamp": time.time()
+            })
+            
             self.robot_task_completed(f"describe screen with prompt: {prompt}")
         else:
+            self.get_logger().error("Failed to get VLM response.")
+            
+            # Update state: Task failed
+            self.update_robot_state({
+                "task_status": "failed",
+                "query_stage": "vlm_error",
+                "failure_reason": "vlm_query_failed",
+                "query_successful": False
+            })
+            
             self.robot_task_interrupted(f"describe screen with prompt: {prompt}")
         return
 
     def hover(self, x: float = 0.0, y: float = 0.0, z: float = 2.0, yaw_deg: float = 0.0):
-        """Hover with cancellation support."""
+        """Hover with cancellation support and state updates."""
         self.get_logger().info(f"Hovering at position x={x}, y={y}, z={z}, yaw={yaw_deg}...")
+        
+        # Update state: Task started
+        self.update_robot_state({
+            "current_task": "hover",
+            "task_status": "in_progress",
+            "hover_stage": "started",
+            "target_position": {"x": x, "y": y, "z": z, "yaw": yaw_deg}
+        })
+        
+        # Update state: Moving to hover position
+        self.update_robot_state({
+            "task_status": "moving_to_position",
+            "hover_stage": "navigating",
+            "target_coords": {"x": x, "y": y, "z": z, "yaw_deg": yaw_deg}
+        })
 
         success = self.goto_service(x=x, y=y, z=z, yaw_deg=yaw_deg)
+        
         if success:
             self.get_logger().info(f"Hovering at position x={x}, y={y}, z={z} completed.")
+            
+            # Update state: Hovering successfully
+            self.update_robot_state({
+                "task_status": "completed",
+                "hover_stage": "hovering",
+                "current_position": {"x": x, "y": y, "z": z, "yaw": yaw_deg},
+                "hover_successful": True,
+                "hovering_at": f"({x}, {y}, {z})",
+                "completion_timestamp": time.time()
+            })
+            
             self.robot_task_completed(f"hover at x={x}, y={y}, z={z}")
         else:
+            self.get_logger().error(f"Failed to reach hover position.")
+            
+            # Update state: Hover failed
+            self.update_robot_state({
+                "task_status": "failed",
+                "hover_stage": "navigation_failed",
+                "failure_reason": "could_not_reach_target_position",
+                "hover_successful": False,
+                "attempted_position": {"x": x, "y": y, "z": z, "yaw": yaw_deg}
+            })
+            
             self.robot_task_interrupted(f"hover at x={x}, y={y}, z={z}")
         return
-
 
 def execute_python_code(code: str, node=None):
     """Execute generated Python code safely with cancellation support."""

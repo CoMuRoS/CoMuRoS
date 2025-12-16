@@ -1,42 +1,9 @@
-[Time: Hours: 00, Minutes: 00, Seconds: 13] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 13] Human: clean the place
-[Time: Hours: 00, Minutes: 00, Seconds: 15] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 15] Task Manager:
+[Time: Hours: 00, Minutes: 02, Seconds: 29] Task Manager:
+[Time: Hours: 00, Minutes: 02, Seconds: 29] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 02, Seconds: 30] Task Manager:
+[Time: Hours: 00, Minutes: 02, Seconds: 30] Task Manager:
 Independent Tasks:
-Cleaning Bot tasks: clean the floors
+Cleaning Bot tasks: clean the red curry spilled on the floor
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
-[Time: Hours: 00, Minutes: 00, Seconds: 21] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 21] Human: stop cleaning
-[Time: Hours: 00, Minutes: 00, Seconds: 23] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 23] Task Manager:
-Plan:
-1. Cleaning Bot: STOP
-multirobot_list: [Cleaning Bot]
-singlerobot_list: []
-Cleaning_bot (status): STOP TASKS COMPLETED
-[Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
-[Time: Hours: 00, Minutes: 00, Seconds: 24] Task Manager:
- !! Multi-Robot Task Completed Successfully !!.
-
-[Time: Hours: 00, Minutes: 01, Seconds: 03] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 03] Human: get the chicken biriyani to table3
-[Time: Hours: 00, Minutes: 01, Seconds: 06] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 06] Task Manager:
-Independent Tasks:
-Delivery Bot tasks: get the chicken biriyani from Stall 2, deliver it to Table 3
-multirobot_list: []
-singlerobot_list: [Delivery Bot]
-[Time: Hours: 00, Minutes: 01, Seconds: 20] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 20] Human: stop the serving chicken
-[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
-Plan:
-1. Delivery Bot: STOP
-multirobot_list: [Delivery Bot]
-singlerobot_list: []
-Delivery_bot (status): STOP TASKS COMPLETED
-[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
-[Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
- !! Multi-Robot Task Completed Successfully !!.
-
+Cleaning_bot (status): ALL TASKS COMPLETED

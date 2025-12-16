@@ -1731,3 +1731,276 @@ singlerobot_list: []
 [Time: Hours: 00, Minutes: 01, Seconds: 21] Task Manager:
  !! Multi-Robot Task Completed Successfully !!.
 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 38] Human: get some juice to teable 1
+[Time: Hours: 00, Minutes: 00, Seconds: 41] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: get juice from Stall 3, deliver juice to Table 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 00, Seconds: 54] Human: stop
+[Time: Hours: 00, Minutes: 00, Seconds: 56] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 00, Seconds: 56] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+
+[Time: Hours: 00, Minutes: 01, Seconds: 23] Human: get some veg food to table 1
+[Time: Hours: 00, Minutes: 01, Seconds: 26] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: get vegetarian food from Stall 1, deliver vegetarian food to Table 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 45] Human: actually table 1 needs nonveg food
+[Time: Hours: 00, Minutes: 02, Seconds: 48] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: get non-vegetarian food from Stall 2, deliver non-vegetarian food to Table 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 57] Human: stop
+[Time: Hours: 00, Minutes: 02, Seconds: 59] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+[Time: Hours: 00, Minutes: 02, Seconds: 59] Task Manager:
+ !! Multi-Robot Task Completed Successfully !!.
+
+[Time: Hours: 00, Minutes: 03, Seconds: 33] Human: serve juice to gentleman sitting at table 2
+[Time: Hours: 00, Minutes: 03, Seconds: 35] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: get juice from Stall 3, deliver juice to Table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 18] Human: drone goto (5, 0, 3)
+[Time: Hours: 00, Minutes: 00, Seconds: 20] Task Manager:
+Independent Tasks:
+drone tasks: goto (5, 0, 3)
+multirobot_list: []
+singlerobot_list: [drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 41] Human: drone goto (5,0, 3)
+[Time: Hours: 00, Minutes: 00, Seconds: 43] Task Manager:
+Independent Tasks:
+Drone tasks: goto (5,0, 3)
+multirobot_list: []
+singlerobot_list: [Drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 54] Human: drone goto (5, 0, 3)
+[Time: Hours: 00, Minutes: 00, Seconds: 57] Task Manager:
+Independent Tasks:
+Drone tasks: goto (5, 0, 3)
+multirobot_list: []
+singlerobot_list: [Drone]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 31] Human: drone goto (5, 0 ,3)
+[Time: Hours: 00, Minutes: 00, Seconds: 33] Task Manager:
+Independent Tasks:
+drone tasks: goto (5, 0, 3)
+multirobot_list: []
+singlerobot_list: [drone]
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Human: serve the child with salad
+[Time: Hours: 00, Minutes: 00, Seconds: 13] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child who needs to be served with salad
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Drone (msg): The child who needs to be served with salad is seated at table 2 (second from the left).
+[Time: Hours: 00, Minutes: 00, Seconds: 22] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Pick up salad from Stall 1, Deliver salad to the child at Table 2
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 00, Seconds: 56] Human: Please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 00, Seconds: 58] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: Clean the red curry spilled on the floor
+singlerobot_list: [Cleaning Bot]
+[Time: Hours: 00, Minutes: 02, Seconds: 37] Human: child is done eating can u clean teh table
+[Time: Hours: 00, Minutes: 02, Seconds: 38] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Clear the table at Table 2
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 08, Seconds: 18] Human: serve the child with salad
+[Time: Hours: 00, Minutes: 08, Seconds: 21] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 08, Seconds: 27] Drone (msg): The child is seated at table 2.
+[Time: Hours: 00, Minutes: 08, Seconds: 30] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Retrieve salad from Stall 1, Deliver salad to table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 50] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 01, Seconds: 52] Task Manager:
+Independent Tasks:
+Drone tasks: Identify child location
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 01, Seconds: 57] Drone (msg): The child is seated at table 2 (second from the left), in the middle chair.
+[Time: Hours: 00, Minutes: 01, Seconds: 59] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Serve salad to the child at table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 02, Seconds: 23] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 02, Seconds: 25] Task Manager:
+Independent Tasks:
+Drone tasks: determine the location of the child
+
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 02, Seconds: 30] Drone (msg): The child is seated at table 2, which is the second table from the left.
+[Time: Hours: 00, Minutes: 02, Seconds: 33] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Delivery Bot: Pick up salad from Stall 1
+3. Delivery Bot: Deliver salad to the child at Table 2
+
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 17] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 01, Seconds: 19] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 01, Seconds: 27] Drone (msg): The child is seated at table 1 (from the left), in the chair closest to the stall area.
+[Time: Hours: 00, Minutes: 01, Seconds: 28] Task Manager:
+Plan:
+1. Delivery Bot: STOP
+2. Delivery Bot: Pick up salad from Stall 1
+3. Delivery Bot: Deliver salad to the child at Table 1
+multirobot_list: [Delivery Bot]
+singlerobot_list: []
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: serve teh child with salad
+[Time: Hours: 00, Minutes: 00, Seconds: 11] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child who needs to be served with salad
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Human: he is at table 2
+[Time: Hours: 00, Minutes: 00, Seconds: 21] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: serve salad to the child at table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 06] Human: serve salad to teh child
+[Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child
+
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 00, Seconds: 16] Human: chikd is at table 2
+[Time: Hours: 00, Minutes: 00, Seconds: 17] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: serve salad to the child at table 2
+
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 01] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 01, Seconds: 03] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 01, Seconds: 09] Drone (msg): The child is seated at table 2 (second from the left), in the middle seat.
+[Time: Hours: 00, Minutes: 01, Seconds: 10] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: serve salad to the child at table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 03, Seconds: 39] Human: clean the table
+[Time: Hours: 00, Minutes: 03, Seconds: 42] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the table
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 53] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 00, Seconds: 55] Task Manager:
+Independent Tasks:
+Drone tasks: identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 01, Seconds: 01] Drone (msg): The child is seated at table 1, stall 2 (the second seat from the left).
+[Time: Hours: 00, Minutes: 01, Seconds: 03] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: serve salad to the child at table 1
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 01, Seconds: 34] Human: serve salad to the child
+[Time: Hours: 00, Minutes: 01, Seconds: 35] Task Manager:
+Independent Tasks:
+Drone tasks: Identify the location of the child
+multirobot_list: []
+singlerobot_list: [Drone]
+[Time: Hours: 00, Minutes: 01, Seconds: 42] Drone (msg): The child is seated at table 2, on the left side.
+[Time: Hours: 00, Minutes: 01, Seconds: 44] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Retrieve salad from Stall 1, Serve salad to the child at Table 2
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+[Time: Hours: 00, Minutes: 03, Seconds: 53] Human: clear the table
+[Time: Hours: 00, Minutes: 03, Seconds: 55] Task Manager:
+Independent Tasks:
+Delivery Bot tasks: Clear the table
+multirobot_list: []
+singlerobot_list: [Delivery Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 03, Seconds: 02] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 03, Seconds: 04] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the red curry spilled on the floor
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 03, Seconds: 32] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 03, Seconds: 33] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the red curry spilled on the floor
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 02, Seconds: 42] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 02, Seconds: 44] Task Manager:
+Independent Tasks:
+Cleaning_Bot tasks: clean the red curry that has spilled on the floor
+multirobot_list: []
+singlerobot_list: [Cleaning_Bot]
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 03, Seconds: 50] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 03, Seconds: 53] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the red curry spilled on the floor
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 02, Seconds: 29] Human: please clean the red curry that has spilled on the floor
+[Time: Hours: 00, Minutes: 02, Seconds: 30] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the red curry spilled on the floor
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
