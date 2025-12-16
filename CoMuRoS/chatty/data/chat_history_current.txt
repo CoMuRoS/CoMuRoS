@@ -1,7 +1,7 @@
 *********     NEW EXPERIMNET           ********* 
-[Time: Hours: 00, Minutes: 02, Seconds: 29] Human: please clean the red curry that has spilled on the floor
-[Time: Hours: 00, Minutes: 02, Seconds: 30] Task Manager:
+[Time: Hours: 00, Minutes: 00, Seconds: 06] Human: clean the area
+[Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager:
 Independent Tasks:
-Cleaning Bot tasks: clean the red curry spilled on the floor
+Cleaning Bot tasks: clean the area
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]

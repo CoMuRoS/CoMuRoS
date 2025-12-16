@@ -2004,3 +2004,38 @@ Independent Tasks:
 Cleaning Bot tasks: clean the red curry spilled on the floor
 multirobot_list: []
 singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 17] Human: clean the floor
+[Time: Hours: 00, Minutes: 00, Seconds: 19] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the floor
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 05] Human: clena the area
+[Time: Hours: 00, Minutes: 00, Seconds: 07] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the area
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 04] Human: clean the are
+[Time: Hours: 00, Minutes: 00, Seconds: 05] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the area
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 09] Human: clean the area
+[Time: Hours: 00, Minutes: 00, Seconds: 12] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the area
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]
+****************   NEW EXPERIMENT   ********************** 
+[Time: Hours: 00, Minutes: 00, Seconds: 06] Human: clean the area
+[Time: Hours: 00, Minutes: 00, Seconds: 08] Task Manager:
+Independent Tasks:
+Cleaning Bot tasks: clean the area
+multirobot_list: []
+singlerobot_list: [Cleaning Bot]

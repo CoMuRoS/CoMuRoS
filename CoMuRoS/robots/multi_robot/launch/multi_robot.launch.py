@@ -35,7 +35,7 @@ def generate_launch_description():
         'headless', default_value='false', description='use igntion headless'
     )
     declare_single_rviz_cmd = DeclareLaunchArgument(
-        'use_single_rviz', default_value='true', description='use one rviz for all the robot'
+        'use_single_rviz', default_value='false', description='use one rviz for all the robot'
     )
     decalre_multi_rviz_cmd = DeclareLaunchArgument(
         'use_multi_rviz', default_value='false', description='use one rviz for each robot'
