@@ -48,10 +48,10 @@ option_list = [
         example_code="node.hover(x=1.0, y=2.0, z=3.0, yaw_deg=0.0)"
     ),
     TestOption(
-        name="DescribeScreen",
+        name="DescribeScene",
         id=1,
-        description="This is used to describe the current screen view of the drone given a prompt. ALL QUESTIONS about the scene MUST be handled in one unified function without repeating it. All doubts must be solved so add all the questions related to the doubt.",
-        example_code="node.describe_screen(prompt='in which table is child is sitting?')"
+        description="This is used to describe the current scene view of the drone given a prompt. ALL QUESTIONS about the scene MUST be handled in one unified function without repeating it. All doubts must be solved so add all the questions related to the doubt.",
+        example_code="node.describe_scene(prompt='in which table is child is sitting?')"
     ),
 ]
 
