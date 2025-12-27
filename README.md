@@ -699,31 +699,26 @@ After getting the system running:
 
 ## Acknowledgments
 
-This research project was made possible thanks to the following open source projects and their contributors:
-
 ### Robot Models & URDF Files
-- **[Yahboom ROSMaster](https://github.com/automaticaddison/yahboom_rosmaster)** - Used for mobile robot simulations and hardware experiments
-- **[Unitree Go2 Description](https://github.com/Unitree-Go2-Robot/go2_description)** - Quadruped robot URDF models
-- **[SJTU Drone](https://github.com/NovoG93/sjtu_drone)** - UAV simulation models
-- **[X3 UAV](https://app.gazebosim.org/OpenRobotics/fuel/models/X3%20UAV)** - Converted from Gazebo model to URDF format for our simulations
-- **[UR5 Robot](https://github.com/utecrobotics/ur5)** - Industrial manipulator models for simulation
-- **[TurtleBot3](https://github.com/ROBOTIS-GIT/turtlebot3)** - Used Burger and Waffle Pi variants ([description](https://github.com/ROBOTIS-GIT/turtlebot3/tree/main/turtlebot3_description), [simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)) for hardware experiments, including configurations with manipulator arms (xArm integration)
+- **[Yahboom ROSMaster](https://github.com/automaticaddison/yahboom_rosmaster)**
+- **[Unitree Go2 Description](https://github.com/Unitree-Go2-Robot/go2_description)**
+- **[SJTU Drone](https://github.com/NovoG93/sjtu_drone)**
+- **[X3 UAV](https://app.gazebosim.org/OpenRobotics/fuel/models/X3%20UAV)**
+- **[UR5 Robot](https://github.com/utecrobotics/ur5)**
+- **[TurtleBot3](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)** 
 
 ### Multi-Robot Control & Coordination
-- **[ChoiRbot](https://github.com/OPT4SMART/ChoiRbot)** - Framework for distributed multi-robot coordination algorithms
-- **[CHAMP](https://github.com/chvmp/champ)** - Quadruped robot control framework
+- **[ChoiRbot](https://github.com/OPT4SMART/ChoiRbot)**
+- **[CHAMP](https://github.com/chvmp/champ)**
 
 ### Simulation & Motion Planning Tools
-- **[IFRA LinkAttacher](https://github.com/IFRA-Cranfield/IFRA_LinkAttacher)** - Used for dynamic object attachment in Gazebo simulations
-- **[PyMoveit2](https://github.com/AndrejOrsula/pymoveit2)** - Python interface for MoveIt2 motion planning
-
+- **[IFRA LinkAttacher](https://github.com/IFRA-Cranfield/IFRA_LinkAttacher)** 
+- **[PyMoveit2](https://github.com/AndrejOrsula/pymoveit2)**
 ### Core Frameworks & Infrastructure
-- **[ROS 2](https://github.com/ros2)** - Robot Operating System 2, the foundational middleware for this project
-- **[ros2_control](https://github.com/ros-controls/ros2_control)** - Real-time control framework for ROS 2
-- **[Gazebo Classic](https://github.com/gazebosim/gazebo-classic)** - Physics-based robot simulation environment
-- **[Gazebo Ignition (Fortress)](https://github.com/gazebosim/gz-sim)** - Next-generation robot simulation platform
-
-We are grateful to all maintainers and contributors of these projects for making their work freely available to the robotics community.
+- **[ROS 2](https://github.com/ros2)**
+- **[ros2_control](https://github.com/ros-controls/ros2_control)** 
+- **[Gazebo Classic](https://github.com/gazebosim/gazebo-classic)** 
+- **[Gazebo Ignition (Fortress)](https://github.com/gazebosim/gz-sim)** 
 
 ---
 
