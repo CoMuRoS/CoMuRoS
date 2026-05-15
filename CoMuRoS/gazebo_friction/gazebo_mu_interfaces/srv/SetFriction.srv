@@ -1,0 +1,7 @@
+string model_name   # Name of the first model.
+string link_name     # Name of the link in the first model.
+string mu1
+string mu2
+---
+bool success          # Whether the links were successfully attached or not.
+string message        # Feedback message.

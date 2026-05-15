@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="standalone_depth_camera">
+
+  <link name="arm1_camera_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+               iyy="0.001" iyz="0.0"
+               izz="0.001"/>
+    </inertial>
+  </link>
+
+  <!-- Make the entire model static -->
+  <gazebo>
+    <static>true</static>
+  </gazebo>
+
+  <!-- Attach the plugin to the camera link -->
+  <gazebo reference="arm1_camera_link">
+    <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
+      <cameraName>depth_camera</cameraName>
+      <imageTopicName>arm1/depth/image_raw</imageTopicName>
+      <cameraInfoTopicName>arm1/depth/camera_info</cameraInfoTopicName>
+      <frameName>arm1_camera_link</frameName>
+      <updateRate>30.0</updateRate>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100.0</far>
+        </clip>
+      </camera>
+      <depthCamera>true</depthCamera>
+      <outputFormat>DEPTH</outputFormat>
+    </plugin>
+  </gazebo>
+
+</robot>

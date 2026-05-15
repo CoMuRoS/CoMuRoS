@@ -1,0 +1,18 @@
+<?xml version="1.6" ?>
+<sdf version="1.6">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <name>chair</name>
+      <uri>model://chair</uri>
+      <pose>1 0 0 0 0 0</pose> <!-- x y z roll pitch yaw -->
+    </include>
+  </world>
+</sdf>
