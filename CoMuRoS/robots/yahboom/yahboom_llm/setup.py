@@ -6,7 +6,7 @@ package_name = 'yahboom_llm'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -16,8 +16,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='name',
-    maintainer_email='name@gmail.com',
+    maintainer='Suraj Borate, Bhavish Rai B',
+    maintainer_email='surajb@iitgn.ac.in, bhavish@example.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={

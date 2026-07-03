@@ -2,11 +2,11 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'drone'
+package_name = 'cleaning_bot'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -16,8 +16,8 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='name',
-    maintainer_email='name@gmail.com',
+    maintainer='Suraj Borate, Bhavish Rai B',
+    maintainer_email='surajb@iitgn.ac.in, bhavish@example.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
@@ -27,10 +27,13 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'drone_llm = drone.drone_llm:main',
 
-            'drone_position_controller_service = drone.drone_position_controller_service:main',
-            'drone_position_controller_client = drone.drone_position_controller_client:main',
+            'cleaning_bot_llm = cleaning_bot.cleaning_bot_llm:main',
+
+            'holonomic_position_controller_service = cleaning_bot.holonomic_position_controller_service:main',
+
+            'spawn_waste = cleaning_bot.spawn_waste:spawn_ground_plane',
+
         ],
     },
 )

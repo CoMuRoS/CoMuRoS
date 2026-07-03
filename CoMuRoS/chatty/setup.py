@@ -6,7 +6,7 @@ package_name = 'chatty'
 
 setup(
     name=package_name,
-    version='0.0.0',
+    version='1.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -21,15 +21,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='',
-    maintainer_email='',
+    maintainer='Suraj Borate, Bhavish Rai B',
+    maintainer_email='surajb@iitgn.ac.in, bhavish@example.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'chat_gui = chatty.chat_gui:main',
-            # 'chat_gui2 = chatty.chat_gui2:main',
             'chat_manager = chatty.chat_manager:main',
             'task_manager = chatty.task_manager:main',
 
@@ -37,12 +36,6 @@ setup(
             'time = chatty.time:main',
 
             'microphone = chatty.microphone:main',
-
-
-            # test scripts            
-            'test_input = chatty.test_input:main',
-            'test_launch = chatty.test_launch:main',
-            'test_launch1 = chatty.test_launch1:main',
 
         ],
     },

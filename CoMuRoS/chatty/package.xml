@@ -2,9 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>chatty</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Multirobot System</description>
-  <maintainer email="anonymous@example.com">Anonymous</maintainer>
+  <maintainer email="surajb@iitgn.ac.in">Suraj Borate</maintainer>
+  <maintainer email="bhavishraib@gmail.com">Bhavish Rai B</maintainer>
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
